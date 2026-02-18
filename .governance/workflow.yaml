@@ -1,0 +1,37 @@
+version: 1
+
+# Multi-agent governance workflow (human + automation).
+# This file documents the expected flow; enforcement is via branch protection + CI.
+
+workflow:
+  branches:
+    protected:
+      - main
+    require_pr_to_merge: true
+    forbid_direct_push: true
+
+  roles:
+    author:
+      responsibilities:
+        - "Open PR with clear description, scope, and test plan."
+        - "Ensure CI passes and address review feedback."
+    qa:
+      responsibilities:
+        - "Validate against .governance/qa-policy.yaml"
+        - "Request changes if gates fail (CI, approvals, policy checks)."
+    architect:
+      responsibilities:
+        - "Approve architecture-affecting changes and guard long-term direction."
+
+  pull_request_flow:
+    - step: "Create feature branch"
+      required: true
+    - step: "Open pull request into main"
+      required: true
+    - step: "QA workflow runs (GitHub Actions)"
+      required: true
+    - step: "At least one approval (incl. architect when needed)"
+      required: true
+    - step: "Merge via squash"
+      required: true
+

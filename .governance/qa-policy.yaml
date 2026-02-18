@@ -1,0 +1,39 @@
+version: 1
+
+# QA policy used to evaluate pull requests in this repository.
+# Scoring is intended to be simple and automatable; it is not a substitute for review.
+
+scoring:
+  scale:
+    min: 0
+    max: 5
+  meaning:
+    "0": "Missing / unacceptable (blocked)"
+    "1": "Very weak (major gaps)"
+    "2": "Needs work (some gaps)"
+    "3": "Acceptable (meets bar)"
+    "4": "Strong (above bar)"
+    "5": "Excellent (best-in-class)"
+  categories:
+    - id: correctness
+      weight: 3
+      description: "Implementation is correct, edge-cases addressed, and behavior matches requirements."
+    - id: tests
+      weight: 3
+      description: "Appropriate tests exist and cover key paths; failures reproduce and are fixed."
+    - id: security
+      weight: 2
+      description: "No obvious vulnerabilities; secrets are not introduced; input/output is validated."
+    - id: maintainability
+      weight: 2
+      description: "Code is readable, minimal, and follows repo conventions; avoids unnecessary complexity."
+    - id: docs
+      weight: 1
+      description: "Docs/README updated when behavior or workflows change."
+
+gates:
+  # These are hard requirements irrespective of score.
+  require_ci_pass: true
+  require_review_approval: true
+  forbid_direct_push_main: true
+
