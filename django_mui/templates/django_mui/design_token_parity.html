@@ -1,0 +1,14 @@
+{% extends "django_mui/base.html" %}
+
+{% block page_title %}Design Token Parity{% endblock %}
+
+{% block content %}
+  <h2>Design token parity check</h2>
+  <p>Theme mode can be switched with <code>?theme=light</code> or <code>?theme=dark</code>.</p>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 12px; max-width: 420px;">
+    <div style="background: var(--django-mui-background); color: var(--django-mui-text-primary); padding: 12px; border: 1px solid var(--django-mui-accent);">background</div>
+    <div style="background: var(--django-mui-surface); color: var(--django-mui-text-primary); padding: 12px; border: 1px solid var(--django-mui-accent);">surface</div>
+    <div style="background: var(--django-mui-accent); color: var(--django-mui-background); padding: 12px;">accent</div>
+    <div style="background: var(--django-mui-background); color: var(--django-mui-text-primary); padding: 12px;">text_primary</div>
+  </div>
+{% endblock %}
