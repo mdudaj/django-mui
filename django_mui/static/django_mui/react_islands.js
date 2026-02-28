@@ -52,6 +52,98 @@
     },
   };
 
+  function getCsrfTokenFromCookie(cookieName) {
+    const name = cookieName || "csrftoken";
+    const match = document.cookie.match(new RegExp("(?:^|;\\s*)" + name + "=([^;]+)"));
+    return match ? decodeURIComponent(match[1]) : "";
+  }
+
+  window.DjangoMuiIslands.register("WorkflowStatusCard", function (island, props) {
+    const endpoint = props.endpoint || "";
+    if (!endpoint) {
+      return;
+    }
+
+    const card = document.createElement("section");
+    const state = document.createElement("p");
+    const actions = document.createElement("div");
+    const messages = document.createElement("ul");
+    let currentState = props.state || "";
+    let currentTransitions = Array.isArray(props.allowed_transitions) ? props.allowed_transitions : [];
+
+    function render() {
+      state.textContent = "State: " + currentState;
+      actions.textContent = "";
+      messages.textContent = "";
+
+      currentTransitions.forEach(function (transition) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = transition;
+        button.addEventListener("click", function () {
+          messages.textContent = "";
+          const token =
+            props.csrfmiddlewaretoken ||
+            getCsrfTokenFromCookie(props.csrf_cookie_name);
+          const body = new URLSearchParams({
+            transition: transition,
+            object_id: String(props.object_id || ""),
+            csrfmiddlewaretoken: token,
+          });
+          fetch(endpoint, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+              "X-CSRFToken": token,
+            },
+            credentials: "same-origin",
+            body: body.toString(),
+          })
+            .then(function (response) {
+              return response.json().then(function (payload) {
+                const serverMessages = Array.isArray(payload.messages)
+                  ? payload.messages
+                  : [];
+                return {
+                  state: payload.state,
+                  allowed_transitions: payload.allowed_transitions,
+                  messages:
+                    !response.ok && !serverMessages.length
+                      ? ["Transition rejected."]
+                      : serverMessages,
+                };
+              });
+            })
+            .then(function (payload) {
+              currentState = payload.state || currentState;
+              currentTransitions = Array.isArray(payload.allowed_transitions)
+                ? payload.allowed_transitions
+                : [];
+              (payload.messages || []).forEach(function (message) {
+                const item = document.createElement("li");
+                item.textContent = String(message);
+                messages.appendChild(item);
+              });
+              render();
+            })
+            .catch(function (error) {
+              console.warn("django_mui: transition request failed", error);
+              const item = document.createElement("li");
+              item.textContent = "Transition request failed.";
+              messages.appendChild(item);
+            });
+        });
+        actions.appendChild(button);
+      });
+    }
+
+    card.appendChild(state);
+    card.appendChild(actions);
+    card.appendChild(messages);
+    island.appendChild(card);
+    render();
+  });
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", window.DjangoMuiIslands.mount);
   } else {

@@ -79,6 +79,28 @@ Payload shape:
 - `component`
 - `props`
 
+## Workflow transition endpoint contract
+
+`django_mui.urls` includes a transition endpoint at `workflow/transition/` named `django_mui_workflow_transition`.
+
+Configure a server-side handler to enforce permissions and transition rules:
+
+```python
+DJANGO_MUI_WORKFLOW_TRANSITION_HANDLER = "myapp.workflows.transition_handler"
+```
+
+Handler signature:
+
+- input: `request`, `transition`, `object_id`
+- output: `{ok, state, allowed_transitions, messages}`
+
+Demo island integration:
+
+```django
+{% load django_mui_islands %}
+{% render_react_island "WorkflowStatusCard" props=workflow_payload %}
+```
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`
