@@ -55,6 +55,15 @@ DJANGO_MUI_NAVIGATION = [
 
 `django_mui` filters this registry by `required_permissions` and marks active items from the current request route.
 
+## Form field adapter
+
+`django_mui` includes a server-first form field adapter tag that renders labels, errors, help text, and required state while preserving Django form POST behavior.
+
+```django
+{% load django_mui_forms %}
+{% render_form_field form.email %}
+```
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`

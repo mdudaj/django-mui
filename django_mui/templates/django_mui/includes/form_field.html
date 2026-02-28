@@ -1,0 +1,16 @@
+{% if field %}
+  <div class="mui-field{% if field.field.required %} mui-field--required{% endif %}" data-widget-type="{{ widget_type }}">
+    {{ field.label_tag }}
+    {{ rendered_field }}
+    {% if field.help_text %}
+      <small class="mui-field__help-text"{% if help_text_id %} id="{{ help_text_id }}"{% endif %}>{{ field.help_text }}</small>
+    {% endif %}
+    {% if field.errors %}
+      <ul class="mui-field__errors" role="alert" aria-live="assertive" aria-atomic="true">
+        {% for error in field.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endif %}
