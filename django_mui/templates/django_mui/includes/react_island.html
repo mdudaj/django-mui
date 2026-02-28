@@ -1,2 +1,2 @@
-<div data-django-mui-island></div>
-<script type="application/json" data-django-mui-island-payload>{{ payload_json }}</script>
+<div data-django-mui-island data-django-mui-payload-id="{{ payload_id }}"></div>
+{{ payload|json_script:payload_id }}
