@@ -15,7 +15,7 @@ workflow:
       responsibilities:
         - "Open PR with clear description, scope, and test plan."
         - "Ensure CI passes and address review feedback."
-        - "When issue work is complete, close the issue and close all worked related issues."
+        - "When issue work is complete, close the issue and all related worked issues."
     qa:
       responsibilities:
         - "Validate against .governance/qa-policy.yaml"
