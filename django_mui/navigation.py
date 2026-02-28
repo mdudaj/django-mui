@@ -38,7 +38,9 @@ def _build_item(item, user, active_view_name):
             children.append(built_child)
 
     route_name = item.get("route_name")
-    is_active = route_name == active_view_name or any(child["active"] for child in children)
+    is_active = (bool(route_name) and route_name == active_view_name) or any(
+        child["active"] for child in children
+    )
 
     return {
         "id": item.get("id"),
