@@ -20,4 +20,4 @@ jobs:
       - name: Security lint
         run: ruff check . --select S
       - name: Unit tests
-        run: python -m unittest discover -s tests
+        run: python -m unittest discover -s tests -p 'test_*.py'
