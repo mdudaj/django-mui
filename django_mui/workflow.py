@@ -31,11 +31,6 @@ def workflow_transition(request):
             _default_response(messages=["Missing transition or object_id."]),
             status=400,
         )
-    try:
-        object_id = int(object_id)
-    except (TypeError, ValueError):
-        return JsonResponse(_default_response(messages=["Invalid object_id."]), status=400)
-
     handler = _get_transition_handler()
     if handler is None:
         raise ImproperlyConfigured(
