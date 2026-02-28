@@ -101,6 +101,22 @@ Demo island integration:
 {% render_react_island "WorkflowStatusCard" props=workflow_payload %}
 ```
 
+## Shared design tokens
+
+`django_mui.design_tokens.TOKEN_SOURCE` is the single source of truth for base color tokens.
+
+- Django template layer consumes these as CSS variables on `:root`.
+- MUI layer consumes the same source via JSON emitted in
+  `#django-mui-theme-tokens`.
+
+Light/dark mode hook:
+
+- Append `?theme=light` or `?theme=dark` to pages that use the base template.
+
+Visual parity check page:
+
+- `django_mui_design_token_parity` (`design-tokens/parity/`)
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`
