@@ -38,6 +38,23 @@ Override example:
 {% endblock %}
 ```
 
+Default navigation can be defined server-side with a registry in settings:
+
+```python
+DJANGO_MUI_NAVIGATION = [
+    {
+        "id": "orders",
+        "label": "Orders",
+        "route_name": "orders:list",
+        "icon": "list_alt",
+        "required_permissions": ["orders.view_order"],
+        "children": [],
+    }
+]
+```
+
+`django_mui` filters this registry by `required_permissions` and marks active items from the current request route.
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`

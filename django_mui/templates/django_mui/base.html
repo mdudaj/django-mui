@@ -1,3 +1,4 @@
+{% load django_mui_navigation %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
   </header>
 
   <nav aria-label="Primary navigation">
-    {% block navigation %}{% endblock %}
+    {% block navigation %}{% render_navigation %}{% endblock %}
   </nav>
 
   <main>
