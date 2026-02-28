@@ -15,3 +15,7 @@ Repository bootstrap and Phase 1 planning artifacts for migrating `django-materi
 Phase 1 documentation deliverables are complete.
 
 Remaining documentation work is tied to later maturity levels (for example: contributor guidelines/code of conduct, release/changelog process, public examples, and security reporting process).
+
+## Implementation issue backlog
+
+Issue drafts for real implementation work are captured in `docs/implementation-issues.md`.
