@@ -14,10 +14,12 @@ def _normalize_mode(mode):
 
 def get_token_values(mode="light"):
     active_mode = _normalize_mode(mode)
-    return {
-        token_name: token_modes.get(active_mode)
-        for token_name, token_modes in TOKEN_SOURCE["color"].items()
-    }
+    values = {}
+    for token_name, token_modes in TOKEN_SOURCE["color"].items():
+        if active_mode not in token_modes:
+            raise KeyError(f"Token '{token_name}' is missing mode \"{active_mode}\".")
+        values[token_name] = token_modes[active_mode]
+    return values
 
 
 def get_css_variables(mode="light"):

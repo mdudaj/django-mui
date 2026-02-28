@@ -19,7 +19,9 @@ def _theme_mode(context):
 def django_mui_css_variables(context):
     mode = _theme_mode(context)
     css_variables = get_css_variables(mode)
-    return "; ".join(f"{name}: {value}" for name, value in css_variables.items())
+    if not css_variables:
+        return ""
+    return "; ".join(f"{name}: {value}" for name, value in css_variables.items()) + ";"
 
 
 @register.simple_tag(takes_context=True)
