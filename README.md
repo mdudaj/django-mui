@@ -13,6 +13,31 @@ INSTALLED_APPS = [
 ]
 ```
 
+## Base template shell
+
+`django_mui/templates/django_mui/base.html` provides stable server-rendered blocks:
+
+- `page_title`
+- `actions`
+- `navigation`
+- `content`
+
+Override example:
+
+```django
+{% extends "django_mui/base.html" %}
+
+{% block page_title %}Orders{% endblock %}
+
+{% block navigation %}
+  <a href="{% url 'orders:list' %}">Orders</a>
+{% endblock %}
+
+{% block content %}
+  <p>Rendered without JavaScript.</p>
+{% endblock %}
+```
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`

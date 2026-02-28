@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block page_title %}django-mui{% endblock %}</title>
+</head>
+<body>
+  <header>
+    <h1>django-mui</h1>
+    <div>{% block actions %}{% endblock %}</div>
+  </header>
+
+  <nav aria-label="Primary navigation">
+    {% block navigation %}{% endblock %}
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
