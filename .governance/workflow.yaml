@@ -15,6 +15,7 @@ workflow:
       responsibilities:
         - "Open PR with clear description, scope, and test plan."
         - "Ensure CI passes and address review feedback."
+        - "When issue work is complete, close the issue and close all worked related issues."
     qa:
       responsibilities:
         - "Validate against .governance/qa-policy.yaml"
@@ -34,4 +35,5 @@ workflow:
       required: true
     - step: "Merge via squash"
       required: true
-
+    - step: "After merge, close completed issue(s) worked in the PR"
+      required: true
