@@ -64,6 +64,21 @@ DJANGO_MUI_NAVIGATION = [
 {% render_form_field form.email %}
 ```
 
+## React island mount contract
+
+`django_mui` provides a server-emitted payload contract for progressive React islands.
+
+```django
+{% load django_mui_islands %}
+{% render_react_island "WorkflowStatusCard" props=workflow_payload %}
+```
+
+Payload shape:
+
+- `version`
+- `component`
+- `props`
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`
