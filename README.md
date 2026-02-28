@@ -9,3 +9,9 @@ Repository bootstrap and Phase 1 planning artifacts for migrating `django-materi
 - Architecture proposal: `docs/architecture-proposal.md`
 - OSS maturity model: `docs/OSS_MATURITY_MODEL.md`
 - QA evaluation contract: `docs/QA_EVALUATION_SPEC.md`
+
+## Documentation status
+
+Phase 1 documentation deliverables are complete.
+
+Remaining documentation work is tied to later maturity levels (for example: contributor guidelines/code of conduct, release/changelog process, public examples, and security reporting process).
