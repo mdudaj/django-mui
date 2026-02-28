@@ -1,4 +1,4 @@
-{% load django_mui_navigation %}
+{% load django_mui_navigation static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,5 +19,6 @@
   <main>
     {% block content %}{% endblock %}
   </main>
+  <script defer src="{% static 'django_mui/react_islands.js' %}"></script>
 </body>
 </html>
