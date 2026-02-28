@@ -2,6 +2,17 @@
 
 Repository bootstrap and Phase 1 planning artifacts for migrating `django-material` patterns toward a Django + React + MUI hybrid approach.
 
+## Implementation bootstrap
+
+Initial package scaffold has been added under `django_mui/`.
+
+```python
+INSTALLED_APPS = [
+    # ...
+    "django_mui",
+]
+```
+
 ## Phase 1 deliverables
 
 - Feature inventory: `docs/feature-inventory.md`
