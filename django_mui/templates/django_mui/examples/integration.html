@@ -27,7 +27,7 @@
     <form method="post" action="{% url 'django_mui_workflow_transition' %}">
       {% csrf_token %}
       <input type="hidden" name="transition" value="approve">
-      <input type="hidden" name="object_id" value="SO-1002">
+      <input type="hidden" name="object_id" value="SO-1001">
       <button type="submit">Approve example order</button>
     </form>
     {% render_react_island "WorkflowStatusCard" props=workflow_payload %}

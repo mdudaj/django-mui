@@ -34,7 +34,7 @@ def example_integration_view(request):
         "rows": page_obj.object_list,
         "form": ExampleOrderFilterForm(request.GET),
         "workflow_payload": {
-            "objectId": "SO-1002",
+            "objectId": "SO-1001",
             "state": "pending",
             "allowedTransitions": ["approve", "reject"],
             "transitionUrl": reverse("django_mui_workflow_transition"),
