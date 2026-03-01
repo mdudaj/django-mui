@@ -8,8 +8,8 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
-- **Selected parallel tasks**: `1) Improve navigation active-state matching for nested routes`
-- **Reason**: Navigation parity remains a high-priority area in the feature inventory, and stronger active-state matching improves server-rendered UX consistency before additional enhancements.
+- **Selected parallel tasks**: `2) Improve navigation active-state matching for URL path prefixes`
+- **Reason**: The route-prefix enhancement is complete, and URL path-prefix matching is the next small increment for nested-route parity where `view_name` metadata is unavailable.
 
 ### 1) Improve navigation active-state matching for nested routes
 
@@ -18,6 +18,15 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 - **Acceptance criteria**:
   - Navigation items can declare route prefixes for active-state matching.
   - Existing exact `view_name` matching remains backward compatible.
+  - Behavior is covered by unit tests in `tests/test_navigation.py`.
+
+### 2) Improve navigation active-state matching for URL path prefixes
+
+- **Title**: `feat: support active-state matching by URL path prefix`
+- **Scope**: Allow navigation items to stay active for nested/detail routes by matching optional request-path prefixes when view-name context is absent.
+- **Acceptance criteria**:
+  - Navigation items can declare URL path prefixes for active-state matching.
+  - Existing exact `view_name` and route-prefix matching remain backward compatible.
   - Behavior is covered by unit tests in `tests/test_navigation.py`.
 
 ## Phase 3 Backlog (Completed)
