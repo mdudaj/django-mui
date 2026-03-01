@@ -4,6 +4,11 @@ Phase 2 seed backlog items are complete. The next work queue is listed below.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
+## Next task to execute
+
+- **Selected next task**: **1) Add server-rendered table/list primitives** (`feat: add SSR-first table/list templates`)
+- **Reason**: It is first in the current ordered Phase 3 queue and unlocks downstream filter/sort and example-page work.
+
 ## 1) Add server-rendered table/list primitives
 
 - **Title**: `feat: add SSR-first table/list templates`
