@@ -36,6 +36,23 @@ def example_integration_view(request):
     paginator = Paginator(order_rows, per_page=2)
     page_obj = paginator.get_page(request.GET.get("page"))
     context = {
+        "tab_items": [
+            {
+                "label": "Examples home",
+                "url": reverse("django_mui_example_index"),
+                "is_active": request.path == reverse("django_mui_example_index"),
+            },
+            {
+                "label": "Integration",
+                "url": reverse("django_mui_example_integration"),
+                "is_active": request.path == reverse("django_mui_example_integration"),
+            },
+            {
+                "label": "Design tokens",
+                "url": reverse("django_mui_design_token_parity"),
+                "is_active": request.path == reverse("django_mui_design_token_parity"),
+            },
+        ],
         "breadcrumbs": [
             {"label": "Examples", "url": reverse("django_mui_example_index")},
             {"label": "Integration", "active": True},

@@ -9,8 +9,9 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  1. Add server-side tabs navigation template contract.
-- **Reason**: Form error summary partial is implemented; tabs contract remains the next independent server-first UX improvement.
+  1. Add pagination page-size query helper.
+  2. Document feature parity matrix by maturity level.
+- **Reason**: Form error summary partial and tabs contract are implemented; page-size query behavior and parity matrix documentation are the next independent backlog tasks.
 
 ### 1) Add SSR-first form error summary partial
 

@@ -8,9 +8,7 @@
 {% endblock %}
 
 {% block navigation %}
-  <a href="#forms">Forms</a>
-  <a href="#workflow">Workflow</a>
-  <a href="#table">Table</a>
+  {% include "django_mui/includes/tabs.html" with tab_items=tab_items tabs_aria_label="Example pages" %}
 {% endblock %}
 
 {% block content %}
