@@ -72,7 +72,7 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("django_mui_example_index", content)
         self.assertIn("django_mui_example_integration", content)
 
-    def test_implementation_backlog_marks_phase_3_complete(self):
+    def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Phase 5 Backlog (Open)", content)
         self.assertIn("Add SSR-first form error summary partial", content)

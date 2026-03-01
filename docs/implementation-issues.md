@@ -2,7 +2,7 @@
 
 ## Phase 5 Backlog (Open)
 
-Phase 2 seed backlog items, Phase 3 backlog items, and Phase 4 backlog items are complete.
+All prior backlog items are complete.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
