@@ -9,9 +9,8 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  1. Add pagination page-size query helper.
-  2. Document feature parity matrix by maturity level.
-- **Reason**: Form error summary partial and tabs contract are implemented; page-size query behavior and parity matrix documentation are the next independent backlog tasks.
+  1. Document feature parity matrix by maturity level.
+- **Reason**: Form error summary partial, tabs contract, and page-size query behavior are implemented; parity matrix documentation is the next independent backlog task.
 
 ### 1) Add SSR-first form error summary partial
 

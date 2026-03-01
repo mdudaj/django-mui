@@ -90,7 +90,9 @@ Example view shape:
 ```python
 allowed_orderings = ["order", "-order"]
 ordering = get_ordering_from_request(request, allowed_orderings, "order")
-paginator = Paginator(order_rows, per_page=25)
+allowed_page_sizes = [10, 25, 50]
+page_size = get_page_size_from_request(request, allowed_page_sizes, 25)
+paginator = Paginator(order_rows, per_page=page_size)
 page_obj = paginator.get_page(request.GET.get("page"))
 columns = ["Order", "Customer", "Status"]
 rows = [[row.number, row.customer_name, row.status] for row in page_obj.object_list]
@@ -100,11 +102,14 @@ List pages use an explicit query contract for server-rendered filtering/sorting:
 
 - `?q=` search term
 - `?ordering=` sort key
+- `?page_size=` validated page size
 - `?page=` paginator page
 
-Pagination links from `django_mui/includes/table.html` preserve `q` and `ordering`.
+Pagination links from `django_mui/includes/table.html` preserve `q`, `ordering`, and
+valid `page_size` values.
 Use `django_mui.list_query.get_ordering_from_request(request, allowed_orderings, default_ordering)`
-to safely fall back when missing/invalid `ordering` values are provided.
+and `django_mui.list_query.get_page_size_from_request(request, allowed_page_sizes, default_page_size)`
+to safely fall back when missing/invalid values are provided.
 
 ## Example integration pages
 
