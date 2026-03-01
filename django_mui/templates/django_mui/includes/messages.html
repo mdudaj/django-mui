@@ -1,0 +1,12 @@
+{% if messages %}
+  <section aria-label="Messages">
+    {% for message in messages %}
+      <div
+        role="alert"
+        class="{% if message.level_tag == 'success' %}mui-alert mui-alert-success{% elif message.level_tag == 'warning' %}mui-alert mui-alert-warning{% elif message.level_tag == 'error' %}mui-alert mui-alert-error{% else %}mui-alert mui-alert-info{% endif %}"
+      >
+        {{ message }}
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}

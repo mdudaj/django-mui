@@ -1,0 +1,17 @@
+{% if breadcrumbs %}
+  <nav aria-label="Breadcrumb">
+    <ol>
+      {% for item in breadcrumbs %}
+        <li>
+          {% if item.active or forloop.last %}
+            <span aria-current="page">{{ item.label|escape }}</span>
+          {% elif item.url %}
+            <a href="{{ item.url }}">{{ item.label|escape }}</a>
+          {% else %}
+            <span>{{ item.label|escape }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

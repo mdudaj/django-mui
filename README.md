@@ -55,6 +55,28 @@ DJANGO_MUI_NAVIGATION = [
 
 `django_mui` filters this registry by `required_permissions` and marks active items from the current request route.
 
+## Server-first messages adapter
+
+The base template includes `django_mui/includes/messages.html` and maps Django message levels to deterministic alert classes:
+
+- `success` -> `mui-alert-success`
+- `info` (default) -> `mui-alert-info`
+- `warning` -> `mui-alert-warning`
+- `error` -> `mui-alert-error`
+
+## Breadcrumb context contract
+
+The base template includes `django_mui/includes/breadcrumbs.html` and renders breadcrumbs from a `breadcrumbs` context variable:
+
+```python
+breadcrumbs = [
+    {"label": "Orders", "url": "/orders/"},
+    {"label": "Order #123", "active": True},
+]
+```
+
+The active/last breadcrumb item is rendered with `aria-current="page"`.
+
 ## Form field adapter
 
 `django_mui` includes a server-first form field adapter tag that renders labels, errors, help text, and required state while preserving Django form POST behavior.

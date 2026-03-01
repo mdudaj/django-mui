@@ -21,6 +21,9 @@
     {% block navigation %}{% render_navigation %}{% endblock %}
   </nav>
 
+  {% include "django_mui/includes/messages.html" %}
+  {% include "django_mui/includes/breadcrumbs.html" %}
+
   <main>
     {% block content %}{% endblock %}
   </main>

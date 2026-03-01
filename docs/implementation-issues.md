@@ -4,10 +4,12 @@ Phase 2 seed backlog items are complete. The next work queue is listed below.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
-## Next task to execute
+## Next tasks to execute in parallel
 
-- **Selected next task**: **1) Add server-rendered table/list primitives** (`feat: add SSR-first table/list templates`)
-- **Reason**: It is first in the current ordered Phase 3 queue and unlocks downstream filter/sort and example-page work.
+- **Selected parallel tasks**:
+  - **3) Add server-first feedback UI adapters** (`feat: map django messages to mui-styled alerts`)
+  - **4) Add breadcrumb contract for base shell navigation** (`feat: add breadcrumb template contract`)
+- **Reason**: Both are base-template contracts that can be delivered together with small, server-first template changes and no JavaScript dependency.
 
 ## 1) Add server-rendered table/list primitives
 
