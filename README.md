@@ -77,6 +77,23 @@ breadcrumbs = [
 
 The active/last breadcrumb item is rendered with `aria-current="page"`.
 
+## Server-rendered table/list primitive
+
+`django_mui/includes/table.html` renders headers, rows, empty state, and optional pagination from a Django `page_obj`.
+
+```django
+{% include "django_mui/includes/table.html" with columns=columns rows=rows page_obj=page_obj %}
+```
+
+Example view shape:
+
+```python
+paginator = Paginator(order_rows, per_page=25)
+page_obj = paginator.get_page(request.GET.get("page"))
+columns = ["Order", "Customer", "Status"]
+rows = [[row.number, row.customer_name, row.status] for row in page_obj.object_list]
+```
+
 ## Form field adapter
 
 `django_mui` includes a server-first form field adapter tag that renders labels, errors, help text, and required state while preserving Django form POST behavior.

@@ -29,6 +29,15 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('aria-label="Breadcrumb"', content)
         self.assertIn('aria-current="page"', content)
 
+    def test_table_partial_supports_rows_empty_state_and_pagination(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/table.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("table_rows=page_obj.object_list|default:rows", content)
+        self.assertIn('{% if table_rows %}', content)
+        self.assertIn('empty_label|default:"No records found."', content)
+        self.assertIn('aria-label="Pagination"', content)
+
 
 if __name__ == "__main__":
     unittest.main()
