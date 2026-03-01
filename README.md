@@ -133,7 +133,7 @@ Remaining documentation work is tied to later maturity levels (for example: cont
 
 ## Implementation issue backlog
 
-Issue drafts for real implementation work are captured in `docs/implementation-issues.md`.
+Phase 2 seed backlog items are complete; current issue drafts for the next implementation wave are captured in `docs/implementation-issues.md`.
 
 ## Parity status with django-material
 
