@@ -77,6 +77,24 @@ class NavigationTests(unittest.TestCase):
         self.assertEqual(len(navigation), 1)
         self.assertEqual(navigation[0]["children"], [])
 
+    def test_build_navigation_marks_item_active_for_matching_route_prefix(self):
+        user = Mock(has_perms=Mock(return_value=True))
+        request = Mock(user=user, resolver_match=Mock(view_name="orders:detail"))
+        registry = [
+            {
+                "id": "orders",
+                "label": "Orders",
+                "route_name": "orders:list",
+                "active_view_prefixes": ["orders:"],
+                "required_permissions": [],
+            }
+        ]
+
+        with patch("django_mui.navigation.reverse", return_value="/resolved/"):
+            navigation = build_navigation(request, registry=registry)
+
+        self.assertTrue(navigation[0]["active"])
+
     def test_resolve_url_returns_fallback_for_unresolvable_route(self):
         with patch("django_mui.navigation.reverse", side_effect=NoReverseMatch):
             self.assertEqual(_resolve_url("missing:view"), "#")
