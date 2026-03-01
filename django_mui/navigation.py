@@ -26,6 +26,18 @@ def _resolve_url(route_name):
         return "#"
 
 
+def _is_route_active(route_name, active_view_name, active_view_prefixes):
+    if active_view_name is None:
+        return False
+    if route_name and route_name == active_view_name:
+        return True
+    return any(
+        active_view_name.startswith(prefix)
+        for prefix in active_view_prefixes
+        if prefix
+    )
+
+
 def _build_item(item, user, active_view_name):
     required_permissions = list(item.get("required_permissions", []))
     if not _user_has_permissions(user, required_permissions):
@@ -38,7 +50,8 @@ def _build_item(item, user, active_view_name):
             children.append(built_child)
 
     route_name = item.get("route_name")
-    is_active = (bool(route_name) and route_name == active_view_name) or any(
+    active_view_prefixes = list(item.get("active_view_prefixes", []))
+    is_active = _is_route_active(route_name, active_view_name, active_view_prefixes) or any(
         child["active"] for child in children
     )
 
@@ -48,6 +61,7 @@ def _build_item(item, user, active_view_name):
         "route_name": route_name,
         "icon": item.get("icon"),
         "required_permissions": required_permissions,
+        "active_view_prefixes": active_view_prefixes,
         "children": children,
         "url": _resolve_url(route_name),
         "active": is_active,
