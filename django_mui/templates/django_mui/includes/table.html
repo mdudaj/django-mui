@@ -1,0 +1,37 @@
+{% with table_rows=page_obj.object_list|default:rows %}
+  <table>
+    <thead>
+      <tr>
+        {% for column in columns %}
+          <th scope="col">{{ column|escape }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% if table_rows %}
+        {% for row in table_rows %}
+          <tr>
+            {% for cell in row %}
+              <td>{{ cell }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      {% else %}
+        <tr>
+          <td colspan="{{ columns|length|default:'1' }}">{{ empty_label|default:"No records found." }}</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endwith %}
+{% if page_obj and page_obj.paginator.num_pages > 1 %}
+  <nav aria-label="Pagination">
+    {% if page_obj.has_previous %}
+      <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    {% endif %}
+  </nav>
+{% endif %}
