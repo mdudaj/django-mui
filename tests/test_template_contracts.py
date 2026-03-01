@@ -33,10 +33,13 @@ class TemplateContractTests(unittest.TestCase):
         content = (
             BASE_DIR / "django_mui/templates/django_mui/includes/table.html"
         ).read_text(encoding="utf-8")
+        self.assertIn("{% load django_mui_list %}", content)
         self.assertIn("table_rows=page_obj.object_list|default:rows", content)
         self.assertIn('{% if table_rows %}', content)
         self.assertIn('empty_label|default:"No records found."', content)
         self.assertIn('aria-label="Pagination"', content)
+        self.assertIn("list_query page_obj.previous_page_number", content)
+        self.assertIn("list_query page_obj.next_page_number", content)
 
 
 if __name__ == "__main__":

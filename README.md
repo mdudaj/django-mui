@@ -94,6 +94,16 @@ columns = ["Order", "Customer", "Status"]
 rows = [[row.number, row.customer_name, row.status] for row in page_obj.object_list]
 ```
 
+List pages use an explicit query contract for server-rendered filtering/sorting:
+
+- `?q=` search term
+- `?ordering=` sort key
+- `?page=` paginator page
+
+Pagination links from `django_mui/includes/table.html` preserve `q` and `ordering`.
+Use `django_mui.list_query.get_ordering_from_request(request, allowed_orderings, default_ordering)`
+to safely fall back when missing/invalid `ordering` values are provided.
+
 ## Form field adapter
 
 `django_mui` includes a server-first form field adapter tag that renders labels, errors, help text, and required state while preserving Django form POST behavior.
