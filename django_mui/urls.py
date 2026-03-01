@@ -1,9 +1,19 @@
 from django.urls import path
 
-from django_mui.views import design_token_parity_view
+from django_mui.views import (
+    design_token_parity_view,
+    example_index_view,
+    example_integration_view,
+)
 from django_mui.workflow import workflow_transition
 
 urlpatterns = [
+    path("examples/", example_index_view, name="django_mui_example_index"),
+    path(
+        "examples/integration/",
+        example_integration_view,
+        name="django_mui_example_integration",
+    ),
     path(
         "design-tokens/parity/",
         design_token_parity_view,

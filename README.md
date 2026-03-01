@@ -104,6 +104,13 @@ Pagination links from `django_mui/includes/table.html` preserve `q` and `orderin
 Use `django_mui.list_query.get_ordering_from_request(request, allowed_orderings, default_ordering)`
 to safely fall back when missing/invalid `ordering` values are provided.
 
+## Example integration pages
+
+Include `django_mui.urls` in your project URLconf to access server-first example pages:
+
+- `django_mui_example_index` (`examples/`)
+- `django_mui_example_integration` (`examples/integration/`)
+
 ## Form field adapter
 
 `django_mui` includes a server-first form field adapter tag that renders labels, errors, help text, and required state while preserving Django form POST behavior.
