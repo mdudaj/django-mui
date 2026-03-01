@@ -47,6 +47,7 @@ class TemplateContractTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn('{% extends "django_mui/base.html" %}', content)
         self.assertIn("{% render_form_field form.q %}", content)
+        self.assertIn("{% render_form_field form.ordering %}", content)
         self.assertIn("{% url 'django_mui_workflow_transition' %}", content)
         self.assertIn(
             '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj %}',
@@ -60,6 +61,8 @@ class TemplateContractTests(unittest.TestCase):
 
     def test_example_view_provides_table_rows_and_workflow_endpoint_context(self):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
+        self.assertIn("get_ordering_from_request", content)
+        self.assertIn('allowed_orderings = ["order", "-order"]', content)
         self.assertIn('"rows": page_obj.object_list', content)
         self.assertIn('reverse("django_mui_workflow_transition")', content)
 

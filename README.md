@@ -88,6 +88,8 @@ The active/last breadcrumb item is rendered with `aria-current="page"`.
 Example view shape:
 
 ```python
+allowed_orderings = ["order", "-order"]
+ordering = get_ordering_from_request(request, allowed_orderings, "order")
 paginator = Paginator(order_rows, per_page=25)
 page_obj = paginator.get_page(request.GET.get("page"))
 columns = ["Order", "Customer", "Status"]
