@@ -1,15 +1,15 @@
 # django-mui Implementation Issues
 
-## Phase 4 Backlog (Current)
+## Phase 4 Backlog (Completed)
 
-Phase 2 seed backlog items and Phase 3 backlog items are complete. Phase 4 defines the next implementation wave.
+Phase 2 seed backlog items, Phase 3 backlog items, and Phase 4 backlog items are complete.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
-- **Selected parallel tasks**: `2) Improve navigation active-state matching for URL path prefixes`
-- **Reason**: The route-prefix enhancement is complete, and URL path-prefix matching is the next small increment for nested-route parity where `view_name` metadata is unavailable.
+- **Selected parallel tasks**: _None currently open in Phase 4 (all items below are implemented)._
+- **Reason**: Both navigation active-state improvements are implemented and covered by unit tests.
 
 ### 1) Improve navigation active-state matching for nested routes
 

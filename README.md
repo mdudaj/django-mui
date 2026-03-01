@@ -195,7 +195,7 @@ Additional maturity-level process docs:
 
 ## Implementation issue backlog
 
-Phase 2 seed backlog items are complete; current issue drafts for the next implementation wave are captured in `docs/implementation-issues.md`.
+Phase 2 seed backlog items and Phase 4 backlog items are complete; issue drafts for future implementation waves are captured in `docs/implementation-issues.md`.
 
 ## Parity status with django-material
 
