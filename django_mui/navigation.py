@@ -33,7 +33,7 @@ def _is_route_active(
     request_path,
     active_path_prefixes,
 ):
-    if active_view_name is not None:
+    if active_view_name:
         if route_name and route_name == active_view_name:
             return True
         return any(
