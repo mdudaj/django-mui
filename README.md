@@ -185,7 +185,11 @@ Visual parity check page:
 
 Phase 1 documentation deliverables are complete.
 
-Remaining documentation work is tied to later maturity levels (for example: contributor guidelines/code of conduct, release/changelog process, public examples, and security reporting process).
+Additional maturity-level process docs:
+
+- Contributing guide: `CONTRIBUTING.md`
+- Release/changelog process: `docs/release-process.md`
+- Security reporting process: `SECURITY.md`
 
 ## Implementation issue backlog
 
