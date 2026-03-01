@@ -122,6 +122,12 @@ Include `django_mui.urls` in your project URLconf to access server-first example
 {% render_form_field form.email %}
 ```
 
+For top-of-form validation summaries, include the reusable server-rendered partial:
+
+```django
+{% include "django_mui/includes/form_error_summary.html" with form=form %}
+```
+
 ## React island mount contract
 
 `django_mui` provides a server-emitted payload contract for progressive React islands.

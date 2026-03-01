@@ -41,11 +41,24 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("list_query page_obj.previous_page_number", content)
         self.assertIn("list_query page_obj.next_page_number", content)
 
+    def test_form_error_summary_partial_renders_non_field_and_field_errors(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/form_error_summary.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if form and form.errors %}", content)
+        self.assertIn("form.non_field_errors", content)
+        self.assertIn("form.visible_fields", content)
+        self.assertIn('aria-labelledby="mui-form-error-summary-title"', content)
+
     def test_example_integration_template_covers_form_workflow_and_table_patterns(self):
         content = (
             BASE_DIR / "django_mui/templates/django_mui/examples/integration.html"
         ).read_text(encoding="utf-8")
         self.assertIn('{% extends "django_mui/base.html" %}', content)
+        self.assertIn(
+            '{% include "django_mui/includes/form_error_summary.html" with form=form %}',
+            content,
+        )
         self.assertIn("{% render_form_field form.q %}", content)
         self.assertIn("{% render_form_field form.ordering %}", content)
         self.assertIn("{% url 'django_mui_workflow_transition' %}", content)

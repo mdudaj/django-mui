@@ -17,6 +17,7 @@
   <section id="forms">
     <h2>Forms</h2>
     <form method="get">
+      {% include "django_mui/includes/form_error_summary.html" with form=form %}
       {% render_form_field form.q %}
       {% render_form_field form.ordering %}
       <button type="submit">Filter</button>
