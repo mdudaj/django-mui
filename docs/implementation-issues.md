@@ -7,9 +7,9 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ## Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - **3) Add server-first feedback UI adapters** (`feat: map django messages to mui-styled alerts`)
-  - **4) Add breadcrumb contract for base shell navigation** (`feat: add breadcrumb template contract`)
-- **Reason**: Both are base-template contracts that can be delivered together with small, server-first template changes and no JavaScript dependency.
+  - **5) Publish example integration app pages** (`docs: add example pages for forms/navigation/workflow/table patterns`)
+  - **6) Close maturity-level documentation gaps** (`docs: add contributor, release, and security process docs`)
+- **Reason**: Both are documentation-focused tasks that can advance adoption and contributor readiness in parallel with minimal runtime risk.
 
 ## 1) Add server-rendered table/list primitives
 

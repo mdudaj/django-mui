@@ -1,0 +1,40 @@
+{% extends "django_mui/base.html" %}
+{% load django_mui_forms django_mui_islands %}
+
+{% block page_title %}Integration example{% endblock %}
+
+{% block actions %}
+  <a href="{% url 'django_mui_example_index' %}">Back to examples</a>
+{% endblock %}
+
+{% block navigation %}
+  <a href="#forms">Forms</a>
+  <a href="#workflow">Workflow</a>
+  <a href="#table">Table</a>
+{% endblock %}
+
+{% block content %}
+  <section id="forms">
+    <h2>Forms</h2>
+    <form method="get">
+      {% render_form_field form.q %}
+      <button type="submit">Filter</button>
+    </form>
+  </section>
+
+  <section id="workflow">
+    <h2>Workflow</h2>
+    <form method="post" action="{% url 'django_mui_workflow_transition' %}">
+      {% csrf_token %}
+      <input type="hidden" name="transition" value="approve">
+      <input type="hidden" name="object_id" value="SO-1002">
+      <button type="submit">Approve example order</button>
+    </form>
+    {% render_react_island "WorkflowStatusCard" props=workflow_payload %}
+  </section>
+
+  <section id="table">
+    <h2>Table/list</h2>
+    {% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj %}
+  </section>
+{% endblock %}
