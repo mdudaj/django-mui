@@ -48,7 +48,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% if form and form.errors %}", content)
         self.assertIn("form.non_field_errors", content)
         self.assertIn("form.visible_fields", content)
+        self.assertIn('role="alert"', content)
         self.assertIn('aria-labelledby="mui-form-error-summary-title"', content)
+        self.assertNotIn('aria-live="assertive"', content)
 
     def test_example_integration_template_covers_form_workflow_and_table_patterns(self):
         content = (
