@@ -60,6 +60,7 @@ def example_integration_view(request):
             {"label": "Integration", "active": True},
         ],
         "columns": ["Order", "Customer", "Status"],
+        "allowed_page_sizes": allowed_page_sizes,
         "page_obj": page_obj,
         "rows": page_obj.object_list,
         "form": ExampleOrderFilterForm(request.GET),

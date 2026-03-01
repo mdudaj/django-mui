@@ -48,6 +48,27 @@ class ListQueryTests(unittest.TestCase):
 
         self.assertEqual(query, "q=orders&ordering=-created_at&page=2")
 
+    def test_list_query_ignores_unbounded_page_size_for_pagination(self):
+        request = Mock(GET={"q": "orders", "ordering": "-created_at", "page_size": "1000"})
+
+        query = list_query({"request": request}, 2)
+
+        self.assertEqual(query, "q=orders&ordering=-created_at&page=2")
+
+    def test_list_query_rejects_page_size_not_in_allowed_list(self):
+        request = Mock(GET={"q": "orders", "ordering": "-created_at", "page_size": "1000"})
+
+        query = list_query({"request": request, "allowed_page_sizes": [2, 10, 25]}, 2)
+
+        self.assertEqual(query, "q=orders&ordering=-created_at&page=2")
+
+    def test_list_query_preserves_page_size_in_allowed_list(self):
+        request = Mock(GET={"q": "orders", "ordering": "-created_at", "page_size": "10"})
+
+        query = list_query({"request": request, "allowed_page_sizes": [2, 10, 25]}, 2)
+
+        self.assertEqual(query, "q=orders&ordering=-created_at&page_size=10&page=2")
+
 
 if __name__ == "__main__":
     unittest.main()
