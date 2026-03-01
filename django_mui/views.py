@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse
 
-from django_mui.list_query import get_ordering_from_request
+from django_mui.list_query import get_ordering_from_request, get_page_size_from_request
 
 
 def design_token_parity_view(request):
@@ -25,7 +25,9 @@ def example_index_view(request):
 
 def example_integration_view(request):
     allowed_orderings = ["order", "-order"]
+    allowed_page_sizes = [2, 3]
     ordering = get_ordering_from_request(request, allowed_orderings, "order")
+    page_size = get_page_size_from_request(request, allowed_page_sizes, 2)
     order_rows = [
         ["SO-1001", "Acme Co", "Pending"],
         ["SO-1002", "Globex", "Approved"],
@@ -33,7 +35,7 @@ def example_integration_view(request):
     ]
     if ordering == "-order":
         order_rows = list(reversed(order_rows))
-    paginator = Paginator(order_rows, per_page=2)
+    paginator = Paginator(order_rows, per_page=page_size)
     page_obj = paginator.get_page(request.GET.get("page"))
     context = {
         "tab_items": [
@@ -58,6 +60,7 @@ def example_integration_view(request):
             {"label": "Integration", "active": True},
         ],
         "columns": ["Order", "Customer", "Status"],
+        "allowed_page_sizes": allowed_page_sizes,
         "page_obj": page_obj,
         "rows": page_obj.object_list,
         "form": ExampleOrderFilterForm(request.GET),

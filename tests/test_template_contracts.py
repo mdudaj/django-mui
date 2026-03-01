@@ -90,9 +90,11 @@ class TemplateContractTests(unittest.TestCase):
     def test_example_view_provides_table_rows_and_workflow_endpoint_context(self):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
         self.assertIn("get_ordering_from_request", content)
+        self.assertIn("get_page_size_from_request", content)
         self.assertIn('"tab_items": [', content)
         self.assertIn('"is_active": request.path == reverse("django_mui_example_integration")', content)
         self.assertIn('allowed_orderings = ["order", "-order"]', content)
+        self.assertIn("allowed_page_sizes = [2, 3]", content)
         self.assertIn('"rows": page_obj.object_list', content)
         self.assertIn('reverse("django_mui_workflow_transition")', content)
 
