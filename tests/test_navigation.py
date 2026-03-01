@@ -79,13 +79,33 @@ class NavigationTests(unittest.TestCase):
 
     def test_build_navigation_marks_item_active_for_matching_route_prefix(self):
         user = Mock(has_perms=Mock(return_value=True))
-        request = Mock(user=user, resolver_match=Mock(view_name="orders:detail"))
+        request = Mock(
+            user=user, path="/orders/123/", resolver_match=Mock(view_name="orders:detail")
+        )
         registry = [
             {
                 "id": "orders",
                 "label": "Orders",
                 "route_name": "orders:list",
                 "active_view_prefixes": ["orders:"],
+                "required_permissions": [],
+            }
+        ]
+
+        with patch("django_mui.navigation.reverse", return_value="/resolved/"):
+            navigation = build_navigation(request, registry=registry)
+
+        self.assertTrue(navigation[0]["active"])
+
+    def test_build_navigation_marks_item_active_for_matching_path_prefix(self):
+        user = Mock(has_perms=Mock(return_value=True))
+        request = Mock(user=user, path="/orders/123/", resolver_match=Mock(view_name=None))
+        registry = [
+            {
+                "id": "orders",
+                "label": "Orders",
+                "route_name": "orders:list",
+                "active_path_prefixes": ["/orders/"],
                 "required_permissions": [],
             }
         ]

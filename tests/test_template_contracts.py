@@ -80,6 +80,10 @@ class TemplateContractTests(unittest.TestCase):
             "Improve navigation active-state matching for nested routes",
             content,
         )
+        self.assertIn(
+            "Improve navigation active-state matching for URL path prefixes",
+            content,
+        )
 
 
 if __name__ == "__main__":
