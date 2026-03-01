@@ -1,75 +1,59 @@
-# django-mui Implementation Issues (Phase 2 Seed Backlog)
+# django-mui Implementation Issues (Phase 3 Backlog)
+
+Phase 2 seed backlog items are complete. The next work queue is listed below.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
-## 1) Bootstrap Django app package for `django-mui`
+## 1) Add server-rendered table/list primitives
 
-- **Title**: `feat: bootstrap django-mui package skeleton`
-- **Scope**: Create initial Python package structure, app config, and installation path for reuse in Django projects.
+- **Title**: `feat: add SSR-first table/list templates`
+- **Scope**: Introduce reusable list/table template partials that preserve Django pagination and action patterns.
 - **Acceptance criteria**:
-  - Package layout exists under `django_mui/`.
-  - Django app can be added to `INSTALLED_APPS` without errors.
-  - Basic README usage snippet references package install + setup.
+  - Base list/table partial renders headers, rows, and empty state without JavaScript.
+  - Existing Django `Paginator` objects can be passed directly from views.
+  - Pattern is documented with one usage example.
 
-## 2) Implement base template shell + stable block contracts
+## 2) Add filter/sort query contract for list pages
 
-- **Title**: `feat: add SSR-first base shell templates`
-- **Scope**: Add base layout templates that preserve override points needed for migration compatibility.
+- **Title**: `feat: add list filtering and sorting helpers`
+- **Scope**: Provide server-side helpers/template tags for preserving filter/sort query params in pagination and links.
 - **Acceptance criteria**:
-  - Base template defines stable blocks for page title, actions, navigation, and content.
-  - Template override example is documented.
-  - Rendering works without JavaScript.
+  - Filter and sort values survive page navigation.
+  - Query contract is explicit and documented (`?q=`, `?ordering=`, `?page=` baseline).
+  - Missing/invalid sort inputs fail safely to default ordering.
 
-## 3) Add navigation registry with permission-aware rendering
+## 3) Add server-first feedback UI adapters
 
-- **Title**: `feat: implement django-side navigation registry`
-- **Scope**: Introduce Python-side nav schema and server-rendered fallback menu.
+- **Title**: `feat: map django messages to mui-styled alerts`
+- **Scope**: Render Django messages framework output with reusable MUI-aligned template partials.
 - **Acceptance criteria**:
-  - Registry shape follows `{id, label, route_name, icon, required_permissions, children}`.
-  - Navigation renders active state based on request route.
-  - Unauthorized items are excluded server-side.
+  - Message levels (`success`, `info`, `warning`, `error`) map to deterministic alert styles.
+  - Messages render correctly with JavaScript disabled.
+  - Integration guidance is added for base template usage.
 
-## 4) Deliver server-first form rendering adapters
+## 4) Add breadcrumb contract for base shell navigation
 
-- **Title**: `feat: add form field template adapters for mui styling`
-- **Scope**: Build template adapters that map Django `BoundField` data to MUI-aligned markup.
+- **Title**: `feat: add breadcrumb template contract`
+- **Scope**: Extend base shell with an optional breadcrumb block/context contract that supports server-side route context.
 - **Acceptance criteria**:
-  - Labels, errors, help text, and required state are rendered consistently.
-  - Server-side validation remains canonical.
-  - Existing Django POST handling is unchanged.
+  - Breadcrumbs can be rendered entirely from Django context.
+  - Existing `page_title`, `actions`, `navigation`, `content` blocks remain stable.
+  - Active breadcrumb item is exposed with accessible markup (`aria-current="page"`).
 
-## 5) Create Django↔React island bootstrap and registry
+## 5) Publish example integration app pages
 
-- **Title**: `feat: add react island mount contract`
-- **Scope**: Implement a frontend bootstrap that hydrates registered components using server-emitted JSON payloads.
+- **Title**: `docs: add example pages for forms/navigation/workflow/table patterns`
+- **Scope**: Add a minimal example project/pages showing recommended integration patterns for implemented features.
 - **Acceptance criteria**:
-  - Payload contract supports `version`, `component`, and `props`.
-  - Unknown component names fail safely.
-  - Pages still function when JS is unavailable.
+  - Example pages cover base shell, forms, navigation, workflow transitions, and list/table rendering.
+  - README links to example entry points.
+  - Example content is intentionally minimal and server-first.
 
-## 6) Add workflow transition endpoint contract + demo island
+## 6) Close maturity-level documentation gaps
 
-- **Title**: `feat: implement workflow transition API contract`
-- **Scope**: Add transition endpoint shape and one sample workflow status component integration.
+- **Title**: `docs: add contributor, release, and security process docs`
+- **Scope**: Add missing repository docs called out in maturity planning (contributing, changelog/release flow, security reporting).
 - **Acceptance criteria**:
-  - Endpoint accepts `{transition, object_id, csrfmiddlewaretoken}`.
-  - Response returns `{ok, state, allowed_transitions, messages}`.
-  - Permissions and transition rules are enforced server-side.
-
-## 7) Define shared design token layer
-
-- **Title**: `feat: introduce shared design tokens for django + mui`
-- **Scope**: Create an initial token system that can drive both template CSS variables and MUI theme values.
-- **Acceptance criteria**:
-  - Token source is defined once and consumed in both layers.
-  - Light/dark mode hooks are documented.
-  - Basic visual parity check page exists.
-
-## 8) Setup real CI checks for implementation phase
-
-- **Title**: `chore: replace placeholder QA workflow with real checks`
-- **Scope**: Upgrade CI from placeholder echo to lint/test/security checks once implementation code is added.
-- **Acceptance criteria**:
-  - CI runs unit tests and fails on regressions.
-  - CI runs formatting/lint checks.
-  - CI publishes clear failure logs for contributors.
+  - `CONTRIBUTING.md` includes local QA commands and contribution workflow.
+  - Release/changelog process is documented.
+  - Security reporting process is documented and linked from README.
