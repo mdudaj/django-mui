@@ -52,11 +52,24 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('aria-labelledby="mui-form-error-summary-title"', content)
         self.assertNotIn('aria-live="assertive"', content)
 
+    def test_tabs_partial_renders_context_items_and_active_state(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/tabs.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if tab_items %}", content)
+        self.assertIn("{% for tab in tab_items %}", content)
+        self.assertIn("tab.is_active", content)
+        self.assertIn('aria-current="page"', content)
+
     def test_example_integration_template_covers_form_workflow_and_table_patterns(self):
         content = (
             BASE_DIR / "django_mui/templates/django_mui/examples/integration.html"
         ).read_text(encoding="utf-8")
         self.assertIn('{% extends "django_mui/base.html" %}', content)
+        self.assertIn(
+            '{% include "django_mui/includes/tabs.html" with tab_items=tab_items tabs_aria_label="Example pages" %}',
+            content,
+        )
         self.assertIn(
             '{% include "django_mui/includes/form_error_summary.html" with form=form %}',
             content,
@@ -77,6 +90,8 @@ class TemplateContractTests(unittest.TestCase):
     def test_example_view_provides_table_rows_and_workflow_endpoint_context(self):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
         self.assertIn("get_ordering_from_request", content)
+        self.assertIn('"tab_items": [', content)
+        self.assertIn('"is_active": request.path == reverse("django_mui_example_integration")', content)
         self.assertIn('allowed_orderings = ["order", "-order"]', content)
         self.assertIn('"rows": page_obj.object_list', content)
         self.assertIn('reverse("django_mui_workflow_transition")', content)
@@ -92,6 +107,8 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("## Phase 5 Backlog (Open)", content)
         self.assertIn("Add SSR-first form error summary partial", content)
         self.assertIn("Add server-side tabs navigation template contract", content)
+        self.assertIn("Add pagination page-size query helper", content)
+        self.assertIn("Document feature parity matrix by maturity level", content)
         self.assertIn("Phase 3 backlog items are also complete", content)
         self.assertIn("## Phase 4 Backlog (Completed)", content)
         self.assertIn("Phase 4 backlog items are complete", content)

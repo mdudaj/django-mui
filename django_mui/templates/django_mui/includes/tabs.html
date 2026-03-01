@@ -1,0 +1,11 @@
+{% if tab_items %}
+  <nav aria-label="{{ tabs_aria_label|default:'Section navigation' }}">
+    <ul>
+      {% for tab in tab_items %}
+        <li>
+          <a href="{{ tab.url }}"{% if tab.is_active %} aria-current="page"{% endif %}>{{ tab.label|escape }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
