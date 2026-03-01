@@ -74,6 +74,9 @@ class TemplateContractTests(unittest.TestCase):
 
     def test_implementation_backlog_marks_phase_3_complete(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
+        self.assertIn("## Phase 5 Backlog (Open)", content)
+        self.assertIn("Add SSR-first form error summary partial", content)
+        self.assertIn("Add server-side tabs navigation template contract", content)
         self.assertIn("Phase 3 backlog items are also complete", content)
         self.assertIn("## Phase 4 Backlog (Completed)", content)
         self.assertIn("Phase 4 backlog items are complete", content)
