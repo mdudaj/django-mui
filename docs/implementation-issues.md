@@ -1,5 +1,54 @@
 # django-mui Implementation Issues
 
+## Phase 5 Backlog (Open)
+
+All prior backlog items are complete.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**:
+  1. Add SSR-first form error summary partial.
+  2. Add server-side tabs navigation template contract.
+- **Reason**: These are server-first UX improvements that build directly on existing base template contracts and can be delivered independently.
+
+### 1) Add SSR-first form error summary partial
+
+- **Title**: `feat: add reusable form error summary partial`
+- **Scope**: Introduce a template partial that renders form-wide and field-level validation errors in an accessible summary at the top of forms.
+- **Acceptance criteria**:
+  - Partial renders non-field and field errors without JavaScript.
+  - Summary includes accessible heading/landmark semantics.
+  - Pattern is documented with one integration example.
+
+### 2) Add server-side tabs navigation template contract
+
+- **Title**: `feat: add server-rendered tabs partial`
+- **Scope**: Provide a reusable tabs partial for section-level navigation driven fully by Django context.
+- **Acceptance criteria**:
+  - Tabs can be rendered from context-provided items (`label`, `url`, `is_active`).
+  - Active tab includes accessible state (`aria-current="page"` or equivalent).
+  - Partial degrades gracefully with JavaScript disabled.
+
+### 3) Add pagination page-size query helper
+
+- **Title**: `feat: add page-size query contract helper`
+- **Scope**: Extend list query helpers to preserve and validate optional page-size parameters.
+- **Acceptance criteria**:
+  - `page_size` value survives pagination links.
+  - Invalid/unbounded values fail safely to defaults.
+  - Behavior is covered by unit tests.
+
+### 4) Document feature parity matrix by maturity level
+
+- **Title**: `docs: add feature parity matrix with maturity tiers`
+- **Scope**: Expand the feature inventory with explicit parity tiers (`implemented`, `planned`, `out of scope`) to guide roadmap decisions.
+- **Acceptance criteria**:
+  - Matrix references existing implemented building blocks.
+  - Planned gaps map to backlog issue drafts.
+  - README links to the updated matrix section.
+
 ## Phase 4 Backlog (Completed)
 
 Phase 2 seed backlog items, Phase 3 backlog items, and Phase 4 backlog items are complete.
