@@ -69,6 +69,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("django_mui_example_index", content)
         self.assertIn("django_mui_example_integration", content)
 
+    def test_implementation_backlog_marks_phase_3_complete(self):
+        content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
+        self.assertIn("Phase 3 backlog items are also complete", content)
+
 
 if __name__ == "__main__":
     unittest.main()
