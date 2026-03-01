@@ -33,17 +33,15 @@ def _is_route_active(
     request_path,
     active_path_prefixes,
 ):
-    if any(request_path.startswith(prefix) for prefix in active_path_prefixes if prefix):
-        return True
-    if active_view_name is None:
-        return False
-    if route_name and route_name == active_view_name:
-        return True
-    return any(
-        active_view_name.startswith(prefix)
-        for prefix in active_view_prefixes
-        if prefix
-    )
+    if active_view_name is not None:
+        if route_name and route_name == active_view_name:
+            return True
+        return any(
+            active_view_name.startswith(prefix)
+            for prefix in active_view_prefixes
+            if prefix
+        )
+    return any(request_path.startswith(prefix) for prefix in active_path_prefixes if prefix)
 
 
 def _build_item(item, user, active_view_name, request_path):
