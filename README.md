@@ -134,3 +134,8 @@ Remaining documentation work is tied to later maturity levels (for example: cont
 ## Implementation issue backlog
 
 Issue drafts for real implementation work are captured in `docs/implementation-issues.md`.
+
+## Parity status with django-material
+
+Completing the current implementation backlog does **not** mean all `django-material` free/pro features are fully ported to `django-mui`.
+The current scope delivers baseline migration foundations; full feature parity remains a phased effort guided by `docs/feature-inventory.md`.
