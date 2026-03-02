@@ -114,7 +114,8 @@ class TemplateContractTests(unittest.TestCase):
 
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
-        self.assertIn("## Phase 5 Backlog (Open)", content)
+        self.assertIn("## Phase 5 Backlog (Completed)", content)
+        self.assertIn("Phase 5 backlog items are complete", content)
         self.assertIn("Add SSR-first form error summary partial", content)
         self.assertIn("Add server-side tabs navigation template contract", content)
         self.assertIn("Add pagination page-size query helper", content)
@@ -130,6 +131,15 @@ class TemplateContractTests(unittest.TestCase):
             "Improve navigation active-state matching for URL path prefixes",
             content,
         )
+
+    def test_feature_inventory_documents_maturity_parity_matrix(self):
+        inventory = (BASE_DIR / "docs/feature-inventory.md").read_text(encoding="utf-8")
+        readme = (BASE_DIR / "README.md").read_text(encoding="utf-8")
+        self.assertIn("## Feature parity matrix by maturity tier", inventory)
+        self.assertIn("Implemented", inventory)
+        self.assertIn("Planned", inventory)
+        self.assertIn("Out of scope", inventory)
+        self.assertIn("Feature parity maturity tracking is documented", readme)
 
 
 if __name__ == "__main__":
