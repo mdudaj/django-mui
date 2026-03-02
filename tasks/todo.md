@@ -34,8 +34,8 @@
 - [x] Run targeted checks and record results.
 - [x] Run merge-gate checks and record results.
 - [x] Capture UI screenshot showing applied styles.
-- [ ] Document risk review and final outcome.
-- [ ] Add lessons to `tasks/lessons.md`.
+- [x] Document risk review and final outcome.
+- [x] Add lessons to `tasks/lessons.md`.
 
 ## Validation commands
 
