@@ -2,36 +2,39 @@
 
 ## Active work item
 
-* Objective: Continue Phase 5 backlog by documenting the feature parity matrix with maturity tiers.
-* Scope boundary: minimal documentation updates only (`docs/feature-inventory.md` and README link alignment).
-* Dependencies: `docs/implementation-issues.md`, `docs/feature-inventory.md`, `README.md`.
+* Objective: Continue the implementation backlog now that the current selected queue is empty.
+* Scope boundary: minimal documentation/test updates only (`docs/implementation-issues.md` and existing contract tests).
+* Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - feature inventory includes an explicit maturity matrix (`implemented`, `planned`, `out of scope`),
-  - planned gaps in the matrix map to backlog issue drafts,
-  - README points readers to the updated parity matrix section.
+  - implementation backlog includes a new open phase with concrete issue drafts,
+  - selected parallel tasks are non-empty for the active open phase,
+  - documentation contract tests cover the newly opened phase.
 
-## Phase 5 backlog integration snapshot
+## Phase 6 backlog integration snapshot
 
-- [x] **Open**: Document feature parity matrix by maturity level.
+- [x] **Open**: Add workflow activity timeline contract.
+- [x] **Open**: Add advanced list/table server query contract.
+- [x] **Open**: Add nested navigation section rendering contract.
 - [x] **Completed**: Add SSR-first form error summary partial.
 - [x] **Completed**: Add server-side tabs navigation template contract.
 - [x] **Completed**: Add pagination page-size query helper.
+- [x] **Completed**: Document feature parity matrix by maturity level.
 
 ## Phase 1 — Plan
 
-- [x] Confirm open Phase 5 task and impacted docs.
-- [x] Define minimal matrix structure and backlog cross-reference requirements.
-- [x] Identify README section to align with the updated matrix.
+- [x] Confirm current backlog is fully complete and identify continuation point.
+- [x] Define minimal open-phase structure for new issue drafts.
+- [x] Identify documentation contract test that should cover the new open phase.
 
 ## Phase 2 — Execute
 
-- [x] Add maturity-tier parity matrix section to feature inventory.
-- [x] Map planned gaps to issue drafts in `docs/implementation-issues.md`.
-- [x] Align README wording/link to the updated matrix section.
+- [x] Add a new open backlog phase with non-empty selected parallel tasks.
+- [x] Add issue drafts for the new phase in `docs/implementation-issues.md`.
+- [x] Update backlog contract tests to assert the new open phase.
 
 ## Phase 3 — Review
 
-- [x] Run merge-gate checks and record results.
+- [x] Run targeted tests and full merge-gate checks and record results.
 - [x] Document risk review and final outcome.
 - [x] Add lessons to `tasks/lessons.md`.
 

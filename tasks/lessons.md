@@ -23,3 +23,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Documentation contract tests hard-coded the previous backlog state and were not updated alongside the backlog progression change.
 * Preventive rule: Whenever backlog phase status text changes, update contract tests in the same patch.
 * Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts the completed Phase 5 heading and completion text.
+
+* Date: 2026-03-02
+* Failure signature: Continuing backlog planning from a completed phase left the active queue empty and blocked next implementation selection.
+* Root cause: `docs/implementation-issues.md` had no open phase after Phase 5 completion, so "selected parallel tasks" stayed at none.
+* Preventive rule: When a phase is marked completed, immediately open the next phase with at least two concrete selected tasks.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts `Phase 6 Backlog (Open)` and its new task headings.
