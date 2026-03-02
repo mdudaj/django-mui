@@ -208,6 +208,30 @@ Additional maturity-level process docs:
 
 Phase 2 seed backlog items and Phase 4 backlog items are complete; issue drafts for future implementation waves are captured in `docs/implementation-issues.md`.
 
+## Agentic workflow (ported)
+
+Workflow assets are now available in-repo:
+
+- `CLAUDE.md`
+- `COPILOT.md`
+- `tasks/todo.md`
+- `tasks/lessons.md`
+- `.github/ISSUE_TEMPLATE/delivery-work-item.md`
+- `.github/pull_request_template.md`
+
+Helper scripts:
+
+```bash
+# fast local loop
+.github/scripts/local_fast_feedback.sh
+
+# run full merge-gate baseline
+.github/scripts/local_fast_feedback.sh --full-gate
+
+# scaffold workflow files into another repo
+.github/scripts/scaffold_agentic_workflow.sh --dry-run /path/to/repo
+```
+
 ## Parity status with django-material
 
 Completing the current implementation backlog does **not** mean all `django-material` free/pro features are fully ported to `django-mui`.
