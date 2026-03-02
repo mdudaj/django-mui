@@ -13,6 +13,10 @@ INSTALLED_APPS = [
 ]
 ```
 
+`django-mui` is currently server-first and does not require local MUI `node_modules`
+for baseline example styling. Shared styles are shipped as static assets in
+`django_mui/static/django_mui/`.
+
 ## Base template shell
 
 `django_mui/templates/django_mui/base.html` provides stable server-rendered blocks:

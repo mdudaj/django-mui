@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  background: var(--django-mui-background);
+  color: var(--django-mui-text-primary);
+}
+
+header,
+main,
+nav {
+  padding: 1rem;
+}
+
+header {
+  border-bottom: 1px solid var(--django-mui-accent);
+}
+
+a {
+  color: var(--django-mui-accent);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid var(--django-mui-accent);
+  padding: 0.5rem;
+}
+
+.mui-alert {
+  border: 1px solid var(--django-mui-accent);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.mui-alert-success {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.mui-alert-info {
+  background: #e3f2fd;
+  color: #0d47a1;
+}
+
+.mui-alert-warning {
+  background: #fff8e1;
+  color: #e65100;
+}
+
+.mui-alert-error {
+  background: #ffebee;
+  color: #b71c1c;
+}
+
+.mui-field,
+.mui-form-error-summary {
+  margin-bottom: 1rem;
+}
+
+.mui-field__errors {
+  color: #b71c1c;
+}
