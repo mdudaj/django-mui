@@ -212,6 +212,8 @@ Additional maturity-level process docs:
 
 Phase 2 seed backlog items and Phase 4 backlog items are complete; issue drafts for future implementation waves are captured in `docs/implementation-issues.md`.
 
+Feature parity maturity tracking is documented in the `Feature parity matrix by maturity tier` section of `docs/feature-inventory.md`.
+
 ## Agentic workflow (ported)
 
 Workflow assets are now available in-repo:

@@ -87,3 +87,14 @@ For each feature area, capture:
 1. Preserve server-rendered layout/navigation/form contracts first.
 2. Introduce React + MUI only at clearly bounded interaction hotspots.
 3. Defer enterprise-like enhancements until baseline parity is validated.
+
+## Feature parity matrix by maturity tier
+
+This matrix tracks where `django-mui` currently stands relative to the audited
+`django-material` feature areas.
+
+| Feature area | Maturity tier | Current `django-mui` state | Backlog mapping |
+| --- | --- | --- | --- |
+| Layout, navigation, forms, lists, feedback, theming foundations | Implemented | Server-first contracts are available via reusable templates, helpers, and example pages in this repository. | n/a |
+| Remaining full parity beyond current foundations (including deeper workflow/table/navigation enhancements) | Planned | Core contracts are in place, but parity expansion remains phased. | `docs/implementation-issues.md` issue drafts for future implementation waves |
+| 1:1 cloning of proprietary/premium-only `django-material` assets | Out of scope | Project goal is OSS-compatible migration patterns, not shipping proprietary upstream assets. | n/a |

@@ -17,3 +17,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Base template shipped design tokens and JS islands but no shared stylesheet to style existing `.mui-*` server-rendered classes.
 * Preventive rule: Keep a baseline stylesheet linked from `django_mui/base.html` whenever new shared utility classes are introduced.
 * Verification added: Template contract test now asserts `django_mui/base.css` is linked and stylesheet includes `.mui-alert` classes.
+
+* Date: 2026-03-02
+* Failure signature: Backlog state update to "Phase 5 Backlog (Completed)" broke a contract test expecting "Phase 5 Backlog (Open)".
+* Root cause: Documentation contract tests hard-coded the previous backlog state and were not updated alongside the backlog progression change.
+* Preventive rule: Whenever backlog phase status text changes, update contract tests in the same patch.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts the completed Phase 5 heading and completion text.

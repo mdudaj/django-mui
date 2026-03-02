@@ -1,16 +1,16 @@
 # django-mui Implementation Issues
 
-## Phase 5 Backlog (Open)
+## Phase 5 Backlog (Completed)
 
-All prior backlog items are complete.
+Phase 2 seed backlog items, Phase 3 backlog items, Phase 4 backlog items, and
+Phase 5 backlog items are complete.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
-- **Selected parallel tasks**:
-  1. Document feature parity matrix by maturity level.
-- **Reason**: Form error summary partial, tabs contract, and page-size query behavior are implemented; parity matrix documentation is the next independent backlog task.
+- **Selected parallel tasks**: _None currently open in Phase 5 (all items below are implemented)._
+- **Reason**: Form error summary, tabs contract, page-size query behavior, and parity matrix documentation are implemented.
 
 ### 1) Add SSR-first form error summary partial
 

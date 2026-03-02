@@ -2,38 +2,36 @@
 
 ## Active work item
 
-* Objective: Ensure example pages include visible baseline styling without local MUI `node_modules`.
-* Scope boundary: minimal template/static contract update and focused tests for style asset loading.
-* Dependencies: `django_mui/templates/django_mui/base.html`, `django_mui/static/django_mui/`, `tests/test_template_contracts.py`.
+* Objective: Continue Phase 5 backlog by documenting the feature parity matrix with maturity tiers.
+* Scope boundary: minimal documentation updates only (`docs/feature-inventory.md` and README link alignment).
+* Dependencies: `docs/implementation-issues.md`, `docs/feature-inventory.md`, `README.md`.
 * Acceptance criteria:
-  - base template loads a stylesheet for shared UI primitives,
-  - README clarifies why `node_modules` is not required,
-  - tests enforce the style asset contract.
+  - feature inventory includes an explicit maturity matrix (`implemented`, `planned`, `out of scope`),
+  - planned gaps in the matrix map to backlog issue drafts,
+  - README points readers to the updated parity matrix section.
 
 ## Phase 5 backlog integration snapshot
 
-- [x] **Open**: Add baseline example stylesheet contract (issue: missing visible styles in screenshots).
+- [x] **Open**: Document feature parity matrix by maturity level.
 - [x] **Completed**: Add SSR-first form error summary partial.
 - [x] **Completed**: Add server-side tabs navigation template contract.
 - [x] **Completed**: Add pagination page-size query helper.
 
 ## Phase 1 — Plan
 
-- [x] Confirm impacted templates/docs and style loading path.
-- [x] Define minimal stylesheet contract and selector scope.
-- [x] Identify README references to update.
+- [x] Confirm open Phase 5 task and impacted docs.
+- [x] Define minimal matrix structure and backlog cross-reference requirements.
+- [x] Identify README section to align with the updated matrix.
 
 ## Phase 2 — Execute
 
-- [x] Add shared stylesheet and include it from base template.
-- [x] Add/update focused tests for stylesheet contract.
-- [x] Document no-node_modules styling approach in README.
+- [x] Add maturity-tier parity matrix section to feature inventory.
+- [x] Map planned gaps to issue drafts in `docs/implementation-issues.md`.
+- [x] Align README wording/link to the updated matrix section.
 
 ## Phase 3 — Review
 
-- [x] Run targeted checks and record results.
 - [x] Run merge-gate checks and record results.
-- [x] Capture UI screenshot showing applied styles.
 - [x] Document risk review and final outcome.
 - [x] Add lessons to `tasks/lessons.md`.
 
