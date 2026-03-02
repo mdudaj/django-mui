@@ -1,5 +1,44 @@
 # django-mui Implementation Issues
 
+## Phase 6 Backlog (Open)
+
+Phase 2 seed backlog items through Phase 5 backlog items are complete. Phase 6
+continues the implementation queue with new parity-focused tasks.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: 1) workflow activity timeline contract, 2) advanced list/table server query contract.
+- **Reason**: Both tasks extend existing server-first foundations and can be delivered independently with low integration risk.
+
+### 1) Add workflow activity timeline contract
+
+- **Title**: `feat: add server-first workflow activity timeline`
+- **Scope**: Add a reusable server-rendered timeline partial for workflow events and expose an integration example context contract.
+- **Acceptance criteria**:
+  - Timeline renders event entries from Django context without JavaScript.
+  - Event entries support semantic timestamps and status labels.
+  - Integration example demonstrates timeline usage with existing workflow payload patterns.
+
+### 2) Add advanced list/table server query contract
+
+- **Title**: `feat: extend list query helpers for multi-filter contracts`
+- **Scope**: Expand list query helpers and table integration patterns to preserve multiple filter parameters alongside ordering, pagination, and page size.
+- **Acceptance criteria**:
+  - Multiple filter values survive pagination and ordering links.
+  - Invalid filter values fail safely to server defaults.
+  - Behavior is covered by unit tests for helper/tag contracts.
+
+### 3) Add nested navigation section rendering contract
+
+- **Title**: `feat: add nested navigation section partial`
+- **Scope**: Introduce a server-rendered navigation section partial for grouped links with active-state support for nested items.
+- **Acceptance criteria**:
+  - Navigation sections render from Django context-provided groups/items.
+  - Active-state behavior remains compatible with current view-name and path-prefix matching.
+  - Markup includes accessible group labels and current-page semantics.
+
 ## Phase 5 Backlog (Completed)
 
 Phase 2 seed backlog items, Phase 3 backlog items, Phase 4 backlog items, and
