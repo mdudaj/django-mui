@@ -10,8 +10,16 @@ class TemplateContractTests(unittest.TestCase):
         content = (
             BASE_DIR / "django_mui/templates/django_mui/base.html"
         ).read_text(encoding="utf-8")
+        self.assertIn("django_mui/base.css", content)
         self.assertIn('{% include "django_mui/includes/messages.html" %}', content)
         self.assertIn('{% include "django_mui/includes/breadcrumbs.html" %}', content)
+
+    def test_base_stylesheet_defines_alert_styles(self):
+        content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(".mui-alert", content)
+        self.assertIn(".mui-alert-success", content)
 
     def test_messages_partial_maps_expected_levels(self):
         content = (

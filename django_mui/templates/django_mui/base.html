@@ -8,6 +8,7 @@
   <style>
     :root { {% django_mui_css_variables %} }
   </style>
+  <link rel="stylesheet" href="{% static 'django_mui/base.css' %}">
   {% django_mui_theme_json as django_mui_theme %}
   {{ django_mui_theme|json_script:"django-mui-theme-tokens" }}
 </head>
