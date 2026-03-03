@@ -135,3 +135,19 @@ td {
   border-left: 3px solid var(--django-mui-accent);
   padding-left: calc(0.5rem - 3px);
 }
+
+.mui-workflow-transitions {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1rem;
+}
+
+.mui-workflow-transitions__item {
+  margin-bottom: 0.5rem;
+}
+
+.mui-workflow-transitions__reason {
+  margin: 0.25rem 0 0;
+  color: var(--django-mui-text-primary);
+  opacity: 0.75;
+}

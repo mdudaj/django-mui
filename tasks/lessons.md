@@ -41,3 +41,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Phase completion updates documented "none open" but did not immediately create a follow-on open phase with concrete tasks.
 * Preventive rule: Whenever a phase is marked completed, open the next phase in the same update and select at least two executable tasks.
 * Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts the new `Phase 7 Backlog (Open)` task headings.
+
+* Date: 2026-03-03
+* Failure signature: Disabled workflow transitions risked weak accessibility semantics because the reason text was not programmatically tied to the disabled control.
+* Root cause: Initial contract rendered disabled reason text visually, but did not provide a relationship attribute from button to reason element.
+* Preventive rule: For every disabled action contract, wire reason text with deterministic IDs and `aria-describedby` from the control.
+* Verification added: Template contract test now asserts `aria-describedby` and `mui-workflow-transition-reason-` marker usage in `workflow_transitions.html`.
