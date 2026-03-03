@@ -1,5 +1,50 @@
 # django-mui Implementation Issues
 
+## Phase 7 Backlog (Open)
+
+Phase 2 seed backlog items through Phase 6 backlog items are complete. Phase 7
+opens the next implementation queue for parity-oriented expansion.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**:
+  - `feat: add workflow transition guard contract`
+  - `feat: add server-rendered table bulk-actions contract`
+- **Reason**: These contracts extend current workflow and table foundations with
+  high-value server-first capabilities and minimal coupling.
+
+### 1) Add workflow transition guard contract
+
+- **Title**: `feat: add workflow transition guard contract`
+- **Scope**: Add a reusable server-side contract for disabled/blocked workflow
+  transitions with deterministic reason messaging.
+- **Acceptance criteria**:
+  - Transition actions can be marked disabled from Django context.
+  - Disabled transitions render a deterministic reason for users.
+  - Integration example demonstrates enabled and blocked transitions.
+
+### 2) Add server-rendered table bulk-actions contract
+
+- **Title**: `feat: add server-rendered table bulk-actions contract`
+- **Scope**: Extend the list/table integration with an optional bulk-action form
+  contract that works without JavaScript.
+- **Acceptance criteria**:
+  - Rows expose selectable state in server-rendered markup.
+  - Bulk action submission can be posted with selected IDs.
+  - Empty/invalid submissions fail safely with user feedback.
+
+### 3) Add navigation + breadcrumb composition contract
+
+- **Title**: `feat: add composed navigation and breadcrumb contract`
+- **Scope**: Define a server-rendered composition pattern where navigation
+  sections and breadcrumbs share current-route context.
+- **Acceptance criteria**:
+  - Breadcrumb current item stays aligned with active navigation state.
+  - Base template block contracts remain backward compatible.
+  - Accessibility semantics (`aria-current`) remain explicit in both patterns.
+
 ## Phase 6 Backlog (Completed)
 
 Phase 2 seed backlog items through Phase 5 backlog items are complete. Phase 6
