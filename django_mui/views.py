@@ -31,12 +31,36 @@ def example_integration_view(request):
     ordering = get_ordering_from_request(request, allowed_orderings, "order")
     page_size = get_page_size_from_request(request, allowed_page_sizes, 2)
     order_rows = [
-        ["SO-1001", "Acme Co", "Pending"],
-        ["SO-1002", "Globex", "Approved"],
-        ["SO-1003", "Initech", "Shipped"],
+        {"id": "SO-1001", "cells": ["SO-1001", "Acme Co", "Pending"]},
+        {"id": "SO-1002", "cells": ["SO-1002", "Globex", "Approved"]},
+        {"id": "SO-1003", "cells": ["SO-1003", "Initech", "Shipped"]},
     ]
     if ordering == "-order":
         order_rows = list(reversed(order_rows))
+    bulk_actions = [
+        {"value": "approve", "label": "Approve selected orders"},
+        {"value": "archive", "label": "Archive selected orders"},
+    ]
+    selected_ids = [value.strip() for value in request.POST.getlist("selected_ids") if value.strip()]
+    bulk_action_feedback = ""
+    bulk_action_feedback_level = ""
+    if request.method == "POST":
+        valid_ids = {row["id"] for row in order_rows}
+        has_invalid_ids = any(selected_id not in valid_ids for selected_id in selected_ids)
+        action = request.POST.get("bulk_action", "").strip()
+        allowed_actions = {item["value"] for item in bulk_actions}
+        if not selected_ids:
+            bulk_action_feedback = "Select at least one order to apply a bulk action."
+            bulk_action_feedback_level = "error"
+        elif has_invalid_ids:
+            bulk_action_feedback = "Some selected orders are no longer available."
+            bulk_action_feedback_level = "error"
+        elif action not in allowed_actions:
+            bulk_action_feedback = "Selected bulk action is unavailable."
+            bulk_action_feedback_level = "error"
+        else:
+            bulk_action_feedback = f"Bulk action queued for {len(selected_ids)} order(s)."
+            bulk_action_feedback_level = "success"
     paginator = Paginator(order_rows, per_page=page_size)
     page_obj = paginator.get_page(request.GET.get("page"))
     context = {
@@ -65,6 +89,11 @@ def example_integration_view(request):
         "allowed_page_sizes": allowed_page_sizes,
         "page_obj": page_obj,
         "rows": page_obj.object_list,
+        "bulk_form_action": reverse("django_mui_example_integration"),
+        "bulk_actions": bulk_actions,
+        "selected_ids": selected_ids,
+        "bulk_action_feedback": bulk_action_feedback,
+        "bulk_action_feedback_level": bulk_action_feedback_level,
         "form": ExampleOrderFilterForm(request.GET),
         "workflow_payload": {
             "objectId": "SO-1001",

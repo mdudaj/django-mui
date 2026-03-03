@@ -43,6 +43,13 @@ class TemplateContractTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn("{% load django_mui_list %}", content)
         self.assertIn("table_rows=page_obj.object_list|default:rows", content)
+        self.assertIn("{% if bulk_actions %}<form method=\"post\"", content)
+        self.assertIn('name="selected_ids"', content)
+        self.assertIn('row_identifier=row.id|default:forloop.counter0|stringformat:"s"', content)
+        self.assertIn("row_identifier in selected_ids", content)
+        self.assertIn("row.cells|default:row", content)
+        self.assertIn("bulk_action_feedback", content)
+        self.assertIn('role="{% if bulk_action_feedback_level == \'error\' %}alert{% else %}status{% endif %}"', content)
         self.assertIn('{% if table_rows %}', content)
         self.assertIn('empty_label|default:"No records found."', content)
         self.assertIn('aria-label="Pagination"', content)
@@ -89,7 +96,7 @@ class TemplateContractTests(unittest.TestCase):
             content,
         )
         self.assertIn(
-            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj %}',
+            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level %}',
             content,
         )
 
@@ -107,6 +114,14 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('allowed_orderings = ["order", "-order"]', content)
         self.assertIn("allowed_page_sizes = [2, 3]", content)
         self.assertIn('"rows": page_obj.object_list', content)
+        self.assertIn('"bulk_form_action": reverse("django_mui_example_integration")', content)
+        self.assertIn('"bulk_actions": bulk_actions', content)
+        self.assertIn('"selected_ids": selected_ids', content)
+        self.assertIn('"bulk_action_feedback": bulk_action_feedback', content)
+        self.assertIn('"bulk_action_feedback_level": bulk_action_feedback_level', content)
+        self.assertIn('bulk_action_feedback = "Select at least one order to apply a bulk action."', content)
+        self.assertIn('bulk_action_feedback = "Some selected orders are no longer available."', content)
+        self.assertIn('bulk_action_feedback = "Selected bulk action is unavailable."', content)
         self.assertIn('reverse("django_mui_workflow_transition")', content)
         self.assertIn('"workflow_transitions": [', content)
         self.assertIn('"is_disabled": True', content)
