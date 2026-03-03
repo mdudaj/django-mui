@@ -84,7 +84,10 @@ class TemplateContractTests(unittest.TestCase):
         )
         self.assertIn("{% render_form_field form.q %}", content)
         self.assertIn("{% render_form_field form.ordering %}", content)
-        self.assertIn("{% url 'django_mui_workflow_transition' %}", content)
+        self.assertIn(
+            '{% include "django_mui/includes/workflow_transitions.html" with workflow_transitions=workflow_transitions %}',
+            content,
+        )
         self.assertIn(
             '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj %}',
             content,
@@ -105,6 +108,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("allowed_page_sizes = [2, 3]", content)
         self.assertIn('"rows": page_obj.object_list', content)
         self.assertIn('reverse("django_mui_workflow_transition")', content)
+        self.assertIn('"workflow_transitions": [', content)
+        self.assertIn('"is_disabled": True', content)
+        self.assertIn('"disabled_reason": "Rejection requires manager override."', content)
 
     def test_readme_links_example_entry_points(self):
         content = (BASE_DIR / "README.md").read_text(encoding="utf-8")
@@ -170,6 +176,27 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn(".mui-nav-section", content)
         self.assertIn(".mui-nav-section__label", content)
         self.assertIn(".mui-nav-section__items", content)
+
+    def test_workflow_transitions_partial_supports_disabled_reason_contract(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/workflow_transitions.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if workflow_transitions %}", content)
+        self.assertIn("{% for transition in workflow_transitions %}", content)
+        self.assertIn("transition.is_disabled", content)
+        self.assertIn("transition.disabled_reason", content)
+        self.assertIn("disabled", content)
+        self.assertIn("aria-describedby=", content)
+        self.assertIn("mui-workflow-transition-reason-", content)
+        self.assertIn('default:"Transition unavailable."', content)
+
+    def test_base_stylesheet_defines_workflow_transition_styles(self):
+        content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(".mui-workflow-transitions", content)
+        self.assertIn(".mui-workflow-transitions__item", content)
+        self.assertIn(".mui-workflow-transitions__reason", content)
 
     def test_example_integration_template_includes_nav_section(self):
         content = (

@@ -72,6 +72,23 @@ def example_integration_view(request):
             "allowedTransitions": ["approve", "reject"],
             "transitionUrl": reverse("django_mui_workflow_transition"),
         },
+        "workflow_transitions": [
+            {
+                "name": "approve",
+                "label": "Approve example order",
+                "url": reverse("django_mui_workflow_transition"),
+                "object_id": "SO-1001",
+                "is_disabled": False,
+            },
+            {
+                "name": "reject",
+                "label": "Reject example order",
+                "url": reverse("django_mui_workflow_transition"),
+                "object_id": "SO-1001",
+                "is_disabled": True,
+                "disabled_reason": "Rejection requires manager override.",
+            },
+        ],
         "timeline_events": [
             {
                 "status": "success",

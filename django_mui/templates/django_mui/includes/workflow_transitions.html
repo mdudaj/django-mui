@@ -1,0 +1,21 @@
+{% if workflow_transitions %}
+  <ul class="mui-workflow-transitions">
+    {% for transition in workflow_transitions %}
+      <li class="mui-workflow-transitions__item">
+        <form method="post" action="{{ transition.url }}">
+          {% csrf_token %}
+          <input type="hidden" name="transition" value="{{ transition.name }}">
+          <input type="hidden" name="object_id" value="{{ transition.object_id }}">
+          <button type="submit"{% if transition.is_disabled %} disabled aria-describedby="mui-workflow-transition-reason-{{ forloop.counter0 }}"{% endif %}>
+            {{ transition.label }}
+          </button>
+        </form>
+        {% if transition.is_disabled %}
+          <p id="mui-workflow-transition-reason-{{ forloop.counter0 }}" class="mui-workflow-transitions__reason">
+            {{ transition.disabled_reason|default:"Transition unavailable." }}
+          </p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

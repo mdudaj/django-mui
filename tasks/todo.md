@@ -2,17 +2,17 @@
 
 ## Active work item
 
-* Objective: Refresh implementation backlog when no open selected tasks remain.
-* Scope boundary: backlog docs and backlog contract tests only.
-* Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
+* Objective: Start implementing Phase 7 backlog by adding the workflow transition guard contract.
+* Scope boundary: workflow transition template contract, integration example context/template, and focused tests.
+* Dependencies: `django_mui/templates/django_mui/examples/integration.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - A new open backlog phase exists with non-empty selected parallel tasks.
-  - Existing completed phases remain documented for implementation history.
-  - Backlog documentation contract tests reflect the updated phase state.
+  - Transition actions can be marked disabled from Django context.
+  - Disabled transitions render deterministic reason messaging.
+  - Integration example demonstrates enabled and blocked transitions.
 
 ## Backlog integration snapshot
 
-- [ ] **Planned**: Add workflow transition guard contract.
+- [ ] **In progress**: Add workflow transition guard contract.
 - [ ] **Planned**: Add server-rendered table bulk-actions contract.
 - [ ] **Planned**: Add navigation + breadcrumb composition contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
@@ -25,20 +25,20 @@
 
 ## Phase 1 — Plan
 
-- [x] Review current backlog state and identify empty selected-task condition.
-- [x] Understand existing documentation and contract test patterns.
+- [x] Review current backlog state and select first Phase 7 implementation item.
+- [x] Understand existing workflow/template contracts and test patterns.
 
 ## Phase 2 — Execute
 
-- [x] Add a new open backlog phase with selected parallel tasks.
-- [x] Keep prior completed phases untouched as history.
-- [x] Update backlog contract test expectations.
+- [x] Add a reusable workflow transitions partial that supports disabled transitions with reasons.
+- [x] Update integration example context/template to show enabled and blocked transitions.
+- [x] Add focused template contract tests for workflow guard behavior.
 
 ## Phase 3 — Review
 
-- [x] Run ruff checks — pass.
-- [x] Run full test suite — pass.
-- [x] Code review and security scan.
+- [x] Run targeted tests for workflow/template contracts.
+- [x] Run ruff checks and full unittest suite.
+- [x] Run code review and security scan.
 
 ## Validation commands
 
