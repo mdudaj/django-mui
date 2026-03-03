@@ -104,3 +104,34 @@ td {
   font-size: 0.85em;
   color: #757575;
 }
+
+.mui-nav-section {
+  margin-bottom: 1rem;
+}
+
+.mui-nav-section__label {
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #757575;
+  margin: 0 0 0.25rem;
+}
+
+.mui-nav-section__items {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.mui-nav-section__items li a {
+  display: block;
+  padding: 0.25rem 0.5rem;
+  text-decoration: none;
+}
+
+.mui-nav-section__items li a[aria-current="page"] {
+  font-weight: 600;
+  border-left: 3px solid var(--django-mui-accent);
+  padding-left: calc(0.5rem - 3px);
+}

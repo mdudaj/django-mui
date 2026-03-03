@@ -92,5 +92,32 @@ def example_integration_view(request):
                 "timestamp": datetime(2026, 1, 16, 8, 0, tzinfo=timezone.utc),
             },
         ],
+        "nav_sections": [
+            {
+                "label": "Orders",
+                "items": [
+                    {
+                        "label": "All orders",
+                        "url": reverse("django_mui_example_integration"),
+                        "is_active": True,
+                    },
+                    {
+                        "label": "Pending approval",
+                        "url": "#pending",
+                        "is_active": False,
+                    },
+                ],
+            },
+            {
+                "label": "Reports",
+                "items": [
+                    {
+                        "label": "Monthly summary",
+                        "url": "#monthly",
+                        "is_active": False,
+                    },
+                ],
+            },
+        ],
     }
     return render(request, "django_mui/examples/integration.html", context)

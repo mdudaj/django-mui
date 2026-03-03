@@ -1,0 +1,16 @@
+{% if nav_sections %}
+  <nav aria-label="{{ nav_sections_aria_label|default:'Section navigation' }}">
+    {% for section in nav_sections %}
+      <div class="mui-nav-section" role="group" aria-labelledby="mui-nav-section-{{ forloop.counter }}">
+        <h3 class="mui-nav-section__label" id="mui-nav-section-{{ forloop.counter }}">{{ section.label|escape }}</h3>
+        <ul class="mui-nav-section__items">
+          {% for item in section.items %}
+            <li>
+              <a href="{{ item.url }}"{% if item.is_active %} aria-current="page"{% endif %}>{{ item.label|escape }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </nav>
+{% endif %}

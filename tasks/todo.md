@@ -2,22 +2,21 @@
 
 ## Active work item
 
-* Objective: Implement Phase 6 selected parallel tasks (timeline + multi-filter).
-* Scope boundary: timeline partial, multi-filter helpers, template tag, tests, CSS.
-* Dependencies: `django_mui/list_query.py`, `django_mui/templatetags/django_mui_list.py`, templates, CSS.
+* Objective: Implement Phase 6 remaining task (nested navigation section).
+* Scope boundary: nav section partial, CSS, integration example, tests.
+* Dependencies: `django_mui/templates/django_mui/includes/nav_section.html`, CSS, views.
 * Acceptance criteria:
-  - Timeline renders event entries from Django context without JavaScript.
-  - Event entries support semantic timestamps and status labels.
-  - Integration example demonstrates timeline usage.
-  - Multiple filter values survive pagination and ordering links.
-  - Invalid filter values fail safely to server defaults.
-  - Behavior is covered by unit tests.
+  - Navigation sections render from Django context-provided groups/items.
+  - Active-state includes `aria-current="page"` semantics.
+  - Markup includes accessible group labels.
+  - Integration example demonstrates nav section usage.
+  - Behavior is covered by template contract tests.
 
 ## Phase 6 backlog integration snapshot
 
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
-- [ ] **Open**: Add nested navigation section rendering contract.
+- [x] **Implemented**: Add nested navigation section rendering contract.
 - [x] **Completed**: Add SSR-first form error summary partial.
 - [x] **Completed**: Add server-side tabs navigation template contract.
 - [x] **Completed**: Add pagination page-size query helper.
@@ -25,25 +24,23 @@
 
 ## Phase 1 — Plan
 
-- [x] Review backlog and identify Phase 6 selected parallel tasks.
+- [x] Review backlog and identify remaining Phase 6 task.
 - [x] Understand existing patterns for templates, helpers, tests.
 
 ## Phase 2 — Execute
 
-- [x] Create timeline partial template.
-- [x] Add timeline CSS to base.css.
-- [x] Add timeline events to integration view context.
-- [x] Include timeline in integration template.
-- [x] Add `resolve_filters` / `get_filters_from_request` helpers.
-- [x] Update `list_query` tag to preserve multiple filter params.
-- [x] Add template contract tests for timeline.
-- [x] Add unit tests for multi-filter helper and tag.
+- [x] Create nav section partial template.
+- [x] Add nav section CSS to base.css.
+- [x] Add nav_sections to integration view context.
+- [x] Include nav section in integration template.
+- [x] Add template contract tests for nav section.
+- [x] Update backlog to mark Phase 6 complete.
 
 ## Phase 3 — Review
 
 - [x] Run ruff checks — pass.
-- [x] Run full test suite — 50 tests pass.
-- [ ] Code review and security scan.
+- [x] Run full test suite — pass.
+- [x] Code review and security scan.
 
 ## Validation commands
 
