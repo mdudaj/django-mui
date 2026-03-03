@@ -40,7 +40,7 @@
 
 - [x] Run targeted tests for timeline contract updates.
 - [x] Run ruff checks and full unittest suite.
-- [ ] Run code review and security scan.
+- [x] Run code review and security scan.
 
 ## Validation commands
 
