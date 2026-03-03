@@ -2,19 +2,21 @@
 
 ## Active work item
 
-* Objective: Continue Phase 7 backlog by adding the navigation + breadcrumb composition contract.
-* Scope boundary: integration example route-context composition for breadcrumbs/navigation and focused contract tests.
-* Dependencies: `django_mui/views.py`, `django_mui/templates/django_mui/examples/integration.html`, `tests/test_template_contracts.py`.
+* Objective: Continue backlog progression by promoting Phase 7 to completed and opening Phase 8.
+* Scope boundary: backlog documentation/test contract updates only; no runtime behavior changes.
+* Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - Breadcrumb current item stays aligned with active navigation state.
-  - Base template block contracts remain backward compatible.
-  - Accessibility semantics (`aria-current`) remain explicit in both patterns.
+  - Phase 8 is documented as the active open backlog phase.
+  - Phase 7 is documented as completed with no selected open tasks.
+  - Backlog documentation contract tests stay aligned with phase status.
 
 ## Backlog integration snapshot
 
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
-- [ ] **In progress**: Add navigation + breadcrumb composition contract.
+- [x] **Implemented**: Add navigation + breadcrumb composition contract.
+- [ ] **In progress**: Add navigation permission-guard contract.
+- [ ] **In progress**: Add workflow timeline grouping contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
 - [x] **Implemented**: Add nested navigation section rendering contract.
@@ -25,18 +27,18 @@
 
 ## Phase 1 — Plan
 
-- [x] Review current backlog state and select next Phase 7 implementation item.
-- [x] Understand existing navigation + breadcrumb contracts and test patterns.
+- [x] Review current backlog state and identify next phase transition requirements.
+- [x] Confirm Phase 7 implementation items are already complete.
 
 ## Phase 2 — Execute
 
-- [x] Add a minimal composed route-context contract for nav sections and breadcrumbs.
-- [x] Keep base template usage/backward compatibility unchanged.
-- [x] Add focused template contract tests for composed navigation + breadcrumb behavior.
+- [x] Update implementation backlog docs to mark Phase 7 completed and open Phase 8.
+- [x] Keep runtime code/contracts unchanged while continuing backlog planning.
+- [x] Update focused backlog contract tests for new phase status text.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for navigation/template contracts.
+- [x] Run targeted tests for backlog contract updates.
 - [x] Run ruff checks and full unittest suite.
 - [x] Run code review and security scan.
 

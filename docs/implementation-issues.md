@@ -1,8 +1,8 @@
 # django-mui Implementation Issues
 
-## Phase 7 Backlog (Open)
+## Phase 8 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 6 backlog items are complete. Phase 7
+Phase 2 seed backlog items through Phase 7 backlog items are complete. Phase 8
 opens the next implementation queue for parity-oriented expansion.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
@@ -10,10 +10,43 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - `feat: add workflow transition guard contract`
-  - `feat: add server-rendered table bulk-actions contract`
+  - `feat: add navigation permission-guard contract`
+  - `feat: add workflow timeline grouping contract`
 - **Reason**: These contracts extend current workflow and table foundations with
   high-value server-first capabilities and minimal coupling.
+
+### 1) Add navigation permission-guard contract
+
+- **Title**: `feat: add navigation permission-guard contract`
+- **Scope**: Add a reusable server-side contract for hiding/marking unavailable
+  navigation items when user permissions are insufficient.
+- **Acceptance criteria**:
+  - Navigation items can be flagged unavailable from Django context.
+  - Unavailable entries render deterministic fallback semantics.
+  - Integration example demonstrates mixed available/unavailable entries.
+
+### 2) Add workflow timeline grouping contract
+
+- **Title**: `feat: add workflow timeline grouping contract`
+- **Scope**: Extend timeline patterns with optional grouping labels and explicit
+  empty-state behavior for server-rendered workflows.
+- **Acceptance criteria**:
+  - Timeline can render grouped entries from Django context without JavaScript.
+  - Empty timeline payloads render a deterministic fallback message.
+  - Integration example demonstrates grouped and empty-state timeline payloads.
+
+## Phase 7 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 6 backlog items are complete. Phase 7
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 7 (all items below are implemented)._
+- **Reason**: Workflow transition guards, table bulk actions, and navigation +
+  breadcrumb composition contracts are implemented.
 
 ### 1) Add workflow transition guard contract
 
