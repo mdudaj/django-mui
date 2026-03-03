@@ -2,18 +2,19 @@
 
 ## Active work item
 
-* Objective: Implement Phase 6 remaining task (nested navigation section).
-* Scope boundary: nav section partial, CSS, integration example, tests.
-* Dependencies: `django_mui/templates/django_mui/includes/nav_section.html`, CSS, views.
+* Objective: Refresh implementation backlog when no open selected tasks remain.
+* Scope boundary: backlog docs and backlog contract tests only.
+* Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - Navigation sections render from Django context-provided groups/items.
-  - Active-state includes `aria-current="page"` semantics.
-  - Markup includes accessible group labels.
-  - Integration example demonstrates nav section usage.
-  - Behavior is covered by template contract tests.
+  - A new open backlog phase exists with non-empty selected parallel tasks.
+  - Existing completed phases remain documented for implementation history.
+  - Backlog documentation contract tests reflect the updated phase state.
 
 ## Phase 6 backlog integration snapshot
 
+- [ ] **Planned**: Add workflow transition guard contract.
+- [ ] **Planned**: Add server-rendered table bulk-actions contract.
+- [ ] **Planned**: Add navigation + breadcrumb composition contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
 - [x] **Implemented**: Add nested navigation section rendering contract.
@@ -24,23 +25,20 @@
 
 ## Phase 1 — Plan
 
-- [x] Review backlog and identify remaining Phase 6 task.
-- [x] Understand existing patterns for templates, helpers, tests.
+- [x] Review current backlog state and identify empty selected-task condition.
+- [x] Understand existing documentation and contract test patterns.
 
 ## Phase 2 — Execute
 
-- [x] Create nav section partial template.
-- [x] Add nav section CSS to base.css.
-- [x] Add nav_sections to integration view context.
-- [x] Include nav section in integration template.
-- [x] Add template contract tests for nav section.
-- [x] Update backlog to mark Phase 6 complete.
+- [x] Add a new open backlog phase with selected parallel tasks.
+- [x] Keep prior completed phases untouched as history.
+- [x] Update backlog contract test expectations.
 
 ## Phase 3 — Review
 
-- [x] Run ruff checks — pass.
-- [x] Run full test suite — pass.
-- [x] Code review and security scan.
+- [ ] Run ruff checks — pass.
+- [ ] Run full test suite — pass.
+- [ ] Code review and security scan.
 
 ## Validation commands
 

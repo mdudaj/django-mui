@@ -186,6 +186,10 @@ class TemplateContractTests(unittest.TestCase):
 
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
+        self.assertIn("## Phase 7 Backlog (Open)", content)
+        self.assertIn("Add workflow transition guard contract", content)
+        self.assertIn("Add server-rendered table bulk-actions contract", content)
+        self.assertIn("Add navigation + breadcrumb composition contract", content)
         self.assertIn("## Phase 6 Backlog (Completed)", content)
         self.assertIn("Add workflow activity timeline contract", content)
         self.assertIn("Add advanced list/table server query contract", content)
