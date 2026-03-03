@@ -10,7 +10,7 @@
   - Existing completed phases remain documented for implementation history.
   - Backlog documentation contract tests reflect the updated phase state.
 
-## Phase 6 backlog integration snapshot
+## Backlog integration snapshot
 
 - [ ] **Planned**: Add workflow transition guard contract.
 - [ ] **Planned**: Add server-rendered table bulk-actions contract.
@@ -36,9 +36,9 @@
 
 ## Phase 3 — Review
 
-- [ ] Run ruff checks — pass.
-- [ ] Run full test suite — pass.
-- [ ] Code review and security scan.
+- [x] Run ruff checks — pass.
+- [x] Run full test suite — pass.
+- [x] Code review and security scan.
 
 ## Validation commands
 

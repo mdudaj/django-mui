@@ -35,3 +35,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Phase 6 selected parallel tasks (timeline + multi-filter) implemented smoothly using established patterns.
 * Preventive rule: When adding new template partials, always add matching CSS classes, integration example context, and template contract tests in the same patch.
 * Verification added: 13 new tests covering timeline partial contract, multi-filter helpers, and template tag behavior.
+
+* Date: 2026-03-03
+* Failure signature: Backlog queue became non-actionable because the active phase had no selected parallel tasks.
+* Root cause: Phase completion updates documented "none open" but did not immediately create a follow-on open phase with concrete tasks.
+* Preventive rule: Whenever a phase is marked completed, open the next phase in the same update and select at least two executable tasks.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts the new `Phase 7 Backlog (Open)` task headings.
