@@ -59,3 +59,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Integration context duplicated current-route metadata in two places instead of deriving both from one source.
 * Preventive rule: For composed route-context contracts, define one shared context object and reuse it across navigation and breadcrumb payloads.
 * Verification added: `tests.test_template_contracts` assertions for shared `current_nav_item` and aligned breadcrumb/nav context values.
+
+* Date: 2026-03-03
+* Failure signature: Backlog continuation stalled because Phase 7 remained marked open after all listed items were implemented.
+* Root cause: Phase status text and selected-task metadata were not advanced when the final Phase 7 item was finished.
+* Preventive rule: When the last selected task in an open phase is completed, immediately mark that phase completed and open the next phase in the same update.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts `Phase 8 Backlog (Open)` and `Phase 7 Backlog (Completed)`.
