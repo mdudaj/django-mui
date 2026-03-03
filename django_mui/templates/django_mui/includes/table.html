@@ -1,29 +1,58 @@
 {% load django_mui_list %}
 {% with table_rows=page_obj.object_list|default:rows %}
-  <table>
-    <thead>
-      <tr>
-        {% for column in columns %}
-          <th scope="col">{{ column|escape }}</th>
+  {% if bulk_actions %}<form method="post" action="{{ bulk_form_action|default:'' }}">{% csrf_token %}{% endif %}
+    {% if bulk_actions %}
+      <label for="mui-table-bulk-action-select">Bulk action</label>
+      <select id="mui-table-bulk-action-select" name="bulk_action">
+        {% for action in bulk_actions %}
+          <option value="{{ action.value }}">{{ action.label }}</option>
         {% endfor %}
-      </tr>
-    </thead>
-    <tbody>
-      {% if table_rows %}
-        {% for row in table_rows %}
-          <tr>
-            {% for cell in row %}
-              <td>{{ cell }}</td>
-            {% endfor %}
-          </tr>
-        {% endfor %}
-      {% else %}
-        <tr>
-          <td colspan="{{ columns|length|default:'1' }}">{{ empty_label|default:"No records found." }}</td>
-        </tr>
+      </select>
+      <button type="submit">Apply</button>
+      {% if bulk_action_feedback %}
+        <p class="mui-table-bulk-actions__feedback" role="{% if bulk_action_feedback_level == 'error' %}alert{% else %}status{% endif %}">{{ bulk_action_feedback }}</p>
       {% endif %}
-    </tbody>
-  </table>
+    {% endif %}
+    <table>
+      <thead>
+        <tr>
+          {% if bulk_actions %}
+            <th scope="col">Select</th>
+          {% endif %}
+          {% for column in columns %}
+            <th scope="col">{{ column|escape }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% if table_rows %}
+          {% for row in table_rows %}
+            <tr>
+              {% if bulk_actions %}
+                <td>
+                  {% with row_identifier=row.id|default:forloop.counter0|stringformat:"s" %}
+                    <input
+                      type="checkbox"
+                      name="selected_ids"
+                      value="{{ row_identifier }}"
+                      {% if row_identifier in selected_ids %}checked{% endif %}
+                    >
+                  {% endwith %}
+                </td>
+              {% endif %}
+              {% for cell in row.cells|default:row %}
+                <td>{{ cell }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="{% if bulk_actions %}{{ columns|length|add:1 }}{% else %}{{ columns|length|default:'1' }}{% endif %}">{{ empty_label|default:"No records found." }}</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  {% if bulk_actions %}</form>{% endif %}
 {% endwith %}
 {% if page_obj and page_obj.paginator.num_pages > 1 %}
     <nav aria-label="Pagination">

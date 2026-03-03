@@ -2,19 +2,19 @@
 
 ## Active work item
 
-* Objective: Start implementing Phase 7 backlog by adding the workflow transition guard contract.
-* Scope boundary: workflow transition template contract, integration example context/template, and focused tests.
-* Dependencies: `django_mui/templates/django_mui/examples/integration.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
+* Objective: Continue Phase 7 backlog by adding the server-rendered table bulk-actions contract.
+* Scope boundary: table template contract, integration example context/template behavior, and focused tests.
+* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - Transition actions can be marked disabled from Django context.
-  - Disabled transitions render deterministic reason messaging.
-  - Integration example demonstrates enabled and blocked transitions.
+  - Rows expose selectable state in server-rendered markup.
+  - Bulk action submission can be posted with selected IDs.
+  - Empty/invalid submissions fail safely with user feedback.
 
 ## Backlog integration snapshot
 
-- [ ] **In progress**: Add workflow transition guard contract.
-- [ ] **Planned**: Add server-rendered table bulk-actions contract.
-- [ ] **Planned**: Add navigation + breadcrumb composition contract.
+- [x] **Implemented**: Add workflow transition guard contract.
+- [x] **Implemented**: Add server-rendered table bulk-actions contract.
+- [ ] **In progress**: Add navigation + breadcrumb composition contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
 - [x] **Implemented**: Add nested navigation section rendering contract.
@@ -25,18 +25,18 @@
 
 ## Phase 1 — Plan
 
-- [x] Review current backlog state and select first Phase 7 implementation item.
-- [x] Understand existing workflow/template contracts and test patterns.
+- [x] Review current backlog state and select next Phase 7 implementation item.
+- [x] Understand existing table/template contracts and test patterns.
 
 ## Phase 2 — Execute
 
-- [x] Add a reusable workflow transitions partial that supports disabled transitions with reasons.
-- [x] Update integration example context/template to show enabled and blocked transitions.
-- [x] Add focused template contract tests for workflow guard behavior.
+- [x] Add optional table bulk-action form contract with row selection support.
+- [x] Update integration example context/template with bulk-action submission feedback.
+- [x] Add focused template contract tests for bulk-action behavior.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for workflow/template contracts.
+- [x] Run targeted tests for table/template contracts.
 - [x] Run ruff checks and full unittest suite.
 - [x] Run code review and security scan.
 

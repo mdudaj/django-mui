@@ -47,3 +47,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Initial contract rendered disabled reason text visually, but did not provide a relationship attribute from button to reason element.
 * Preventive rule: For every disabled action contract, wire reason text with deterministic IDs and `aria-describedby` from the control.
 * Verification added: Template contract test now asserts `aria-describedby` and `mui-workflow-transition-reason-` marker usage in `workflow_transitions.html`.
+
+* Date: 2026-03-03
+* Failure signature: Integration page failed with `VariableDoesNotExist` when rendering bulk-selection fallback IDs.
+* Root cause: Django template `default` filter evaluated the fallback expression (`row.0`) even when `row.id` existed on dict rows.
+* Preventive rule: Avoid fallback expressions that perform unsafe lookups in template filters; prefer deterministic values like `forloop.counter0`.
+* Verification added: Manual render check of `/examples/integration/` plus `tests.test_template_contracts` coverage for `row.id|default:forloop.counter0`.
