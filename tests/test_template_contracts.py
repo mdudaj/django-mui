@@ -148,10 +148,46 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"description":', content)
         self.assertIn('"timestamp":', content)
 
+    def test_nav_section_partial_renders_groups_with_accessible_labels(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/nav_section.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if nav_sections %}", content)
+        self.assertIn("{% for section in nav_sections %}", content)
+        self.assertIn("section.label", content)
+        self.assertIn("{% for item in section.items %}", content)
+        self.assertIn("item.url", content)
+        self.assertIn("item.is_active", content)
+        self.assertIn('aria-current="page"', content)
+        self.assertIn('role="group"', content)
+        self.assertIn("aria-labelledby=", content)
+        self.assertIn("mui-nav-section", content)
+
+    def test_base_stylesheet_defines_nav_section_styles(self):
+        content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(".mui-nav-section", content)
+        self.assertIn(".mui-nav-section__label", content)
+        self.assertIn(".mui-nav-section__items", content)
+
+    def test_example_integration_template_includes_nav_section(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/examples/integration.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            '{% include "django_mui/includes/nav_section.html" with nav_sections=nav_sections %}',
+            content,
+        )
+
+    def test_example_view_provides_nav_sections_context(self):
+        content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
+        self.assertIn('"nav_sections":', content)
+
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
-        self.assertIn("## Phase 6 Backlog (Open)", content)
-        self.assertIn("new parity-focused tasks", content)
+        self.assertIn("## Phase 6 Backlog (Completed)", content)
+        self.assertIn("Phase 6", content)
         self.assertIn("Add workflow activity timeline contract", content)
         self.assertIn("Add advanced list/table server query contract", content)
         self.assertIn("Add nested navigation section rendering contract", content)

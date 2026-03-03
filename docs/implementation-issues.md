@@ -1,16 +1,17 @@
 # django-mui Implementation Issues
 
-## Phase 6 Backlog (Open)
+## Phase 6 Backlog (Completed)
 
 Phase 2 seed backlog items through Phase 5 backlog items are complete. Phase 6
-continues the implementation queue with new parity-focused tasks.
+continues the implementation queue with new parity-focused tasks. All Phase 6
+items are now implemented.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
-- **Selected parallel tasks**: 1) workflow activity timeline contract, 2) advanced list/table server query contract.
-- **Reason**: Both tasks extend existing server-first foundations and can be delivered independently with low integration risk.
+- **Selected parallel tasks**: _None currently open in Phase 6 (all items below are implemented)._
+- **Reason**: Workflow timeline, advanced list/table query, and nested navigation section contracts are implemented.
 
 ### 1) Add workflow activity timeline contract
 
