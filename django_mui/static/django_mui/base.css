@@ -65,3 +65,42 @@ td {
 .mui-field__errors {
   color: #b71c1c;
 }
+
+.mui-timeline {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+.mui-timeline-event {
+  border-left: 3px solid var(--django-mui-accent);
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.mui-timeline-event__status {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.mui-timeline-event__status--success {
+  color: #1b5e20;
+}
+
+.mui-timeline-event__status--error {
+  color: #b71c1c;
+}
+
+.mui-timeline-event__status--info {
+  color: #0d47a1;
+}
+
+.mui-timeline-event__status--warning {
+  color: #e65100;
+}
+
+.mui-timeline-event__timestamp {
+  display: block;
+  font-size: 0.85em;
+  color: #757575;
+}

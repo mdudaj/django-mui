@@ -112,6 +112,42 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("django_mui_example_index", content)
         self.assertIn("django_mui_example_integration", content)
 
+    def test_timeline_partial_renders_events_with_status_and_timestamp(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/timeline.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if timeline_events %}", content)
+        self.assertIn("{% for event in timeline_events %}", content)
+        self.assertIn("event.status", content)
+        self.assertIn("event.description", content)
+        self.assertIn("event.timestamp", content)
+        self.assertIn("mui-timeline", content)
+        self.assertIn('aria-label="', content)
+
+    def test_base_stylesheet_defines_timeline_styles(self):
+        content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(".mui-timeline", content)
+        self.assertIn(".mui-timeline-event", content)
+
+    def test_example_integration_template_includes_timeline_section(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/examples/integration.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            '{% include "django_mui/includes/timeline.html" with timeline_events=timeline_events %}',
+            content,
+        )
+
+    def test_example_view_provides_timeline_events_context(self):
+        content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
+        self.assertIn('"timeline_events":', content)
+        self.assertIn('"status":', content)
+        self.assertIn('"status_label":', content)
+        self.assertIn('"description":', content)
+        self.assertIn('"timestamp":', content)
+
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Phase 6 Backlog (Open)", content)

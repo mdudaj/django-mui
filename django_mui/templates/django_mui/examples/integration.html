@@ -37,4 +37,9 @@
     <h2>Table/list</h2>
     {% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj %}
   </section>
+
+  <section id="timeline">
+    <h2>Activity timeline</h2>
+    {% include "django_mui/includes/timeline.html" with timeline_events=timeline_events %}
+  </section>
 {% endblock %}
