@@ -1,0 +1,11 @@
+{% if timeline_events %}
+  <ol class="mui-timeline" aria-label="{{ timeline_aria_label|default:'Activity timeline' }}">
+    {% for event in timeline_events %}
+      <li class="mui-timeline-event">
+        <span class="mui-timeline-event__status mui-timeline-event__status--{{ event.status|default:'info' }}">{{ event.status_label|default:event.status|escape }}</span>
+        <span class="mui-timeline-event__description">{{ event.description|escape }}</span>
+        {% if event.timestamp %}<time class="mui-timeline-event__timestamp" datetime="{{ event.timestamp|date:'c' }}">{{ event.timestamp }}</time>{% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+{% endif %}

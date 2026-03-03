@@ -1,3 +1,5 @@
+from datetime import datetime, timezone
+
 from django import forms
 from django.core.paginator import Paginator
 from django.shortcuts import render
@@ -70,5 +72,25 @@ def example_integration_view(request):
             "allowedTransitions": ["approve", "reject"],
             "transitionUrl": reverse("django_mui_workflow_transition"),
         },
+        "timeline_events": [
+            {
+                "status": "success",
+                "status_label": "Created",
+                "description": "Order SO-1001 created by admin.",
+                "timestamp": datetime(2026, 1, 15, 9, 0, tzinfo=timezone.utc),
+            },
+            {
+                "status": "info",
+                "status_label": "Submitted",
+                "description": "Order submitted for approval.",
+                "timestamp": datetime(2026, 1, 15, 10, 30, tzinfo=timezone.utc),
+            },
+            {
+                "status": "warning",
+                "status_label": "Pending",
+                "description": "Awaiting manager review.",
+                "timestamp": datetime(2026, 1, 16, 8, 0, tzinfo=timezone.utc),
+            },
+        ],
     }
     return render(request, "django_mui/examples/integration.html", context)
