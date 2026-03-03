@@ -142,6 +142,37 @@ def example_integration_view(request):
                 "timestamp": datetime(2026, 1, 16, 8, 0, tzinfo=timezone.utc),
             },
         ],
+        "timeline_groups": [
+            {
+                "label": "2026-01-15",
+                "events": [
+                    {
+                        "status": "success",
+                        "status_label": "Created",
+                        "description": "Order SO-1001 created by admin.",
+                        "timestamp": datetime(2026, 1, 15, 9, 0, tzinfo=timezone.utc),
+                    },
+                    {
+                        "status": "info",
+                        "status_label": "Submitted",
+                        "description": "Order submitted for approval.",
+                        "timestamp": datetime(2026, 1, 15, 10, 30, tzinfo=timezone.utc),
+                    },
+                ],
+            },
+            {
+                "label": "2026-01-16",
+                "events": [
+                    {
+                        "status": "warning",
+                        "status_label": "Pending",
+                        "description": "Awaiting manager review.",
+                        "timestamp": datetime(2026, 1, 16, 8, 0, tzinfo=timezone.utc),
+                    },
+                ],
+            },
+        ],
+        "empty_timeline_events": [],
         "nav_sections": [
             {
                 "label": "Orders",

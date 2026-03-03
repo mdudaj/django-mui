@@ -65,3 +65,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Phase status text and selected-task metadata were not advanced when the final Phase 7 item was finished.
 * Preventive rule: When the last selected task in an open phase is completed, immediately mark that phase completed and open the next phase in the same update.
 * Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts `Phase 8 Backlog (Open)` and `Phase 7 Backlog (Completed)`.
+
+* Date: 2026-03-03
+* Failure signature: Timeline contract test failed after introducing grouped + empty-state branches.
+* Root cause: Test assertion still expected `{% if timeline_events %}` while template switched to `{% elif timeline_events %}` to preserve grouped-priority flow.
+* Preventive rule: When control-flow blocks change (`if`/`elif`), update literal template-contract assertions in the same patch.
+* Verification added: `tests.test_template_contracts.TemplateContractTests.test_timeline_partial_renders_events_with_status_and_timestamp`.
