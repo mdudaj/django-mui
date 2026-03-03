@@ -2,13 +2,13 @@
 
 ## Active work item
 
-* Objective: Continue Phase 7 backlog by adding the server-rendered table bulk-actions contract.
-* Scope boundary: table template contract, integration example context/template behavior, and focused tests.
-* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
+* Objective: Continue Phase 7 backlog by adding the navigation + breadcrumb composition contract.
+* Scope boundary: integration example route-context composition for breadcrumbs/navigation and focused contract tests.
+* Dependencies: `django_mui/views.py`, `django_mui/templates/django_mui/examples/integration.html`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - Rows expose selectable state in server-rendered markup.
-  - Bulk action submission can be posted with selected IDs.
-  - Empty/invalid submissions fail safely with user feedback.
+  - Breadcrumb current item stays aligned with active navigation state.
+  - Base template block contracts remain backward compatible.
+  - Accessibility semantics (`aria-current`) remain explicit in both patterns.
 
 ## Backlog integration snapshot
 
@@ -26,17 +26,17 @@
 ## Phase 1 — Plan
 
 - [x] Review current backlog state and select next Phase 7 implementation item.
-- [x] Understand existing table/template contracts and test patterns.
+- [x] Understand existing navigation + breadcrumb contracts and test patterns.
 
 ## Phase 2 — Execute
 
-- [x] Add optional table bulk-action form contract with row selection support.
-- [x] Update integration example context/template with bulk-action submission feedback.
-- [x] Add focused template contract tests for bulk-action behavior.
+- [x] Add a minimal composed route-context contract for nav sections and breadcrumbs.
+- [x] Keep base template usage/backward compatibility unchanged.
+- [x] Add focused template contract tests for composed navigation + breadcrumb behavior.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for table/template contracts.
+- [x] Run targeted tests for navigation/template contracts.
 - [x] Run ruff checks and full unittest suite.
 - [x] Run code review and security scan.
 

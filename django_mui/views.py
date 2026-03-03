@@ -63,6 +63,10 @@ def example_integration_view(request):
             bulk_action_feedback_level = "success"
     paginator = Paginator(order_rows, per_page=page_size)
     page_obj = paginator.get_page(request.GET.get("page"))
+    current_nav_item = {
+        "label": "All orders",
+        "url": reverse("django_mui_example_integration"),
+    }
     context = {
         "tab_items": [
             {
@@ -83,7 +87,7 @@ def example_integration_view(request):
         ],
         "breadcrumbs": [
             {"label": "Examples", "url": reverse("django_mui_example_index")},
-            {"label": "Integration", "active": True},
+            {"label": current_nav_item["label"], "active": True},
         ],
         "columns": ["Order", "Customer", "Status"],
         "allowed_page_sizes": allowed_page_sizes,
@@ -143,9 +147,9 @@ def example_integration_view(request):
                 "label": "Orders",
                 "items": [
                     {
-                        "label": "All orders",
-                        "url": reverse("django_mui_example_integration"),
-                        "is_active": True,
+                        "label": current_nav_item["label"],
+                        "url": current_nav_item["url"],
+                        "is_active": request.path == current_nav_item["url"],
                     },
                     {
                         "label": "Pending approval",

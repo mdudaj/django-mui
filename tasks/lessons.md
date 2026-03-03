@@ -53,3 +53,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Django template `default` filter evaluated the fallback expression (`row.0`) even when `row.id` existed on dict rows.
 * Preventive rule: Avoid fallback expressions that perform unsafe lookups in template filters; prefer deterministic values like `forloop.counter0`.
 * Verification added: Manual render check of `/examples/integration/` plus `tests.test_template_contracts` coverage for `row.id|default:forloop.counter0`.
+
+* Date: 2026-03-03
+* Failure signature: Navigation and breadcrumb labels drifted because each section hard-coded current-page copy separately.
+* Root cause: Integration context duplicated current-route metadata in two places instead of deriving both from one source.
+* Preventive rule: For composed route-context contracts, define one shared context object and reuse it across navigation and breadcrumb payloads.
+* Verification added: `tests.test_template_contracts` assertions for shared `current_nav_item` and aligned breadcrumb/nav context values.

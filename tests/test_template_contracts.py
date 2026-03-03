@@ -109,8 +109,10 @@ class TemplateContractTests(unittest.TestCase):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
         self.assertIn("get_ordering_from_request", content)
         self.assertIn("get_page_size_from_request", content)
+        self.assertIn("current_nav_item = {", content)
         self.assertIn('"tab_items": [', content)
         self.assertIn('"is_active": request.path == reverse("django_mui_example_integration")', content)
+        self.assertIn('{"label": current_nav_item["label"], "active": True}', content)
         self.assertIn('allowed_orderings = ["order", "-order"]', content)
         self.assertIn("allowed_page_sizes = [2, 3]", content)
         self.assertIn('"rows": page_obj.object_list', content)
@@ -225,6 +227,7 @@ class TemplateContractTests(unittest.TestCase):
     def test_example_view_provides_nav_sections_context(self):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
         self.assertIn('"nav_sections":', content)
+        self.assertIn('"is_active": request.path == current_nav_item["url"]', content)
 
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
