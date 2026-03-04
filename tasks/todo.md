@@ -2,16 +2,17 @@
 
 ## Active work item
 
-* Objective: Continue backlog progression by opening Phase 9 and marking Phase 8 completed in implementation planning docs.
+* Objective: Clarify how much work remains to complete the current porting backlog.
 * Scope boundary: planning documentation and backlog contract test updates only.
 * Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - `docs/implementation-issues.md` includes `Phase 9 Backlog (Open)` with selected next tasks.
-  - `docs/implementation-issues.md` marks `Phase 8 Backlog (Completed)` with no open selected tasks.
-  - Backlog contract tests assert the new phase progression text.
+  - `docs/implementation-issues.md` includes an explicit completion snapshot for selected backlog items.
+  - Snapshot states how many selected backlog contracts remain open.
+  - Backlog contract tests assert the completion snapshot text.
 
 ## Backlog integration snapshot
 
+- **Completion (selected backlog items)**: 12/14 complete (85.7%); 2/14 remaining (14.3%).
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
@@ -30,12 +31,12 @@
 ## Phase 1 — Plan
 
 - [x] Review current backlog state and identify the next minimal continuation target.
-- [x] Confirm backlog contract tests that track phase progression.
+- [x] Confirm backlog contract tests that track completion status text.
 
 ## Phase 2 — Execute
 
-- [x] Update implementation backlog docs to open Phase 9 and close Phase 8.
-- [x] Update focused template contract tests for phase progression text.
+- [x] Add explicit selected-backlog completion snapshot to implementation planning docs.
+- [x] Update focused template contract tests for completion snapshot text.
 
 ## Phase 3 — Review
 

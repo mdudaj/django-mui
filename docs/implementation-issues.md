@@ -1,5 +1,13 @@
 # django-mui Implementation Issues
 
+## Porting completion snapshot
+
+- **Selected backlog items completed**: 12/14 (85.7%)
+- **Remaining selected backlog items**: 2/14 (14.3%)
+- **Remaining contracts to complete**:
+  - `feat: add hybrid form widget islands contract`
+  - `feat: add server+snackbar feedback bridge contract`
+
 ## Phase 9 Backlog (Open)
 
 Phase 2 seed backlog items through Phase 8 backlog items are complete. Phase 9
