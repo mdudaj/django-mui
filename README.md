@@ -68,6 +68,10 @@ The base template includes `django_mui/includes/messages.html` and maps Django m
 - `warning` -> `mui-alert-warning`
 - `error` -> `mui-alert-error`
 
+When `snackbar_messages_payload` is provided in template context, messages are also
+serialized via `json_script` (`id="django-mui-snackbar-messages"`) for optional
+snackbar island consumption while preserving server-rendered alert fallback.
+
 ## Breadcrumb context contract
 
 The base template includes `django_mui/includes/breadcrumbs.html` and renders breadcrumbs from a `breadcrumbs` context variable:
@@ -129,6 +133,13 @@ Include `django_mui.urls` in your project URLconf to access server-first example
 ```django
 {% load django_mui_forms %}
 {% render_form_field form.email %}
+```
+
+High-interaction fields can opt into an island payload without breaking baseline
+SSR rendering:
+
+```django
+{% render_form_field form.q island=q_field_island %}
 ```
 
 For top-of-form validation summaries, include the reusable server-rendered partial:
@@ -210,7 +221,9 @@ Additional maturity-level process docs:
 
 ## Implementation issue backlog
 
-Phase 2 seed backlog items and Phase 4 backlog items are complete; issue drafts for future implementation waves are captured in `docs/implementation-issues.md`.
+The currently selected implementation backlog queue is complete; implementation
+history and future issue-draft planning are captured in
+`docs/implementation-issues.md`.
 
 Feature parity maturity tracking is documented in the `Feature parity matrix by maturity tier` section of `docs/feature-inventory.md`.
 

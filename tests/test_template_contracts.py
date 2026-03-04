@@ -35,6 +35,7 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("message.level_tag == 'warning'", content)
         self.assertIn("message.level_tag == 'error'", content)
         self.assertIn("mui-alert-info", content)
+        self.assertIn('snackbar_messages_payload|json_script:"django-mui-snackbar-messages"', content)
 
     def test_breadcrumbs_partial_exposes_aria_current(self):
         content = (
@@ -73,6 +74,15 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('aria-labelledby="mui-form-error-summary-title"', content)
         self.assertNotIn('aria-live="assertive"', content)
 
+    def test_form_field_partial_supports_optional_island_payload(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/form_field.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if field_island_payload %}", content)
+        self.assertIn('include "django_mui/includes/react_island.html"', content)
+        self.assertIn("payload=field_island_payload", content)
+        self.assertIn("payload_id=field_island_payload_id", content)
+
     def test_tabs_partial_renders_context_items_and_active_state(self):
         content = (
             BASE_DIR / "django_mui/templates/django_mui/includes/tabs.html"
@@ -81,6 +91,22 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% for tab in tab_items %}", content)
         self.assertIn("tab.is_active", content)
         self.assertIn('aria-current="page"', content)
+
+    def test_form_field_tag_accepts_optional_island_metadata(self):
+        content = (
+            BASE_DIR / "django_mui/templatetags/django_mui_forms.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn("def render_form_field(field, island=None):", content)
+        self.assertIn('island_component = island.get("component") if isinstance(island, dict) else ""', content)
+        self.assertIn('"props": island.get("props", {}) if isinstance(island, dict) else {}', content)
+        self.assertIn('"field_island_payload": field_island_payload', content)
+
+    def test_react_islands_registers_form_field_hint_component(self):
+        content = (
+            BASE_DIR / "django_mui/static/django_mui/react_islands.js"
+        ).read_text(encoding="utf-8")
+        self.assertIn('window.DjangoMuiIslands.register("FormFieldWidgetHint"', content)
+        self.assertIn('hint.className = "mui-field__help-text"', content)
 
     def test_example_integration_template_covers_form_workflow_and_table_patterns(self):
         content = (
@@ -95,7 +121,7 @@ class TemplateContractTests(unittest.TestCase):
             '{% include "django_mui/includes/form_error_summary.html" with form=form %}',
             content,
         )
-        self.assertIn("{% render_form_field form.q %}", content)
+        self.assertIn("{% render_form_field form.q island=q_field_island %}", content)
         self.assertIn("{% render_form_field form.ordering %}", content)
         self.assertIn(
             '{% include "django_mui/includes/workflow_transitions.html" with workflow_transitions=workflow_transitions %}',
@@ -127,6 +153,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"selected_ids": selected_ids', content)
         self.assertIn('"bulk_action_feedback": bulk_action_feedback', content)
         self.assertIn('"bulk_action_feedback_level": bulk_action_feedback_level', content)
+        self.assertIn('"q_field_island": {', content)
+        self.assertIn('"component": "FormFieldWidgetHint"', content)
+        self.assertIn('"messages": demo_messages', content)
+        self.assertIn('"snackbar_messages_payload": get_snackbar_messages_payload(demo_messages)', content)
         self.assertIn('bulk_action_feedback = "Select at least one order to apply a bulk action."', content)
         self.assertIn('bulk_action_feedback = "Some selected orders are no longer available."', content)
         self.assertIn('bulk_action_feedback = "Selected bulk action is unavailable."', content)
@@ -275,9 +305,9 @@ class TemplateContractTests(unittest.TestCase):
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Porting completion snapshot", content)
-        self.assertIn("**Selected backlog items completed**: 12/14 (85.7%)", content)
-        self.assertIn("**Remaining selected backlog items**: 2/14 (14.3%)", content)
-        self.assertIn("## Phase 9 Backlog (Open)", content)
+        self.assertIn("**Selected backlog items completed**: 14/14 (100%)", content)
+        self.assertIn("**Remaining selected backlog items**: 0/14 (0%)", content)
+        self.assertIn("## Phase 9 Backlog (Completed)", content)
         self.assertIn("Add hybrid form widget islands contract", content)
         self.assertIn("Add server+snackbar feedback bridge contract", content)
         self.assertIn("## Phase 8 Backlog (Completed)", content)

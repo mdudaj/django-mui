@@ -2,13 +2,11 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 12/14 (85.7%)
-- **Remaining selected backlog items**: 2/14 (14.3%)
-- **Remaining contracts to complete**:
-  - `feat: add hybrid form widget islands contract`
-  - `feat: add server+snackbar feedback bridge contract`
+- **Selected backlog items completed**: 14/14 (100%)
+- **Remaining selected backlog items**: 0/14 (0%)
+- **Remaining contracts to complete**: _None in the currently selected backlog queue._
 
-## Phase 9 Backlog (Open)
+## Phase 9 Backlog (Completed)
 
 Phase 2 seed backlog items through Phase 8 backlog items are complete. Phase 9
 opens the next implementation queue for parity-oriented expansion.
@@ -17,9 +15,7 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
-- **Selected parallel tasks**:
-  - `feat: add hybrid form widget islands contract`
-  - `feat: add server+snackbar feedback bridge contract`
+- **Selected parallel tasks**: _None currently open in Phase 9 (all items below are implemented)._
 - **Reason**: These contracts extend mature server-first foundations with
   bounded hybrid interactivity aligned to documented parity priorities.
 
