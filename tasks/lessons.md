@@ -95,3 +95,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: The initial contract assumed `island` always had `.get(...)` available and skipped runtime type guarding.
 * Preventive rule: For optional template-tag metadata contracts, always validate input shape (`isinstance(..., dict)`) before nested lookup.
 * Verification added: `test_form_field_tag_accepts_optional_island_metadata` now asserts guarded island access patterns in `django_mui_forms.py`.
+
+* Date: 2026-03-04
+* Failure signature: Backlog continuation request was ambiguous because docs showed all selected items complete with no open next phase.
+* Root cause: `docs/implementation-issues.md` was left at a fully completed queue without promoting a new actionable phase.
+* Preventive rule: When a phase reaches 100% selected completion, open the next phase in the same update and refresh snapshot totals + contract tests together.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts `Phase 10 Backlog (Open)` and updated 14/16, 2/16 snapshot text.

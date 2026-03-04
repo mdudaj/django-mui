@@ -2,18 +2,17 @@
 
 ## Active work item
 
-* Objective: Finish the remaining Phase 9 backlog contracts and close the selected backlog queue.
-* Scope boundary: minimal server-first contract updates for form widget islands + snackbar bridge, with documentation/tests updates.
-* Dependencies: `django_mui/templatetags/django_mui_forms.py`, `django_mui/templates/django_mui/includes/form_field.html`, `django_mui/templates/django_mui/includes/messages.html`, `django_mui/views.py`, `django_mui/templates/django_mui/examples/integration.html`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
+* Objective: Continue backlog progression by opening the next actionable phase after Phase 9 completion.
+* Scope boundary: documentation + contract-test updates only (no feature implementation changes).
+* Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
 * Acceptance criteria:
-  - Form field adapter supports optional island metadata while preserving server-rendered fallback markup.
-  - Messages contract supports optional deterministic snackbar payload serialization without breaking alert rendering.
-  - Integration example demonstrates both contracts.
-  - `docs/implementation-issues.md` reports selected backlog completion with no remaining items.
+  - `docs/implementation-issues.md` opens a new actionable phase with at least two selected tasks.
+  - Porting completion snapshot reflects completed vs remaining selected backlog items.
+  - Template contract tests validate the updated backlog status text.
 
 ## Backlog integration snapshot
 
-- **Completion (selected backlog items)**: 14/14 complete (100%); 0/14 remaining (0%).
+- **Completion (selected backlog items)**: 14/16 complete (88%); 2/16 remaining (12%).
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
@@ -31,23 +30,22 @@
 
 ## Phase 1 — Plan
 
-- [x] Review current backlog state and identify the remaining Phase 9 targets.
-- [x] Confirm existing template/tag extension points and backlog contract tests.
+- [x] Review backlog docs and identify the next phase needed to continue execution.
+- [x] Confirm tests that enforce backlog documentation contract text.
 
 ## Phase 2 — Execute
 
-- [x] Add optional hybrid form widget island metadata contract to form field adapter + integration example.
-- [x] Add optional server+snackbar payload bridge contract to messages + integration example.
-- [x] Mark Phase 9 backlog as completed and refresh completion snapshot docs.
-- [x] Update focused template contract tests for both contracts and backlog state.
+- [x] Open a new Phase 10 backlog section with selected parallel tasks.
+- [x] Refresh completion snapshot counts and remaining-contract text.
+- [x] Update focused template contract tests for the new open/completed phase state.
 
 ## Phase 3 — Review
 
 - [x] Run targeted tests for changed contract areas.
 - [x] Run `ruff check .`.
 - [x] Run `ruff check . --select S`.
-- [x] Run `python -m unittest discover -s tests -p "test_*.py"` and capture integration screenshot.
-- [x] Run code review and codeql checker; address findings.
+- [x] Run `python -m unittest discover -s tests -p "test_*.py"` (no UI markup changes required screenshot refresh).
+- [x] Run code review and codeql checker; addressed actionable findings.
 
 ## Validation commands
 

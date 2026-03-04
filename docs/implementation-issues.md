@@ -2,9 +2,48 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 14/14 (100%)
-- **Remaining selected backlog items**: 0/14 (0%)
-- **Remaining contracts to complete**: _None in the currently selected backlog queue._
+- **Selected backlog items completed**: 14/16 (88%)
+- **Remaining selected backlog items**: 2/16 (12%)
+- **Remaining contracts to complete**: Workflow status summary contract and table column metadata contract.
+
+## Phase 10 Backlog (Open)
+
+Phase 2 seed backlog items through Phase 9 backlog items are complete. Phase 10
+continues parity-oriented implementation with focused server-first contracts.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**:
+  - Add workflow status summary contract
+  - Add server-rendered table column metadata contract
+- **Reason**: These contracts extend workflow and list/table parity while
+  preserving no-JS fallback patterns.
+
+### 1) Add workflow status summary contract
+
+- **Title**: `feat: add workflow status summary contract`
+- **Scope**: Introduce a reusable server-rendered status summary partial for
+  workflow detail views with deterministic semantics for current state and
+  optional next actions.
+- **Acceptance criteria**:
+  - Status summary renders entirely from Django context without JavaScript.
+  - Optional next-step metadata can be displayed without coupling to transition
+    execution logic.
+  - Integration example demonstrates status summary usage with existing workflow
+    context payloads.
+
+### 2) Add server-rendered table column metadata contract
+
+- **Title**: `feat: add server-rendered table column metadata contract`
+- **Scope**: Extend table rendering contracts to support optional column
+  metadata (alignment, emphasis, and semantic labels) while preserving baseline
+  header/row behavior.
+- **Acceptance criteria**:
+  - Table columns can declare optional metadata from Django context.
+  - Existing list/table usage without metadata remains backward compatible.
+  - Integration example demonstrates one metadata-enhanced table contract.
 
 ## Phase 9 Backlog (Completed)
 
