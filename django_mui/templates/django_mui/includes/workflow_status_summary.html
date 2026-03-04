@@ -1,0 +1,29 @@
+{% if workflow_status_summary %}
+  <section
+    class="mui-workflow-status-summary"
+    aria-label="{% if workflow_status_summary.current_state_label %}Workflow status: {{ workflow_status_summary.current_state_label }}{% elif workflow_status_summary.current_state %}Workflow status: {{ workflow_status_summary.current_state }}{% else %}{{ workflow_status_summary.aria_label|default:'Workflow status summary' }}{% endif %}"
+  >
+    <p class="mui-workflow-status-summary__state">
+      <strong>Current status:</strong>
+      {% if workflow_status_summary.current_state_label %}
+        {{ workflow_status_summary.current_state_label }}
+      {% elif workflow_status_summary.current_state %}
+        {{ workflow_status_summary.current_state }}
+      {% else %}
+        Unknown
+      {% endif %}
+    </p>
+    {% if workflow_status_summary.next_steps %}
+      <ul class="mui-workflow-status-summary__next-steps">
+        {% for step in workflow_status_summary.next_steps %}
+          <li>
+            <span>{{ step.label }}</span>
+            {% if step.metadata %}
+              <span class="mui-workflow-status-summary__next-step-meta">— {{ step.metadata }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </section>
+{% endif %}

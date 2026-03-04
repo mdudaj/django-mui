@@ -151,3 +151,15 @@ td {
   color: var(--django-mui-text-primary);
   opacity: 0.75;
 }
+
+.mui-workflow-status-summary {
+  margin: 0 0 1rem;
+}
+
+.mui-workflow-status-summary__state {
+  margin: 0 0 0.5rem;
+}
+
+.mui-workflow-status-summary__next-steps {
+  margin: 0;
+}

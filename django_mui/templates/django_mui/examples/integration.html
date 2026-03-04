@@ -24,6 +24,7 @@
 
   <section id="workflow">
     <h2>Workflow</h2>
+    {% include "django_mui/includes/workflow_status_summary.html" with workflow_status_summary=workflow_status_summary %}
     {% include "django_mui/includes/workflow_transitions.html" with workflow_transitions=workflow_transitions %}
     {% render_react_island "WorkflowStatusCard" props=workflow_payload %}
   </section>
