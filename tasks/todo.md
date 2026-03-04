@@ -2,20 +2,20 @@
 
 ## Active work item
 
-* Objective: Continue Phase 8 backlog by implementing the workflow timeline grouping contract.
-* Scope boundary: timeline template/view/example/test updates only; keep existing contracts backward compatible.
-* Dependencies: `django_mui/templates/django_mui/includes/timeline.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
+* Objective: Continue Phase 8 backlog by implementing the navigation permission-guard contract.
+* Scope boundary: navigation section template/view/test updates only; keep existing contracts backward compatible.
+* Dependencies: `django_mui/templates/django_mui/includes/nav_section.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - Timeline can render grouped entries from Django context without JavaScript.
-  - Empty timeline payloads render a deterministic fallback message.
-  - Integration example demonstrates grouped and empty-state timeline payloads.
+  - Navigation entries can be flagged unavailable from Django context.
+  - Unavailable entries render deterministic fallback semantics.
+  - Integration example demonstrates mixed available/unavailable entries.
 
 ## Backlog integration snapshot
 
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
-- [ ] **In progress**: Add navigation permission-guard contract.
+- [x] **Implemented**: Add navigation permission-guard contract.
 - [x] **Implemented**: Add workflow timeline grouping contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
@@ -32,13 +32,13 @@
 
 ## Phase 2 — Execute
 
-- [x] Extend timeline partial to support grouped entries and deterministic empty-state fallback.
-- [x] Update integration example to demonstrate grouped and empty timeline payloads.
-- [x] Update focused template contract tests for the timeline grouping/empty-state contract.
+- [x] Extend nav section partial to support unavailable entries and deterministic fallback semantics.
+- [x] Update integration example context to demonstrate mixed available/unavailable navigation entries.
+- [x] Update focused template contract tests for unavailable navigation semantics.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for timeline contract updates.
+- [x] Run targeted tests for navigation contract updates.
 - [x] Run ruff checks and full unittest suite.
 - [x] Run code review and security scan.
 

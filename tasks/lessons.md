@@ -71,3 +71,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Test assertion still expected `{% if timeline_events %}` while template switched to `{% elif timeline_events %}` to preserve grouped-priority flow.
 * Preventive rule: When control-flow blocks change (`if`/`elif`), update literal template-contract assertions in the same patch.
 * Verification added: `tests.test_template_contracts.TemplateContractTests.test_timeline_partial_renders_events_with_status_and_timestamp`.
+
+* Date: 2026-03-04
+* Failure signature: Permission-guard nav item rendered fallback reason text but lacked explicit accessible linkage between disabled label and reason.
+* Root cause: Initial unavailable-item markup added `aria-disabled` only, without deterministic `aria-describedby` target ID.
+* Preventive rule: For every disabled/unavailable UI affordance, include stable ID + `aria-describedby` wiring to its reason text.
+* Verification added: `test_nav_section_partial_renders_groups_with_accessible_labels` plus rendered fallback test `test_nav_section_partial_renders_default_unavailable_reason`.

@@ -196,6 +196,8 @@ def example_integration_view(request):
                         "label": "Monthly summary",
                         "url": "#monthly",
                         "is_active": False,
+                        "is_unavailable": True,
+                        "unavailable_reason": "Requires reports.view_monthly permission.",
                     },
                 ],
             },
