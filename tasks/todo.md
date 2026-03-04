@@ -40,9 +40,9 @@
 
 ## Phase 3 — Review
 
-- [ ] Run targeted tests for backlog contract updates.
-- [ ] Run ruff checks and full unittest suite.
-- [ ] Run code review and security scan.
+- [x] Run targeted tests for backlog contract updates.
+- [x] Run ruff checks and full unittest suite.
+- [x] Run code review and security scan.
 
 ## Validation commands
 
