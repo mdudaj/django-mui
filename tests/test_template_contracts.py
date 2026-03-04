@@ -124,6 +124,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% render_form_field form.q island=q_field_island %}", content)
         self.assertIn("{% render_form_field form.ordering %}", content)
         self.assertIn(
+            '{% include "django_mui/includes/workflow_status_summary.html" with workflow_status_summary=workflow_status_summary %}',
+            content,
+        )
+        self.assertIn(
             '{% include "django_mui/includes/workflow_transitions.html" with workflow_transitions=workflow_transitions %}',
             content,
         )
@@ -162,6 +166,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('bulk_action_feedback = "Selected bulk action is unavailable."', content)
         self.assertIn('reverse("django_mui_workflow_transition")', content)
         self.assertIn('"workflow_transitions": [', content)
+        self.assertIn('"workflow_status_summary": {', content)
+        self.assertIn('"current_state_label": "Pending manager approval"', content)
+        self.assertIn('"next_steps": [', content)
         self.assertIn('"is_disabled": True', content)
         self.assertIn('"disabled_reason": "Rejection requires manager override."', content)
 
@@ -260,6 +267,20 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("mui-workflow-transition-reason-", content)
         self.assertIn('default:"Transition unavailable."', content)
 
+    def test_workflow_status_summary_partial_supports_optional_next_steps(self):
+        content = (
+            BASE_DIR
+            / "django_mui/templates/django_mui/includes/workflow_status_summary.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if workflow_status_summary %}", content)
+        self.assertIn("{% if workflow_status_summary.current_state_label %}", content)
+        self.assertIn("{% elif workflow_status_summary.current_state %}", content)
+        self.assertIn("Unknown", content)
+        self.assertIn("{% if workflow_status_summary.next_steps %}", content)
+        self.assertIn("{% for step in workflow_status_summary.next_steps %}", content)
+        self.assertIn("{% if step.metadata %}", content)
+        self.assertIn("step.metadata", content)
+
     def test_base_stylesheet_defines_workflow_transition_styles(self):
         content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
             encoding="utf-8"
@@ -267,6 +288,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn(".mui-workflow-transitions", content)
         self.assertIn(".mui-workflow-transitions__item", content)
         self.assertIn(".mui-workflow-transitions__reason", content)
+        self.assertIn(".mui-workflow-status-summary", content)
+        self.assertIn(".mui-workflow-status-summary__state", content)
+        self.assertIn(".mui-workflow-status-summary__next-steps", content)
 
     def test_example_integration_template_includes_nav_section(self):
         content = (
@@ -305,12 +329,12 @@ class TemplateContractTests(unittest.TestCase):
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Porting completion snapshot", content)
-        self.assertIn("**Selected backlog items completed**: 14/16 (88%)", content)
-        self.assertIn("**Remaining selected backlog items**: 2/16 (12%)", content)
+        self.assertIn("**Selected backlog items completed**: 15/16 (94%)", content)
+        self.assertIn("**Remaining selected backlog items**: 1/16 (6%)", content)
         self.assertIn("## Phase 10 Backlog (Open)", content)
-        self.assertIn("Add workflow status summary contract", content)
         self.assertIn("Add server-rendered table column metadata contract", content)
         self.assertIn("## Phase 9 Backlog (Completed)", content)
+        self.assertIn("Add workflow status summary contract", content)
         self.assertIn("Add hybrid form widget islands contract", content)
         self.assertIn("Add server+snackbar feedback bridge contract", content)
         self.assertIn("## Phase 8 Backlog (Completed)", content)

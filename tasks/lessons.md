@@ -101,3 +101,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: `docs/implementation-issues.md` was left at a fully completed queue without promoting a new actionable phase.
 * Preventive rule: When a phase reaches 100% selected completion, open the next phase in the same update and refresh snapshot totals + contract tests together.
 * Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts `Phase 10 Backlog (Open)` and updated 14/16, 2/16 snapshot text.
+
+* Date: 2026-03-04
+* Failure signature: Workflow status summary partial raised `VariableDoesNotExist` when rendering `current_state` fallback in templates that only passed `current_state_label`.
+* Root cause: Chained `default` filters forced evaluation of a missing nested key before fallback could resolve.
+* Preventive rule: For optional nested template keys, prefer explicit `{% if %}/{% elif %}` checks over chained `default` filters.
+* Verification added: `test_workflow_status_summary_partial_supports_optional_next_steps` now asserts explicit current-state fallback branches.

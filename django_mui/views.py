@@ -140,6 +140,14 @@ def example_integration_view(request):
                 "disabled_reason": "Rejection requires manager override.",
             },
         ],
+        "workflow_status_summary": {
+            "current_state": "pending",
+            "current_state_label": "Pending manager approval",
+            "next_steps": [
+                {"label": "Approve order", "metadata": "Available to managers."},
+                {"label": "Reject order", "metadata": "Requires manager override."},
+            ],
+        },
         "timeline_events": [
             {
                 "status": "success",

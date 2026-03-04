@@ -2,9 +2,9 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 14/16 (88%)
-- **Remaining selected backlog items**: 2/16 (12%)
-- **Remaining contracts to complete**: Workflow status summary contract and table column metadata contract.
+- **Selected backlog items completed**: 15/16 (94%)
+- **Remaining selected backlog items**: 1/16 (6%)
+- **Remaining contracts to complete**: Table column metadata contract.
 
 ## Phase 10 Backlog (Open)
 
@@ -16,7 +16,7 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - Add workflow status summary contract
+  - ✅ Add workflow status summary contract (implemented)
   - Add server-rendered table column metadata contract
 - **Reason**: These contracts extend workflow and list/table parity while
   preserving no-JS fallback patterns.
