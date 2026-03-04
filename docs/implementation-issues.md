@@ -1,8 +1,8 @@
 # django-mui Implementation Issues
 
-## Phase 8 Backlog (Open)
+## Phase 9 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 7 backlog items are complete. Phase 8
+Phase 2 seed backlog items through Phase 8 backlog items are complete. Phase 9
 opens the next implementation queue for parity-oriented expansion.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
@@ -10,8 +10,42 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - `feat: add navigation permission-guard contract`
-  - `feat: add workflow timeline grouping contract`
+  - `feat: add hybrid form widget islands contract`
+  - `feat: add server+snackbar feedback bridge contract`
+- **Reason**: These contracts extend mature server-first foundations with
+  bounded hybrid interactivity aligned to documented parity priorities.
+
+### 1) Add hybrid form widget islands contract
+
+- **Title**: `feat: add hybrid form widget islands contract`
+- **Scope**: Introduce a server-first contract for optional React island widget
+  enhancement on high-interaction form fields without breaking non-JS fallback.
+- **Acceptance criteria**:
+  - Form fields can declare optional island metadata from Django context.
+  - Baseline server-rendered field markup remains the default fallback.
+  - Integration example demonstrates one high-interaction field using the
+    existing island bootstrapping contract.
+
+### 2) Add server+snackbar feedback bridge contract
+
+- **Title**: `feat: add server+snackbar feedback bridge contract`
+- **Scope**: Extend feedback UI contracts with an optional bridge that maps
+  Django messages to a deterministic serialized payload for snackbar islands.
+- **Acceptance criteria**:
+  - Existing server-rendered alerts remain backward compatible.
+  - Message payload can be serialized for optional client snackbar consumption.
+  - Integration example demonstrates both server fallback and optional payload.
+
+## Phase 8 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 7 backlog items are complete. Phase 8
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 8 (all items below are implemented)._
 - **Reason**: These contracts extend current workflow and table foundations with
   high-value server-first capabilities and minimal coupling.
 

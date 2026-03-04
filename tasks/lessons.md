@@ -77,3 +77,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Initial unavailable-item markup added `aria-disabled` only, without deterministic `aria-describedby` target ID.
 * Preventive rule: For every disabled/unavailable UI affordance, include stable ID + `aria-describedby` wiring to its reason text.
 * Verification added: `test_nav_section_partial_renders_groups_with_accessible_labels` plus rendered fallback test `test_nav_section_partial_renders_default_unavailable_reason`.
+
+* Date: 2026-03-04
+* Failure signature: Backlog continuation became ambiguous because docs still showed Phase 8 as open after both selected tasks were already implemented.
+* Root cause: Phase status text in `docs/implementation-issues.md` was not advanced to the next phase when the active queue was completed.
+* Preventive rule: When all selected tasks in the open phase are implemented, mark that phase completed and open the next phase in the same backlog update.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts `Phase 9 Backlog (Open)` and `Phase 8 Backlog (Completed)`.

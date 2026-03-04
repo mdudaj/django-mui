@@ -2,19 +2,21 @@
 
 ## Active work item
 
-* Objective: Continue Phase 8 backlog by implementing the navigation permission-guard contract.
-* Scope boundary: navigation section template/view/test updates only; keep existing contracts backward compatible.
-* Dependencies: `django_mui/templates/django_mui/includes/nav_section.html`, `django_mui/views.py`, `tests/test_template_contracts.py`.
+* Objective: Continue backlog progression by opening Phase 9 and marking Phase 8 completed in implementation planning docs.
+* Scope boundary: planning documentation and backlog contract test updates only.
+* Dependencies: `docs/implementation-issues.md`, `tests/test_template_contracts.py`.
 * Acceptance criteria:
-  - Navigation entries can be flagged unavailable from Django context.
-  - Unavailable entries render deterministic fallback semantics.
-  - Integration example demonstrates mixed available/unavailable entries.
+  - `docs/implementation-issues.md` includes `Phase 9 Backlog (Open)` with selected next tasks.
+  - `docs/implementation-issues.md` marks `Phase 8 Backlog (Completed)` with no open selected tasks.
+  - Backlog contract tests assert the new phase progression text.
 
 ## Backlog integration snapshot
 
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
+- [ ] **Planned**: Add hybrid form widget islands contract.
+- [ ] **Planned**: Add server+snackbar feedback bridge contract.
 - [x] **Implemented**: Add navigation permission-guard contract.
 - [x] **Implemented**: Add workflow timeline grouping contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
@@ -27,18 +29,17 @@
 
 ## Phase 1 — Plan
 
-- [x] Review current backlog state and identify the next minimal Phase 8 implementation target.
-- [x] Confirm existing timeline contract files and tests to extend.
+- [x] Review current backlog state and identify the next minimal continuation target.
+- [x] Confirm backlog contract tests that track phase progression.
 
 ## Phase 2 — Execute
 
-- [x] Extend nav section partial to support unavailable entries and deterministic fallback semantics.
-- [x] Update integration example context to demonstrate mixed available/unavailable navigation entries.
-- [x] Update focused template contract tests for unavailable navigation semantics.
+- [x] Update implementation backlog docs to open Phase 9 and close Phase 8.
+- [x] Update focused template contract tests for phase progression text.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for navigation contract updates.
+- [x] Run targeted tests for backlog contract updates.
 - [x] Run ruff checks and full unittest suite.
 - [x] Run code review and security scan.
 
