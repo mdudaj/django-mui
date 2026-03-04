@@ -1,8 +1,14 @@
 import unittest
 from pathlib import Path
 
+from django.conf import settings
+from django.template import Context, Engine
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
+
+if not settings.configured:
+    settings.configure(USE_I18N=False)
 
 
 class TemplateContractTests(unittest.TestCase):
@@ -193,6 +199,11 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% for item in section.items %}", content)
         self.assertIn("item.url", content)
         self.assertIn("item.is_active", content)
+        self.assertIn("item.is_unavailable", content)
+        self.assertIn('role="link"', content)
+        self.assertIn('aria-disabled="true"', content)
+        self.assertIn("aria-describedby=", content)
+        self.assertIn('default:"Unavailable with current permissions."', content)
         self.assertIn('aria-current="page"', content)
         self.assertIn('role="group"', content)
         self.assertIn("aria-labelledby=", content)
@@ -240,6 +251,26 @@ class TemplateContractTests(unittest.TestCase):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
         self.assertIn('"nav_sections":', content)
         self.assertIn('"is_active": request.path == current_nav_item["url"]', content)
+        self.assertIn('"is_unavailable": True', content)
+        self.assertIn('"unavailable_reason": "Requires reports.view_monthly permission."', content)
+
+    def test_nav_section_partial_renders_default_unavailable_reason(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/nav_section.html"
+        ).read_text(encoding="utf-8")
+        rendered = Engine().from_string(content).render(
+            Context(
+                {
+                    "nav_sections": [
+                        {
+                            "label": "Reports",
+                            "items": [{"label": "Monthly summary", "is_unavailable": True}],
+                        }
+                    ]
+                }
+            )
+        )
+        self.assertIn("Unavailable with current permissions.", rendered)
 
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")

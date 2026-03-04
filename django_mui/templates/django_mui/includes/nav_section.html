@@ -6,7 +6,12 @@
         <ul class="mui-nav-section__items">
           {% for item in section.items %}
             <li>
-              <a href="{{ item.url }}"{% if item.is_active %} aria-current="page"{% endif %}>{{ item.label|escape }}</a>
+              {% if item.is_unavailable %}
+                <span role="link" aria-disabled="true" aria-describedby="mui-nav-unavailable-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">{{ item.label|escape }}</span>
+                <span id="mui-nav-unavailable-{{ forloop.parentloop.counter }}-{{ forloop.counter }}">{{ item.unavailable_reason|default:"Unavailable with current permissions." }}</span>
+              {% else %}
+                <a href="{{ item.url }}"{% if item.is_active %} aria-current="page"{% endif %}>{{ item.label|escape }}</a>
+              {% endif %}
             </li>
           {% endfor %}
         </ul>
