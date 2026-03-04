@@ -1,11 +1,14 @@
 from datetime import datetime, timezone
 
 from django import forms
+from django.contrib.messages import constants as message_constants
+from django.contrib.messages.storage.base import Message
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.urls import reverse
 
 from django_mui.list_query import get_ordering_from_request, get_page_size_from_request
+from django_mui.messages import get_snackbar_messages_payload
 
 
 def design_token_parity_view(request):
@@ -67,6 +70,13 @@ def example_integration_view(request):
         "label": "All orders",
         "url": reverse("django_mui_example_integration"),
     }
+    demo_messages = [
+        Message(message_constants.SUCCESS, "Filters loaded with server-rendered fallback alerts."),
+        Message(
+            message_constants.INFO,
+            "Optional snackbar payload is available for client islands.",
+        ),
+    ]
     context = {
         "tab_items": [
             {
@@ -99,6 +109,14 @@ def example_integration_view(request):
         "bulk_action_feedback": bulk_action_feedback,
         "bulk_action_feedback_level": bulk_action_feedback_level,
         "form": ExampleOrderFilterForm(request.GET),
+        "q_field_island": {
+            "component": "FormFieldWidgetHint",
+            "props": {
+                "message": "Optional island metadata can enhance this field.",
+            },
+        },
+        "messages": demo_messages,
+        "snackbar_messages_payload": get_snackbar_messages_payload(demo_messages),
         "workflow_payload": {
             "objectId": "SO-1001",
             "state": "pending",

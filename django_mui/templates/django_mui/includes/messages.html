@@ -10,3 +10,6 @@
     {% endfor %}
   </section>
 {% endif %}
+{% if snackbar_messages_payload %}
+  {{ snackbar_messages_payload|json_script:"django-mui-snackbar-messages" }}
+{% endif %}

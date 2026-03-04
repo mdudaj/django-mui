@@ -144,6 +144,13 @@
     render();
   });
 
+  window.DjangoMuiIslands.register("FormFieldWidgetHint", function (island, props) {
+    const hint = document.createElement("small");
+    hint.className = "mui-field__help-text";
+    hint.textContent = props.message || "Field widget island mounted.";
+    island.appendChild(hint);
+  });
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", window.DjangoMuiIslands.mount);
   } else {

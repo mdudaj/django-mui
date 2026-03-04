@@ -12,5 +12,8 @@
         {% endfor %}
       </ul>
     {% endif %}
+    {% if field_island_payload %}
+      {% include "django_mui/includes/react_island.html" with payload=field_island_payload payload_id=field_island_payload_id %}
+    {% endif %}
   </div>
 {% endif %}

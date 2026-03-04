@@ -13,12 +13,12 @@
 
 ## Backlog integration snapshot
 
-- **Completion (selected backlog items)**: 12/14 complete (85.7%); 2/14 remaining (14.3%).
+- **Completion (selected backlog items)**: 14/14 complete (100%); 0/14 remaining (0%).
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
-- [ ] **Planned**: Add hybrid form widget islands contract.
-- [ ] **Planned**: Add server+snackbar feedback bridge contract.
+- [x] **Implemented**: Add hybrid form widget islands contract.
+- [x] **Implemented**: Add server+snackbar feedback bridge contract.
 - [x] **Implemented**: Add navigation permission-guard contract.
 - [x] **Implemented**: Add workflow timeline grouping contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
@@ -36,18 +36,18 @@
 
 ## Phase 2 — Execute
 
-- [ ] Add optional hybrid form widget island metadata contract to form field adapter + integration example.
-- [ ] Add optional server+snackbar payload bridge contract to messages + integration example.
-- [ ] Mark Phase 9 backlog as completed and refresh completion snapshot docs.
-- [ ] Update focused template contract tests for both contracts and backlog state.
+- [x] Add optional hybrid form widget island metadata contract to form field adapter + integration example.
+- [x] Add optional server+snackbar payload bridge contract to messages + integration example.
+- [x] Mark Phase 9 backlog as completed and refresh completion snapshot docs.
+- [x] Update focused template contract tests for both contracts and backlog state.
 
 ## Phase 3 — Review
 
-- [ ] Run targeted tests for changed contract areas.
-- [ ] Run `ruff check .`.
-- [ ] Run `ruff check . --select S`.
-- [ ] Run `python -m unittest discover -s tests -p "test_*.py"` and capture integration screenshot.
-- [ ] Run code review and codeql checker; address findings.
+- [x] Run targeted tests for changed contract areas.
+- [x] Run `ruff check .`.
+- [x] Run `ruff check . --select S`.
+- [x] Run `python -m unittest discover -s tests -p "test_*.py"` and capture integration screenshot.
+- [x] Run code review and codeql checker; address findings.
 
 ## Validation commands
 
