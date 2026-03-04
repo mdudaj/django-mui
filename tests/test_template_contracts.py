@@ -139,13 +139,18 @@ class TemplateContractTests(unittest.TestCase):
         content = (
             BASE_DIR / "django_mui/templates/django_mui/includes/timeline.html"
         ).read_text(encoding="utf-8")
-        self.assertIn("{% if timeline_events %}", content)
+        self.assertIn("{% if timeline_groups %}", content)
+        self.assertIn("{% for group in timeline_groups %}", content)
+        self.assertIn("group.label", content)
+        self.assertIn("{% for event in group.events %}", content)
+        self.assertIn("{% elif timeline_events %}", content)
         self.assertIn("{% for event in timeline_events %}", content)
         self.assertIn("event.status", content)
         self.assertIn("event.description", content)
         self.assertIn("event.timestamp", content)
         self.assertIn("mui-timeline", content)
         self.assertIn('aria-label="', content)
+        self.assertIn("timeline_empty_label", content)
 
     def test_base_stylesheet_defines_timeline_styles(self):
         content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
@@ -159,13 +164,20 @@ class TemplateContractTests(unittest.TestCase):
             BASE_DIR / "django_mui/templates/django_mui/examples/integration.html"
         ).read_text(encoding="utf-8")
         self.assertIn(
-            '{% include "django_mui/includes/timeline.html" with timeline_events=timeline_events %}',
+            '{% include "django_mui/includes/timeline.html" with timeline_groups=timeline_groups %}',
+            content,
+        )
+        self.assertIn(
+            '{% include "django_mui/includes/timeline.html" with timeline_events=empty_timeline_events timeline_empty_label="No workflow activity yet." %}',
             content,
         )
 
     def test_example_view_provides_timeline_events_context(self):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
         self.assertIn('"timeline_events":', content)
+        self.assertIn('"timeline_groups":', content)
+        self.assertIn('"events": [', content)
+        self.assertIn('"empty_timeline_events": []', content)
         self.assertIn('"status":', content)
         self.assertIn('"status_label":', content)
         self.assertIn('"description":', content)

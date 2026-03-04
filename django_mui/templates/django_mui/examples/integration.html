@@ -35,7 +35,8 @@
 
   <section id="timeline">
     <h2>Activity timeline</h2>
-    {% include "django_mui/includes/timeline.html" with timeline_events=timeline_events %}
+    {% include "django_mui/includes/timeline.html" with timeline_groups=timeline_groups %}
+    {% include "django_mui/includes/timeline.html" with timeline_events=empty_timeline_events timeline_empty_label="No workflow activity yet." %}
   </section>
 
   <section id="nav-sections">

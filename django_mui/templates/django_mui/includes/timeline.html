@@ -1,4 +1,19 @@
-{% if timeline_events %}
+{% if timeline_groups %}
+  {% for group in timeline_groups %}
+    <section class="mui-timeline-group" aria-label="{{ group.label|escape }}">
+      <h3 class="mui-timeline-group__label">{{ group.label|escape }}</h3>
+      <ol class="mui-timeline" aria-label="{{ timeline_aria_label|default:'Activity timeline' }}">
+        {% for event in group.events %}
+          <li class="mui-timeline-event">
+            <span class="mui-timeline-event__status mui-timeline-event__status--{{ event.status|default:'info' }}">{{ event.status_label|default:event.status|escape }}</span>
+            <span class="mui-timeline-event__description">{{ event.description|escape }}</span>
+            {% if event.timestamp %}<time class="mui-timeline-event__timestamp" datetime="{{ event.timestamp|date:'c' }}">{{ event.timestamp }}</time>{% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endfor %}
+{% elif timeline_events %}
   <ol class="mui-timeline" aria-label="{{ timeline_aria_label|default:'Activity timeline' }}">
     {% for event in timeline_events %}
       <li class="mui-timeline-event">
@@ -8,4 +23,6 @@
       </li>
     {% endfor %}
   </ol>
+{% else %}
+  <p class="mui-timeline-empty">{{ timeline_empty_label|default:"No timeline events available." }}</p>
 {% endif %}
