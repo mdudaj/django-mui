@@ -274,6 +274,9 @@ class TemplateContractTests(unittest.TestCase):
 
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
+        self.assertIn("## Porting completion snapshot", content)
+        self.assertIn("**Selected backlog items completed**: 12/14 (85.7%)", content)
+        self.assertIn("**Remaining selected backlog items**: 2/14 (14.3%)", content)
         self.assertIn("## Phase 9 Backlog (Open)", content)
         self.assertIn("Add hybrid form widget islands contract", content)
         self.assertIn("Add server+snackbar feedback bridge contract", content)
