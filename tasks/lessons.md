@@ -107,3 +107,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Chained `default` filters forced evaluation of a missing nested key before fallback could resolve.
 * Preventive rule: For optional nested template keys, prefer explicit `{% if %}/{% elif %}` checks over chained `default` filters.
 * Verification added: `test_workflow_status_summary_partial_supports_optional_next_steps` now asserts explicit current-state fallback branches.
+
+* Date: 2026-03-04
+* Failure signature: Table column metadata contract required indexed access to `columns` inside template loops without native list indexing support.
+* Root cause: Django templates do not support direct dynamic list indexing for parallel column/cell metadata lookup.
+* Preventive rule: When template contracts need index-based access, add a narrow, validated template filter and cover invalid-index behavior with unit tests.
+* Verification added: `tests/test_list_query.py` now covers `list_index` valid/invalid inputs and `tests/test_template_contracts.py` asserts metadata indexing usage in `table.html`.

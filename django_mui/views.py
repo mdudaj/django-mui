@@ -99,7 +99,15 @@ def example_integration_view(request):
             {"label": "Examples", "url": reverse("django_mui_example_index")},
             {"label": current_nav_item["label"], "active": True},
         ],
-        "columns": ["Order", "Customer", "Status"],
+        "columns": [
+            {
+                "label": "Order",
+                "is_emphasis": True,
+                "semantic_label": "Sales order number",
+            },
+            {"label": "Customer"},
+            {"label": "Status", "align": "center", "semantic_label": "Order status"},
+        ],
         "allowed_page_sizes": allowed_page_sizes,
         "page_obj": page_obj,
         "rows": page_obj.object_list,

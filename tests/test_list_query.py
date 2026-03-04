@@ -7,7 +7,7 @@ from django_mui.list_query import (
     get_page_size_from_request,
     resolve_filters,
 )
-from django_mui.templatetags.django_mui_list import list_query
+from django_mui.templatetags.django_mui_list import list_index, list_query
 
 
 class ListQueryTests(unittest.TestCase):
@@ -146,6 +146,14 @@ class ListQueryTests(unittest.TestCase):
         query = list_query({"request": request, "allowed_filters": allowed_filters}, 3)
 
         self.assertEqual(query, "page_size=25&status=active&page=3")
+
+    def test_list_index_returns_item_for_valid_index(self):
+        self.assertEqual(list_index(["Order", "Customer"], 1), "Customer")
+
+    def test_list_index_returns_none_for_invalid_inputs(self):
+        self.assertIsNone(list_index(["Order"], "abc"))
+        self.assertIsNone(list_index(["Order"], 2))
+        self.assertIsNone(list_index("Order", 0))
 
 
 if __name__ == "__main__":
