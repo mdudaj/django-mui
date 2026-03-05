@@ -2,13 +2,13 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 20/20 (100%)
-- **Remaining selected backlog items**: 0/20 (0%)
+- **Selected backlog items completed**: 22/22 (100%)
+- **Remaining selected backlog items**: 0/22 (0%)
 - **Remaining contracts to complete**: None in the currently selected queue.
 
-## Phase 13 Backlog (Open)
+## Phase 14 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 12 backlog items are complete. Phase 13
+Phase 2 seed backlog items through Phase 13 backlog items are complete. Phase 14
 opens the next parity-oriented implementation queue.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
@@ -16,10 +16,49 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - Add server-rendered table toolbar actions contract
-  - Add server-rendered workflow audit banner contract
-- **Reason**: These contracts extend operational list/workflow parity while
-  preserving deterministic server-side rendering behavior.
+  - Add server-rendered workflow transition history contract
+  - Add server-rendered table selection summary contract
+- **Reason**: These contracts continue workflow/list parity with deterministic
+  server-rendered provenance and selection state visibility.
+
+### 1) Add server-rendered workflow transition history contract
+
+- **Title**: `feat: add server-rendered workflow transition history contract`
+- **Scope**: Introduce a reusable workflow transition history partial that renders
+  recent transition metadata (actor/action/timestamp) from Django context without
+  JavaScript.
+- **Acceptance criteria**:
+  - Transition history renders from Django context-provided metadata.
+  - Existing workflow usage without transition history metadata remains backward
+    compatible.
+  - Integration example demonstrates transition history within existing workflow
+    contracts.
+
+### 2) Add server-rendered table selection summary contract
+
+- **Title**: `feat: add server-rendered table selection summary contract`
+- **Scope**: Introduce a reusable table selection summary partial that renders
+  deterministic selected-count text and clear-selection affordance from server
+  context.
+- **Acceptance criteria**:
+  - Selection summary renders from Django context-provided metadata.
+  - Existing table usage without selection summary metadata remains backward
+    compatible.
+  - Integration example demonstrates selection summary with existing table
+    contracts.
+
+## Phase 13 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 12 backlog items are complete. Phase 13
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 13 (all items below are implemented)._
+- **Reason**: Table toolbar actions and workflow audit banner contracts are
+  implemented.
 
 ### 1) Add server-rendered table toolbar actions contract
 

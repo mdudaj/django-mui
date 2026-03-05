@@ -97,6 +97,18 @@ table {
   font-size: 0.9em;
 }
 
+.mui-table-toolbar-actions {
+  margin: 0 0 0.75rem;
+}
+
+.mui-table-toolbar-actions__list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.75rem;
+}
+
 th,
 td {
   border: 1px solid var(--django-mui-accent);
@@ -235,4 +247,20 @@ td {
 
 .mui-workflow-status-summary__next-steps {
   margin: 0;
+}
+
+.mui-workflow-audit-banner {
+  border: 1px solid var(--django-mui-accent);
+  border-radius: 4px;
+  margin: 0 0 1rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.mui-workflow-audit-banner__summary,
+.mui-workflow-audit-banner__source {
+  margin: 0;
+}
+
+.mui-workflow-audit-banner__source {
+  margin-top: 0.25rem;
 }

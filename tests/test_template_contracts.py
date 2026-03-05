@@ -51,6 +51,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% load django_mui_list %}", content)
         self.assertIn("table_rows=page_obj.object_list|default:rows", content)
         self.assertIn(
+            '{% include "django_mui/includes/table_toolbar_actions.html" with table_toolbar_actions=table_toolbar_actions %}',
+            content,
+        )
+        self.assertIn(
             '{% include "django_mui/includes/active_filter_summary.html" with active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url %}',
             content,
         )
@@ -102,6 +106,17 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("pagination_summary.total", content)
         self.assertIn("pagination_summary.label", content)
         self.assertIn('aria-live="polite"', content)
+
+    def test_table_toolbar_actions_partial_renders_context_actions(self):
+        content = (
+            BASE_DIR
+            / "django_mui/templates/django_mui/includes/table_toolbar_actions.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if table_toolbar_actions %}", content)
+        self.assertIn('{% for action in table_toolbar_actions %}', content)
+        self.assertIn("action.url", content)
+        self.assertIn("action.label|escape", content)
+        self.assertIn("mui-table-toolbar-actions", content)
 
     def test_status_chip_partial_renders_variant_and_optional_prefix_classes(self):
         content = (
@@ -175,6 +190,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% render_form_field form.q island=q_field_island %}", content)
         self.assertIn("{% render_form_field form.ordering %}", content)
         self.assertIn(
+            '{% include "django_mui/includes/workflow_audit_banner.html" with workflow_audit_banner=workflow_audit_banner %}',
+            content,
+        )
+        self.assertIn(
             '{% include "django_mui/includes/workflow_status_summary.html" with workflow_status_summary=workflow_status_summary %}',
             content,
         )
@@ -183,7 +202,7 @@ class TemplateContractTests(unittest.TestCase):
             content,
         )
         self.assertIn(
-            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url pagination_summary=pagination_summary %}',
+            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url table_toolbar_actions=table_toolbar_actions pagination_summary=pagination_summary %}',
             content,
         )
 
@@ -216,6 +235,7 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"state_badge": {"state": "info", "label": "New"}', content)
         self.assertIn('"active_filter_summary": active_filter_summary', content)
         self.assertIn('"active_filter_reset_url": reverse("django_mui_example_integration")', content)
+        self.assertIn('"table_toolbar_actions": table_toolbar_actions', content)
         self.assertIn('"pagination_summary": pagination_summary', content)
         self.assertIn('"label": "orders"', content)
         self.assertIn("ExampleOrderFilterForm.get_ordering_label(ordering)", content)
@@ -229,6 +249,8 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('reverse("django_mui_workflow_transition")', content)
         self.assertIn('"workflow_transitions": [', content)
         self.assertIn('"workflow_status_summary": {', content)
+        self.assertIn('"workflow_audit_banner": {', content)
+        self.assertIn('"source": "Approval queue"', content)
         self.assertIn('"current_state_label": "Pending manager approval"', content)
         self.assertIn('"next_steps": [', content)
         self.assertIn('"is_disabled": True', content)
@@ -343,6 +365,18 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% if step.metadata %}", content)
         self.assertIn("step.metadata", content)
 
+    def test_workflow_audit_banner_partial_supports_optional_metadata(self):
+        content = (
+            BASE_DIR
+            / "django_mui/templates/django_mui/includes/workflow_audit_banner.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if workflow_audit_banner %}", content)
+        self.assertIn("workflow_audit_banner.actor", content)
+        self.assertIn("Unknown actor", content)
+        self.assertIn("workflow_audit_banner.timestamp", content)
+        self.assertIn("workflow_audit_banner.source", content)
+        self.assertIn("mui-workflow-audit-banner", content)
+
     def test_base_stylesheet_defines_workflow_transition_styles(self):
         content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
             encoding="utf-8"
@@ -360,8 +394,12 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn(".mui-active-filter-summary", content)
         self.assertIn(".mui-active-filter-summary__items", content)
         self.assertIn(".mui-pagination-summary", content)
+        self.assertIn(".mui-table-toolbar-actions", content)
+        self.assertIn(".mui-table-toolbar-actions__list", content)
         self.assertIn(".mui-status-chip", content)
         self.assertIn(".mui-status-chip--neutral", content)
+        self.assertIn(".mui-workflow-audit-banner", content)
+        self.assertIn(".mui-workflow-audit-banner__source", content)
 
     def test_example_integration_template_includes_nav_section(self):
         content = (
@@ -400,9 +438,12 @@ class TemplateContractTests(unittest.TestCase):
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Porting completion snapshot", content)
-        self.assertIn("**Selected backlog items completed**: 20/20 (100%)", content)
-        self.assertIn("**Remaining selected backlog items**: 0/20 (0%)", content)
-        self.assertIn("## Phase 13 Backlog (Open)", content)
+        self.assertIn("**Selected backlog items completed**: 22/22 (100%)", content)
+        self.assertIn("**Remaining selected backlog items**: 0/22 (0%)", content)
+        self.assertIn("## Phase 14 Backlog (Open)", content)
+        self.assertIn("Add server-rendered workflow transition history contract", content)
+        self.assertIn("Add server-rendered table selection summary contract", content)
+        self.assertIn("## Phase 13 Backlog (Completed)", content)
         self.assertIn("Add server-rendered table toolbar actions contract", content)
         self.assertIn("Add server-rendered workflow audit banner contract", content)
         self.assertIn("## Phase 12 Backlog (Completed)", content)

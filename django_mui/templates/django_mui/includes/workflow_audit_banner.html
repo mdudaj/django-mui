@@ -1,0 +1,20 @@
+{% if workflow_audit_banner %}
+  <section class="mui-workflow-audit-banner" aria-label="Workflow audit metadata">
+    <p class="mui-workflow-audit-banner__summary">
+      <strong>Last updated by:</strong>
+      {% if workflow_audit_banner.actor %}
+        {{ workflow_audit_banner.actor|escape }}
+      {% else %}
+        Unknown actor
+      {% endif %}
+      {% if workflow_audit_banner.timestamp %}
+        <span>on {{ workflow_audit_banner.timestamp }}</span>
+      {% endif %}
+    </p>
+    {% if workflow_audit_banner.source %}
+      <p class="mui-workflow-audit-banner__source">
+        <strong>Source:</strong> {{ workflow_audit_banner.source|escape }}
+      </p>
+    {% endif %}
+  </section>
+{% endif %}

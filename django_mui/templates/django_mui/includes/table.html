@@ -1,5 +1,6 @@
 {% load django_mui_list %}
 {% with table_rows=page_obj.object_list|default:rows %}
+  {% include "django_mui/includes/table_toolbar_actions.html" with table_toolbar_actions=table_toolbar_actions %}
   {% include "django_mui/includes/active_filter_summary.html" with active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url %}
   {% if bulk_actions %}<form method="post" action="{{ bulk_form_action|default:'' }}">{% csrf_token %}{% endif %}
     {% if bulk_actions %}

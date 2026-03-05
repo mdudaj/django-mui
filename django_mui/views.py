@@ -64,6 +64,11 @@ def example_integration_view(request):
         {"value": "approve", "label": "Approve selected orders"},
         {"value": "archive", "label": "Archive selected orders"},
     ]
+    table_toolbar_actions = [
+        {"label": "Create order", "url": "#create-order"},
+        {"label": "Export CSV", "url": "#export-csv"},
+        {"label": "Help", "url": "#table-help"},
+    ]
     selected_ids = [value.strip() for value in request.POST.getlist("selected_ids") if value.strip()]
     bulk_action_feedback = ""
     bulk_action_feedback_level = ""
@@ -150,6 +155,7 @@ def example_integration_view(request):
         "bulk_action_feedback_level": bulk_action_feedback_level,
         "active_filter_summary": active_filter_summary,
         "active_filter_reset_url": reverse("django_mui_example_integration"),
+        "table_toolbar_actions": table_toolbar_actions,
         "pagination_summary": pagination_summary,
         "form": ExampleOrderFilterForm(request.GET),
         "q_field_island": {
@@ -190,6 +196,11 @@ def example_integration_view(request):
                 {"label": "Approve order", "metadata": "Available to managers."},
                 {"label": "Reject order", "metadata": "Requires manager override."},
             ],
+        },
+        "workflow_audit_banner": {
+            "actor": "manager@example.com",
+            "timestamp": datetime(2026, 1, 16, 8, 15, tzinfo=timezone.utc),
+            "source": "Approval queue",
         },
         "timeline_events": [
             {
