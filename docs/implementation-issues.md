@@ -2,13 +2,13 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 18/18 (100%)
-- **Remaining selected backlog items**: 0/18 (0%)
+- **Selected backlog items completed**: 20/20 (100%)
+- **Remaining selected backlog items**: 0/20 (0%)
 - **Remaining contracts to complete**: None in the currently selected queue.
 
-## Phase 12 Backlog (Open)
+## Phase 13 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 11 backlog items are complete. Phase 12
+Phase 2 seed backlog items through Phase 12 backlog items are complete. Phase 13
 opens the next parity-oriented implementation queue.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
@@ -16,10 +16,47 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - Add server-rendered pagination summary contract
-  - Add server-rendered status chip primitive contract
-- **Reason**: These contracts extend list/workflow parity while preserving
-  deterministic server-side rendering behavior.
+  - Add server-rendered table toolbar actions contract
+  - Add server-rendered workflow audit banner contract
+- **Reason**: These contracts extend operational list/workflow parity while
+  preserving deterministic server-side rendering behavior.
+
+### 1) Add server-rendered table toolbar actions contract
+
+- **Title**: `feat: add server-rendered table toolbar actions contract`
+- **Scope**: Introduce a reusable table-toolbar actions partial for deterministic
+  server-rendered list-level actions (export/create/help) without client
+  JavaScript.
+- **Acceptance criteria**:
+  - Table toolbar actions render from Django context-provided metadata.
+  - Existing table usage without toolbar metadata remains backward compatible.
+  - Integration example demonstrates toolbar actions with existing table/list
+    payloads.
+
+### 2) Add server-rendered workflow audit banner contract
+
+- **Title**: `feat: add server-rendered workflow audit banner contract`
+- **Scope**: Introduce a reusable workflow audit banner partial for
+  server-rendered provenance metadata (last actor/time/source) with deterministic
+  fallback semantics.
+- **Acceptance criteria**:
+  - Workflow audit banner renders from Django context-provided metadata.
+  - Existing workflow usage without audit metadata remains backward compatible.
+  - Integration example demonstrates audit banner usage in an existing workflow
+    contract.
+
+## Phase 12 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 11 backlog items are complete. Phase 12
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 12 (all items below are implemented)._
+- **Reason**: Pagination summary and status chip primitive contracts are
+  implemented.
 
 ### 1) Add server-rendered pagination summary contract
 
