@@ -119,3 +119,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Integration sample ordering (`-order`) and page-size defaults placed the initial badge row on page 2, reducing deterministic validation coverage.
 * Preventive rule: When adding visual contract metadata in paginated examples, ensure at least one showcased item appears on the default first page used in tests/manual checks.
 * Verification added: Integration context now includes first-page row badge metadata (`SO-1003`), and template contract tests assert both warning/info badge metadata literals in `views.py`.
+
+* Date: 2026-03-05
+* Failure signature: Status-chip template review flagged duplicated variant condition branches that made class generation hard to maintain.
+* Root cause: The initial status chip primitive attempted to emit both new and legacy variant-prefixed classes, duplicating the same variant mapping logic in one line.
+* Preventive rule: Keep reusable template primitives as the single source of variant mapping and avoid duplicate conditional branches for class composition.
+* Verification added: `test_status_chip_partial_renders_variant_and_optional_prefix_classes` plus full validation (`ruff`, `ruff --select S`, and unittest suite) after refactor.

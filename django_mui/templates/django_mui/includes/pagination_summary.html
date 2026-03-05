@@ -1,0 +1,9 @@
+{% if pagination_summary %}
+  <p class="mui-pagination-summary" aria-live="polite">
+    {% if pagination_summary.total %}
+      Showing {{ pagination_summary.start|default:"0" }}–{{ pagination_summary.end|default:"0" }} of {{ pagination_summary.total }} {{ pagination_summary.label|default:"results"|escape }}
+    {% else %}
+      No {{ pagination_summary.label|default:"results"|escape }}.
+    {% endif %}
+  </p>
+{% endif %}

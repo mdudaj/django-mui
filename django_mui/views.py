@@ -86,6 +86,12 @@ def example_integration_view(request):
             bulk_action_feedback_level = "success"
     paginator = Paginator(order_rows, per_page=page_size)
     page_obj = paginator.get_page(request.GET.get("page"))
+    pagination_summary = {
+        "start": page_obj.start_index(),
+        "end": page_obj.end_index(),
+        "total": paginator.count,
+        "label": "orders",
+    }
     current_nav_item = {
         "label": "All orders",
         "url": reverse("django_mui_example_integration"),
@@ -144,6 +150,7 @@ def example_integration_view(request):
         "bulk_action_feedback_level": bulk_action_feedback_level,
         "active_filter_summary": active_filter_summary,
         "active_filter_reset_url": reverse("django_mui_example_integration"),
+        "pagination_summary": pagination_summary,
         "form": ExampleOrderFilterForm(request.GET),
         "q_field_island": {
             "component": "FormFieldWidgetHint",

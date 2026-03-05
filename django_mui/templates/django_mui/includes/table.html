@@ -52,9 +52,7 @@
                      {% if column.semantic_label %}aria-label="{{ column.semantic_label|escape }}"{% endif %}
                   >
                     {% if forloop.first and row.state_badge %}
-                      <span class="mui-table__row-state-badge{% if row.state_badge.state == 'success' %} mui-table__row-state-badge--success{% elif row.state_badge.state == 'warning' %} mui-table__row-state-badge--warning{% elif row.state_badge.state == 'error' %} mui-table__row-state-badge--error{% elif row.state_badge.state == 'info' %} mui-table__row-state-badge--info{% else %} mui-table__row-state-badge--neutral{% endif %}">
-                        {{ row.state_badge.label|default:row.state_badge.state|default:"Unknown"|escape }}
-                      </span>
+                      {% include "django_mui/includes/status_chip.html" with status_chip_label=row.state_badge.label|default:row.state_badge.state|default:"Unknown" status_chip_variant=row.state_badge.state status_chip_class_prefix="mui-table__row-state-badge" %}
                     {% endif %}
                     {{ cell }}
                   </td>
@@ -71,6 +69,7 @@
     </table>
   {% if bulk_actions %}</form>{% endif %}
 {% endwith %}
+{% include "django_mui/includes/pagination_summary.html" with pagination_summary=pagination_summary %}
 {% if page_obj and page_obj.paginator.num_pages > 1 %}
     <nav aria-label="Pagination">
       {% if page_obj.has_previous %}

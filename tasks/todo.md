@@ -2,17 +2,17 @@
 
 ## Active work item
 
-* Objective: Continue backlog by completing the Phase 11 table row state badge and active-filter summary contracts.
-* Scope boundary: minimal server-rendered table/list contract updates (table partial, new filter summary partial, integration context/template, CSS, docs/tests).
-* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/includes/active_filter_summary.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
+* Objective: Continue backlog by completing the Phase 12 pagination summary and status chip contracts.
+* Scope boundary: minimal server-rendered table/list primitive updates (new pagination/status-chip partials, table wiring, integration context/template, CSS, docs/tests).
+* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/includes/pagination_summary.html`, `django_mui/templates/django_mui/includes/status_chip.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
 * Acceptance criteria:
-  - Row state badge metadata can be provided from Django context.
-  - Active filters can render deterministic summary labels + reset link from Django context.
+  - Pagination summary renders from Django context-provided metadata.
+  - Status chip renders from Django context-provided label + variant metadata.
   - Existing list/table usage without new metadata remains backward compatible.
 
 ## Backlog integration snapshot
 
-- **Completion (selected backlog items)**: 18/18 complete (100%); 0/18 remaining (0%).
+- **Completion (selected backlog items)**: 20/20 complete (100%); 0/20 remaining (0%).
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
@@ -24,6 +24,8 @@
 - [x] **Implemented**: Add server-rendered table column metadata contract.
 - [x] **Implemented**: Add server-rendered table row state badge contract.
 - [x] **Implemented**: Add server-rendered active-filter summary contract.
+- [x] **Implemented**: Add server-rendered pagination summary contract.
+- [x] **Implemented**: Add server-rendered status chip primitive contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
 - [x] **Implemented**: Add nested navigation section rendering contract.
@@ -39,10 +41,10 @@
 
 ## Phase 2 — Execute
 
-- [x] Add row state badge rendering contract to the reusable table partial.
-- [x] Add reusable active-filter summary partial and wire into table integration.
-- [x] Update integration view/template context for badge + filter summary metadata.
-- [x] Refresh backlog docs and focused contract tests for Phase 11 completion.
+- [x] Add reusable pagination-summary partial and wire into table integration.
+- [x] Add reusable status-chip primitive and integrate with existing row state-badge contract.
+- [x] Update integration view/template context for pagination summary metadata.
+- [x] Refresh backlog docs and focused contract tests for Phase 12 completion.
 
 ## Phase 3 — Review
 
@@ -50,7 +52,7 @@
 - [x] Run `ruff check .`.
 - [x] Run `ruff check . --select S`.
 - [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
-- [x] Capture updated integration screenshot (`https://github.com/user-attachments/assets/1fa7ce87-055f-46e2-b7ec-ab8983ddc2c0`).
+- [x] Capture updated integration screenshot (`https://github.com/user-attachments/assets/70d9c70e-3db3-4adc-a526-70fd6975390f`).
 - [x] Run code review and codeql checker; address actionable findings.
 
 ## Validation commands

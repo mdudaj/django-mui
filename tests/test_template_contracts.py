@@ -67,13 +67,14 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("mui-table__cell--emphasis", content)
         self.assertIn("row.cells|default:row", content)
         self.assertIn("forloop.first and row.state_badge", content)
-        self.assertIn("row.state_badge.state == 'warning'", content)
-        self.assertIn("mui-table__row-state-badge--neutral", content)
-        self.assertIn('row.state_badge.label|default:row.state_badge.state|default:"Unknown"|escape', content)
+        self.assertIn('{% include "django_mui/includes/status_chip.html"', content)
+        self.assertIn("status_chip_label=row.state_badge.label|default:row.state_badge.state|default:\"Unknown\"", content)
+        self.assertIn('status_chip_class_prefix="mui-table__row-state-badge"', content)
         self.assertIn("bulk_action_feedback", content)
         self.assertIn('role="{% if bulk_action_feedback_level == \'error\' %}alert{% else %}status{% endif %}"', content)
         self.assertIn('{% if table_rows %}', content)
         self.assertIn('empty_label|default:"No records found."', content)
+        self.assertIn('{% include "django_mui/includes/pagination_summary.html" with pagination_summary=pagination_summary %}', content)
         self.assertIn('aria-label="Pagination"', content)
         self.assertIn("list_query page_obj.previous_page_number", content)
         self.assertIn("list_query page_obj.next_page_number", content)
@@ -90,6 +91,28 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% if active_filter_reset_url %}", content)
         self.assertIn("Clear filters", content)
         self.assertIn('aria-label="Clear active filters"', content)
+
+    def test_pagination_summary_partial_renders_optional_counts(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/pagination_summary.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if pagination_summary %}", content)
+        self.assertIn("pagination_summary.start", content)
+        self.assertIn("pagination_summary.end", content)
+        self.assertIn("pagination_summary.total", content)
+        self.assertIn("pagination_summary.label", content)
+        self.assertIn('aria-live="polite"', content)
+
+    def test_status_chip_partial_renders_variant_and_optional_prefix_classes(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/status_chip.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if status_chip_label %}", content)
+        self.assertIn("mui-status-chip", content)
+        self.assertIn("status_chip_variant == 'warning'", content)
+        self.assertIn("status_chip_variant == 'info'", content)
+        self.assertIn("status_chip_class_prefix", content)
+        self.assertIn("status_chip_label|escape", content)
 
     def test_form_error_summary_partial_renders_non_field_and_field_errors(self):
         content = (
@@ -160,7 +183,7 @@ class TemplateContractTests(unittest.TestCase):
             content,
         )
         self.assertIn(
-            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url %}',
+            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url pagination_summary=pagination_summary %}',
             content,
         )
 
@@ -193,6 +216,8 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"state_badge": {"state": "info", "label": "New"}', content)
         self.assertIn('"active_filter_summary": active_filter_summary', content)
         self.assertIn('"active_filter_reset_url": reverse("django_mui_example_integration")', content)
+        self.assertIn('"pagination_summary": pagination_summary', content)
+        self.assertIn('"label": "orders"', content)
         self.assertIn("ExampleOrderFilterForm.get_ordering_label(ordering)", content)
         self.assertIn('"q_field_island": {', content)
         self.assertIn('"component": "FormFieldWidgetHint"', content)
@@ -334,6 +359,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn(".mui-table__row-state-badge", content)
         self.assertIn(".mui-active-filter-summary", content)
         self.assertIn(".mui-active-filter-summary__items", content)
+        self.assertIn(".mui-pagination-summary", content)
+        self.assertIn(".mui-status-chip", content)
+        self.assertIn(".mui-status-chip--neutral", content)
 
     def test_example_integration_template_includes_nav_section(self):
         content = (
@@ -372,9 +400,12 @@ class TemplateContractTests(unittest.TestCase):
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Porting completion snapshot", content)
-        self.assertIn("**Selected backlog items completed**: 18/18 (100%)", content)
-        self.assertIn("**Remaining selected backlog items**: 0/18 (0%)", content)
-        self.assertIn("## Phase 12 Backlog (Open)", content)
+        self.assertIn("**Selected backlog items completed**: 20/20 (100%)", content)
+        self.assertIn("**Remaining selected backlog items**: 0/20 (0%)", content)
+        self.assertIn("## Phase 13 Backlog (Open)", content)
+        self.assertIn("Add server-rendered table toolbar actions contract", content)
+        self.assertIn("Add server-rendered workflow audit banner contract", content)
+        self.assertIn("## Phase 12 Backlog (Completed)", content)
         self.assertIn("Add server-rendered pagination summary contract", content)
         self.assertIn("Add server-rendered status chip primitive contract", content)
         self.assertIn("## Phase 11 Backlog (Completed)", content)

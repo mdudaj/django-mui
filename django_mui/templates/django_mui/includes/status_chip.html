@@ -1,0 +1,7 @@
+{% if status_chip_label %}
+  <span
+    class="mui-status-chip{% if status_chip_variant == 'success' %} mui-status-chip--success{% elif status_chip_variant == 'warning' %} mui-status-chip--warning{% elif status_chip_variant == 'error' %} mui-status-chip--error{% elif status_chip_variant == 'info' %} mui-status-chip--info{% else %} mui-status-chip--neutral{% endif %}{% if status_chip_class_prefix %} {{ status_chip_class_prefix }}{% endif %}"
+  >
+    {{ status_chip_label|escape }}
+  </span>
+{% endif %}

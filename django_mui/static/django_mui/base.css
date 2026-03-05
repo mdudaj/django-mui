@@ -39,32 +39,36 @@ table {
 .mui-table__row-state-badge {
   display: inline-block;
   margin-right: 0.5rem;
+}
+
+.mui-status-chip {
+  display: inline-block;
   padding: 0.1rem 0.4rem;
   border-radius: 999px;
   font-size: 0.75em;
 }
 
-.mui-table__row-state-badge--success {
+.mui-status-chip--success {
   background: #e8f5e9;
   color: #1b5e20;
 }
 
-.mui-table__row-state-badge--warning {
+.mui-status-chip--warning {
   background: #fff8e1;
   color: #e65100;
 }
 
-.mui-table__row-state-badge--error {
+.mui-status-chip--error {
   background: #ffebee;
   color: #b71c1c;
 }
 
-.mui-table__row-state-badge--info {
+.mui-status-chip--info {
   background: #e3f2fd;
   color: #0d47a1;
 }
 
-.mui-table__row-state-badge--neutral {
+.mui-status-chip--neutral {
   background: #eceff1;
   color: #37474f;
 }
@@ -86,6 +90,11 @@ table {
 
 .mui-active-filter-summary__label {
   font-weight: 600;
+}
+
+.mui-pagination-summary {
+  margin: 0.75rem 0;
+  font-size: 0.9em;
 }
 
 th,
