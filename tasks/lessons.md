@@ -113,3 +113,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Django templates do not support direct dynamic list indexing for parallel column/cell metadata lookup.
 * Preventive rule: When template contracts need index-based access, add a narrow, validated template filter and cover invalid-index behavior with unit tests.
 * Verification added: `tests/test_list_query.py` now covers `list_index` valid/invalid inputs and `tests/test_template_contracts.py` asserts metadata indexing usage in `table.html`.
+
+* Date: 2026-03-05
+* Failure signature: Phase 11 row-state badge contract could be hard to verify in integration because badge metadata was attached to a row that was not always visible on the first paginated page.
+* Root cause: Integration sample ordering (`-order`) and page-size defaults placed the initial badge row on page 2, reducing deterministic validation coverage.
+* Preventive rule: When adding visual contract metadata in paginated examples, ensure at least one showcased item appears on the default first page used in tests/manual checks.
+* Verification added: Integration context now includes first-page row badge metadata (`SO-1003`), and template contract tests assert both warning/info badge metadata literals in `views.py`.

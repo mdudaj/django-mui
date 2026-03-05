@@ -1,0 +1,16 @@
+{% if active_filter_summary %}
+  <section class="mui-active-filter-summary" aria-label="Active filters">
+    <p class="mui-active-filter-summary__title">Active filters</p>
+    <ul class="mui-active-filter-summary__items">
+      {% for active_filter in active_filter_summary %}
+        <li class="mui-active-filter-summary__item">
+          <span class="mui-active-filter-summary__label">{{ active_filter.label|escape }}:</span>
+          <span>{{ active_filter.value|escape }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    {% if active_filter_reset_url %}
+      <a href="{{ active_filter_reset_url }}" aria-label="Clear active filters">Clear filters</a>
+    {% endif %}
+  </section>
+{% endif %}

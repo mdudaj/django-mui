@@ -2,13 +2,13 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 16/16 (100%)
-- **Remaining selected backlog items**: 0/16 (0%)
+- **Selected backlog items completed**: 18/18 (100%)
+- **Remaining selected backlog items**: 0/18 (0%)
 - **Remaining contracts to complete**: None in the currently selected queue.
 
-## Phase 11 Backlog (Open)
+## Phase 12 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 10 backlog items are complete. Phase 11
+Phase 2 seed backlog items through Phase 11 backlog items are complete. Phase 12
 opens the next parity-oriented implementation queue.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
@@ -16,10 +16,47 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - Add server-rendered table row state badge contract
-  - Add server-rendered active-filter summary contract
-- **Reason**: These contracts extend workflow and list/table parity while
-   preserving no-JS fallback patterns.
+  - Add server-rendered pagination summary contract
+  - Add server-rendered status chip primitive contract
+- **Reason**: These contracts extend list/workflow parity while preserving
+  deterministic server-side rendering behavior.
+
+### 1) Add server-rendered pagination summary contract
+
+- **Title**: `feat: add server-rendered pagination summary contract`
+- **Scope**: Introduce a reusable server-rendered pagination summary partial that
+  exposes item ranges and total counts without relying on JavaScript state.
+- **Acceptance criteria**:
+  - Pagination summary renders from Django context-provided metadata.
+  - Existing list/table usage without summary metadata remains backward
+    compatible.
+  - Integration example demonstrates pagination summary content with existing
+    paginator payloads.
+
+### 2) Add server-rendered status chip primitive contract
+
+- **Title**: `feat: add server-rendered status chip primitive contract`
+- **Scope**: Introduce a reusable status chip template primitive with
+  deterministic semantic variants for shared workflow/list labels.
+- **Acceptance criteria**:
+  - Status chip renders from Django context-provided label and variant metadata.
+  - Existing templates without chip usage remain backward
+    compatible.
+  - Integration example demonstrates status chip usage in at least one existing
+    contract.
+
+## Phase 11 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 10 backlog items are complete. Phase 11
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 11 (all items below are implemented)._
+- **Reason**: Table row state badges and active-filter summary contracts are
+  implemented.
 
 ### 1) Add server-rendered table row state badge contract
 

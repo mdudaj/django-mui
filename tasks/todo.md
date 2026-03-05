@@ -2,17 +2,17 @@
 
 ## Active work item
 
-* Objective: Continue backlog by completing the remaining Phase 10 table column metadata contract.
-* Scope boundary: minimal server-rendered table metadata updates (template tag/filter, table partial, example context, CSS, docs/tests).
-* Dependencies: `django_mui/templatetags/django_mui_list.py`, `django_mui/templates/django_mui/includes/table.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
+* Objective: Continue backlog by completing the Phase 11 table row state badge and active-filter summary contracts.
+* Scope boundary: minimal server-rendered table/list contract updates (table partial, new filter summary partial, integration context/template, CSS, docs/tests).
+* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/includes/active_filter_summary.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
 * Acceptance criteria:
-  - Table columns can declare optional metadata (alignment, emphasis, semantic labels) from Django context.
-  - Existing list/table usage without metadata remains backward compatible.
-  - Integration example and backlog snapshot/tests reflect completion of selected Phase 10 items.
+  - Row state badge metadata can be provided from Django context.
+  - Active filters can render deterministic summary labels + reset link from Django context.
+  - Existing list/table usage without new metadata remains backward compatible.
 
 ## Backlog integration snapshot
 
-- **Completion (selected backlog items)**: 16/16 complete (100%); 0/16 remaining (0%).
+- **Completion (selected backlog items)**: 18/18 complete (100%); 0/18 remaining (0%).
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
@@ -22,6 +22,8 @@
 - [x] **Implemented**: Add workflow timeline grouping contract.
 - [x] **Implemented**: Add workflow status summary contract.
 - [x] **Implemented**: Add server-rendered table column metadata contract.
+- [x] **Implemented**: Add server-rendered table row state badge contract.
+- [x] **Implemented**: Add server-rendered active-filter summary contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
 - [x] **Implemented**: Add nested navigation section rendering contract.
@@ -32,23 +34,24 @@
 
 ## Phase 1 — Plan
 
-- [x] Review backlog docs and confirm the remaining executable Phase 10 contract.
-- [x] Confirm templates/views/tests to extend for table column metadata behavior.
+- [x] Review open backlog phase and pick the next selected contracts.
+- [x] Confirm minimal files/tests to update for table/list contract additions.
 
 ## Phase 2 — Execute
 
-- [x] Add optional table-column metadata support in shared table rendering contract.
-- [x] Wire metadata-enhanced columns into integration example context.
-- [x] Refresh backlog snapshot counts and focused template contract tests.
+- [x] Add row state badge rendering contract to the reusable table partial.
+- [x] Add reusable active-filter summary partial and wire into table integration.
+- [x] Update integration view/template context for badge + filter summary metadata.
+- [x] Refresh backlog docs and focused contract tests for Phase 11 completion.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for changed contract areas.
+- [x] Run targeted tests for updated table/template contract areas.
 - [x] Run `ruff check .`.
 - [x] Run `ruff check . --select S`.
-- [x] Run `python -m unittest discover -s tests -p "test_*.py"` and capture updated integration screenshot.
+- [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
+- [x] Capture updated integration screenshot (`https://github.com/user-attachments/assets/1fa7ce87-055f-46e2-b7ec-ab8983ddc2c0`).
 - [x] Run code review and codeql checker; address actionable findings.
-- [x] Screenshot reference for PR: https://github.com/user-attachments/assets/5dfccc4e-445d-476e-b385-e7eb0e0b02d1
 
 ## Validation commands
 

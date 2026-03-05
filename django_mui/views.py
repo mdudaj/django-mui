@@ -16,12 +16,19 @@ def design_token_parity_view(request):
 
 
 class ExampleOrderFilterForm(forms.Form):
+    DEFAULT_ORDERING = "order"
+    ORDERING_CHOICES = (("order", "Order (ascending)"), ("-order", "Order (descending)"))
+
     q = forms.CharField(label="Search orders", required=False)
     ordering = forms.ChoiceField(
         label="Sort by",
         required=False,
-        choices=(("order", "Order (ascending)"), ("-order", "Order (descending)")),
+        choices=ORDERING_CHOICES,
     )
+
+    @classmethod
+    def get_ordering_label(cls, value):
+        return dict(cls.ORDERING_CHOICES).get(value)
 
 
 def example_index_view(request):
@@ -31,12 +38,25 @@ def example_index_view(request):
 def example_integration_view(request):
     allowed_orderings = ["order", "-order"]
     allowed_page_sizes = [2, 3]
-    ordering = get_ordering_from_request(request, allowed_orderings, "order")
+    search_filter = request.GET.get("q", "").strip()
+    ordering = get_ordering_from_request(
+        request,
+        allowed_orderings,
+        ExampleOrderFilterForm.DEFAULT_ORDERING,
+    )
     page_size = get_page_size_from_request(request, allowed_page_sizes, 2)
     order_rows = [
-        {"id": "SO-1001", "cells": ["SO-1001", "Acme Co", "Pending"]},
+        {
+            "id": "SO-1001",
+            "cells": ["SO-1001", "Acme Co", "Pending"],
+            "state_badge": {"state": "warning", "label": "Needs review"},
+        },
         {"id": "SO-1002", "cells": ["SO-1002", "Globex", "Approved"]},
-        {"id": "SO-1003", "cells": ["SO-1003", "Initech", "Shipped"]},
+        {
+            "id": "SO-1003",
+            "cells": ["SO-1003", "Initech", "Shipped"],
+            "state_badge": {"state": "info", "label": "New"},
+        },
     ]
     if ordering == "-order":
         order_rows = list(reversed(order_rows))
@@ -77,6 +97,12 @@ def example_integration_view(request):
             "Optional snackbar payload is available for client islands.",
         ),
     ]
+    active_filter_summary = []
+    if search_filter:
+        active_filter_summary.append({"label": "Search", "value": search_filter})
+    ordering_label = ExampleOrderFilterForm.get_ordering_label(ordering)
+    if ordering_label and ordering != ExampleOrderFilterForm.DEFAULT_ORDERING:
+        active_filter_summary.append({"label": "Sort by", "value": ordering_label})
     context = {
         "tab_items": [
             {
@@ -116,6 +142,8 @@ def example_integration_view(request):
         "selected_ids": selected_ids,
         "bulk_action_feedback": bulk_action_feedback,
         "bulk_action_feedback_level": bulk_action_feedback_level,
+        "active_filter_summary": active_filter_summary,
+        "active_filter_reset_url": reverse("django_mui_example_integration"),
         "form": ExampleOrderFilterForm(request.GET),
         "q_field_island": {
             "component": "FormFieldWidgetHint",
