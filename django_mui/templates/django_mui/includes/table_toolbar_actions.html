@@ -1,0 +1,15 @@
+{% if table_toolbar_actions %}
+  <nav class="mui-table-toolbar-actions" aria-label="Table toolbar actions">
+    <ul class="mui-table-toolbar-actions__list">
+      {% for action in table_toolbar_actions %}
+        <li class="mui-table-toolbar-actions__item">
+          {% if action.url %}
+            <a href="{{ action.url }}">{{ action.label|escape }}</a>
+          {% else %}
+            <span>{{ action.label|escape }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

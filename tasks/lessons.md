@@ -125,3 +125,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: The initial status chip primitive attempted to emit both new and legacy variant-prefixed classes, duplicating the same variant mapping logic in one line.
 * Preventive rule: Keep reusable template primitives as the single source of variant mapping and avoid duplicate conditional branches for class composition.
 * Verification added: `test_status_chip_partial_renders_variant_and_optional_prefix_classes` plus full validation (`ruff`, `ruff --select S`, and unittest suite) after refactor.
+
+* Date: 2026-03-05
+* Failure signature: Task board drifted from implementation state after Phase 13 coding, leaving completion metrics and checklist boxes stale.
+* Root cause: `tasks/todo.md` was not updated after execution/review steps completed, so review metadata no longer reflected actual code and validation progress.
+* Preventive rule: After each execution and review milestone, immediately update `tasks/todo.md` completion percentages and checklists in the same patch before final review.
+* Verification added: Updated Phase 13 task board now marks 22/22 complete and records completed Execute/Review checklist items including validation and screenshot evidence.
