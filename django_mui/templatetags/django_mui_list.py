@@ -43,3 +43,15 @@ def list_query(context, page):
 
     params.append(("page", page))
     return urlencode(params)
+
+
+@register.filter
+def list_index(values, index):
+    if isinstance(index, str):
+        try:
+            index = int(index)
+        except ValueError:
+            return None
+    if isinstance(values, (list, tuple)) and isinstance(index, int) and 0 <= index < len(values):
+        return values[index]
+    return None

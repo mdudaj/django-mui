@@ -13,14 +13,18 @@
         <p class="mui-table-bulk-actions__feedback" role="{% if bulk_action_feedback_level == 'error' %}alert{% else %}status{% endif %}">{{ bulk_action_feedback }}</p>
       {% endif %}
     {% endif %}
-    <table>
+    <table class="mui-table">
       <thead>
         <tr>
           {% if bulk_actions %}
             <th scope="col">Select</th>
           {% endif %}
           {% for column in columns %}
-            <th scope="col">{{ column|escape }}</th>
+            <th
+              scope="col"
+              class="mui-table__cell{% if column.align == 'center' %} mui-table__cell--align-center{% elif column.align == 'end' %} mui-table__cell--align-end{% endif %}{% if column.is_emphasis %} mui-table__cell--emphasis{% endif %}"
+              {% if column.semantic_label %}aria-label="{{ column.semantic_label|escape }}"{% endif %}
+            >{{ column.label|default:column|escape }}</th>
           {% endfor %}
         </tr>
       </thead>
@@ -41,7 +45,12 @@
                 </td>
               {% endif %}
               {% for cell in row.cells|default:row %}
-                <td>{{ cell }}</td>
+                {% with column=columns|list_index:forloop.counter0 %}
+                  <td
+                    class="mui-table__cell{% if column.align == 'center' %} mui-table__cell--align-center{% elif column.align == 'end' %} mui-table__cell--align-end{% endif %}{% if column.is_emphasis %} mui-table__cell--emphasis{% endif %}"
+                    {% if column.semantic_label %}aria-label="{{ column.semantic_label|escape }}"{% endif %}
+                  >{{ cell }}</td>
+                {% endwith %}
               {% endfor %}
             </tr>
           {% endfor %}

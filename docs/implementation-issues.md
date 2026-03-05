@@ -2,24 +2,61 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 15/16 (94%)
-- **Remaining selected backlog items**: 1/16 (6%)
-- **Remaining contracts to complete**: Table column metadata contract.
+- **Selected backlog items completed**: 16/16 (100%)
+- **Remaining selected backlog items**: 0/16 (0%)
+- **Remaining contracts to complete**: None in the currently selected queue.
 
-## Phase 10 Backlog (Open)
+## Phase 11 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 9 backlog items are complete. Phase 10
-continues parity-oriented implementation with focused server-first contracts.
+Phase 2 seed backlog items through Phase 10 backlog items are complete. Phase 11
+opens the next parity-oriented implementation queue.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - ✅ Add workflow status summary contract (implemented)
-  - Add server-rendered table column metadata contract
+  - Add server-rendered table row state badge contract
+  - Add server-rendered active-filter summary contract
 - **Reason**: These contracts extend workflow and list/table parity while
-  preserving no-JS fallback patterns.
+   preserving no-JS fallback patterns.
+
+### 1) Add server-rendered table row state badge contract
+
+- **Title**: `feat: add server-rendered table row state badge contract`
+- **Scope**: Extend table/list rendering patterns with optional per-row state
+  badges that map deterministic state names to semantic classes while preserving
+  baseline row rendering.
+- **Acceptance criteria**:
+  - Row state badge metadata can be provided from Django context.
+  - Existing row markup without badge metadata remains backward compatible.
+  - Integration example demonstrates one badge-enhanced row contract.
+
+### 2) Add server-rendered active-filter summary contract
+
+- **Title**: `feat: add server-rendered active-filter summary contract`
+- **Scope**: Introduce a reusable server-rendered summary for active list/table
+  filters that can render deterministic labels and reset links without client
+  JavaScript.
+- **Acceptance criteria**:
+  - Active filters can render from Django context-provided metadata.
+  - Existing list/table usage without summary metadata remains backward
+    compatible.
+  - Integration example demonstrates filter summary behavior with existing query
+    contracts.
+
+## Phase 10 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 9 backlog items are complete. Phase 10
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 10 (all items below are implemented)._
+- **Reason**: Workflow status summary and table column metadata contracts are
+  implemented.
 
 ### 1) Add workflow status summary contract
 

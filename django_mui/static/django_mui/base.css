@@ -24,6 +24,18 @@ table {
   width: 100%;
 }
 
+.mui-table__cell--align-center {
+  text-align: center;
+}
+
+.mui-table__cell--align-end {
+  text-align: right;
+}
+
+.mui-table__cell--emphasis {
+  font-weight: 600;
+}
+
 th,
 td {
   border: 1px solid var(--django-mui-accent);
