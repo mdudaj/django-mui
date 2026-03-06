@@ -114,6 +114,11 @@ def example_integration_view(request):
     ordering_label = ExampleOrderFilterForm.get_ordering_label(ordering)
     if ordering_label and ordering != ExampleOrderFilterForm.DEFAULT_ORDERING:
         active_filter_summary.append({"label": "Sort by", "value": ordering_label})
+    table_selection_summary = {
+        "selected_count": len(selected_ids),
+        "label": "order(s) selected",
+        "clear_url": reverse("django_mui_example_integration"),
+    }
     context = {
         "tab_items": [
             {
@@ -156,6 +161,7 @@ def example_integration_view(request):
         "active_filter_summary": active_filter_summary,
         "active_filter_reset_url": reverse("django_mui_example_integration"),
         "table_toolbar_actions": table_toolbar_actions,
+        "table_selection_summary": table_selection_summary,
         "pagination_summary": pagination_summary,
         "form": ExampleOrderFilterForm(request.GET),
         "q_field_island": {
@@ -202,6 +208,18 @@ def example_integration_view(request):
             "timestamp": datetime(2026, 1, 16, 8, 15, tzinfo=timezone.utc),
             "source": "Approval queue",
         },
+        "workflow_transition_history": [
+            {
+                "action": "Submitted",
+                "actor": "agent@example.com",
+                "timestamp": datetime(2026, 1, 15, 10, 30, tzinfo=timezone.utc),
+            },
+            {
+                "action": "Escalated",
+                "actor": "manager@example.com",
+                "timestamp": datetime(2026, 1, 16, 8, 0, tzinfo=timezone.utc),
+            },
+        ],
         "timeline_events": [
             {
                 "status": "success",

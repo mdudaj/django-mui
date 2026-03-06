@@ -2,13 +2,13 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 22/22 (100%)
-- **Remaining selected backlog items**: 0/22 (0%)
-- **Remaining contracts to complete**: None in the currently selected queue.
+- **Selected backlog items completed**: 24/26 (92%)
+- **Remaining selected backlog items**: 2/26 (8%)
+- **Remaining contracts to complete**: 2 contracts in the currently selected queue.
 
-## Phase 14 Backlog (Open)
+## Phase 15 Backlog (Open)
 
-Phase 2 seed backlog items through Phase 13 backlog items are complete. Phase 14
+Phase 2 seed backlog items through Phase 14 backlog items are complete. Phase 15
 opens the next parity-oriented implementation queue.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
@@ -16,10 +16,46 @@ Use the following issue drafts to create real implementation tickets in GitHub.
 ### Next tasks to execute in parallel
 
 - **Selected parallel tasks**:
-  - Add server-rendered workflow transition history contract
-  - Add server-rendered table selection summary contract
-- **Reason**: These contracts continue workflow/list parity with deterministic
-  server-rendered provenance and selection state visibility.
+  - Add server-rendered workflow SLA breach summary contract
+  - Add server-rendered table saved-view metadata contract
+- **Reason**: These contracts continue parity work by exposing operational workflow
+  urgency and reusable list personalization metadata in SSR templates.
+
+### 1) Add server-rendered workflow SLA breach summary contract
+
+- **Title**: `feat: add server-rendered workflow SLA breach summary contract`
+- **Scope**: Introduce a reusable workflow SLA summary partial that renders
+  deterministic overdue/at-risk/on-time counts from Django context.
+- **Acceptance criteria**:
+  - SLA summary renders from Django context-provided metadata.
+  - Existing workflow usage without SLA metadata remains backward compatible.
+  - Integration example demonstrates SLA summary within existing workflow
+    contracts.
+
+### 2) Add server-rendered table saved-view metadata contract
+
+- **Title**: `feat: add server-rendered table saved-view metadata contract`
+- **Scope**: Introduce a reusable table saved-view metadata partial that renders
+  active saved-view name and owner metadata from Django context.
+- **Acceptance criteria**:
+  - Saved-view metadata renders from Django context-provided metadata.
+  - Existing table/list usage without saved-view metadata remains backward
+    compatible.
+  - Integration example demonstrates saved-view metadata with existing table
+    contracts.
+
+## Phase 14 Backlog (Completed)
+
+Phase 2 seed backlog items through Phase 13 backlog items are complete. Phase 14
+items are now implemented.
+
+Use the following issue drafts to create real implementation tickets in GitHub.
+
+### Next tasks to execute in parallel
+
+- **Selected parallel tasks**: _None currently open in Phase 14 (all items below are implemented)._
+- **Reason**: Workflow transition history and table selection summary contracts are
+  implemented.
 
 ### 1) Add server-rendered workflow transition history contract
 

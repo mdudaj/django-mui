@@ -2,17 +2,17 @@
 
 ## Active work item
 
-* Objective: Continue backlog by completing the Phase 13 table-toolbar actions and workflow audit banner contracts.
-* Scope boundary: minimal server-rendered table/workflow contract updates (new toolbar/audit partials, table/workflow wiring, integration context/template, CSS, docs/tests).
-* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/includes/table_toolbar_actions.html`, `django_mui/templates/django_mui/includes/workflow_audit_banner.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
+* Objective: Continue backlog by completing the Phase 14 workflow transition history and table selection summary contracts, then quantify remaining porting work.
+* Scope boundary: minimal server-rendered workflow/table contract updates (new transition-history/selection-summary partials, integration wiring, CSS, docs/tests).
+* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/includes/table_selection_summary.html`, `django_mui/templates/django_mui/includes/workflow_transition_history.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
 * Acceptance criteria:
-  - Table toolbar actions render from Django context-provided metadata.
-  - Workflow audit banner renders from Django context-provided metadata.
-  - Existing table/workflow usage without new metadata remains backward compatible.
+  - Workflow transition history renders from Django context-provided metadata.
+  - Table selection summary renders deterministic selected-count + clear-selection affordance from Django context.
+  - Existing table/workflow usage without the new metadata remains backward compatible.
 
 ## Backlog integration snapshot
 
-- **Completion (selected backlog items)**: 22/22 complete (100%); 0/22 remaining (0%).
+- **Completion (selected backlog items)**: 22/24 complete (92%); 2/24 remaining (8%).
 - [x] **Implemented**: Add workflow transition guard contract.
 - [x] **Implemented**: Add server-rendered table bulk-actions contract.
 - [x] **Implemented**: Add navigation + breadcrumb composition contract.
@@ -24,8 +24,8 @@
 - [x] **Implemented**: Add server-rendered table column metadata contract.
 - [x] **Implemented**: Add server-rendered table row state badge contract.
 - [x] **Implemented**: Add server-rendered active-filter summary contract.
-- [x] **Implemented**: Add server-rendered table toolbar actions contract.
-- [x] **Implemented**: Add server-rendered workflow audit banner contract.
+- [ ] **Selected (current phase)**: Add server-rendered workflow transition history contract.
+- [ ] **Selected (current phase)**: Add server-rendered table selection summary contract.
 - [x] **Implemented**: Add workflow activity timeline contract.
 - [x] **Implemented**: Add advanced list/table server query contract.
 - [x] **Implemented**: Add nested navigation section rendering contract.
@@ -37,23 +37,23 @@
 ## Phase 1 — Plan
 
 - [x] Review open backlog phase and pick the next selected contracts.
-- [x] Confirm minimal files/tests to update for table/list contract additions.
+- [x] Confirm minimal files/tests to update for workflow/table contract additions.
 
 ## Phase 2 — Execute
 
-- [x] Add reusable table-toolbar actions partial and wire into table integration.
-- [x] Add reusable workflow audit banner partial and integrate with workflow section.
-- [x] Update integration view/template context for toolbar actions + workflow audit metadata.
-- [x] Refresh backlog docs and focused contract tests for Phase 13 completion.
+- [ ] Add reusable workflow-transition-history partial and integrate with workflow section.
+- [ ] Add reusable table-selection-summary partial and wire into table integration.
+- [ ] Update integration view/template context for transition history + selection summary metadata.
+- [ ] Refresh backlog docs and focused contract tests for Phase 14 completion + next-phase remaining-work snapshot.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for updated table/workflow template contract areas.
-- [x] Run `ruff check .`.
-- [x] Run `ruff check . --select S`.
-- [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
-- [x] Capture updated integration screenshot (`https://github.com/user-attachments/assets/b80dba47-c089-49c7-a848-e3974dbfb80d`).
-- [x] Run code review and codeql checker; address actionable findings.
+- [ ] Run targeted tests for updated workflow/table template contract areas.
+- [ ] Run `ruff check .`.
+- [ ] Run `ruff check . --select S`.
+- [ ] Run `python -m unittest discover -s tests -p "test_*.py"`.
+- [ ] Capture updated integration screenshot for Phase 14 contract additions.
+- [ ] Run code review and codeql checker; address actionable findings.
 
 ## Validation commands
 

@@ -1,0 +1,18 @@
+{% if workflow_transition_history %}
+  <section class="mui-workflow-transition-history" aria-label="Workflow transition history">
+    <h3 class="mui-workflow-transition-history__title">Recent transitions</h3>
+    <ol class="mui-workflow-transition-history__list">
+      {% for event in workflow_transition_history %}
+        <li class="mui-workflow-transition-history__item">
+          <strong>{{ event.action|default:"Transition"|escape }}</strong>
+          {% if event.actor %}
+            <span>by {{ event.actor|escape }}</span>
+          {% endif %}
+          {% if event.timestamp %}
+            <time datetime="{{ event.timestamp|date:'c' }}">{{ event.timestamp }}</time>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </section>
+{% endif %}
