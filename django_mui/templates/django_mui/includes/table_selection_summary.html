@@ -1,0 +1,10 @@
+{% if table_selection_summary and table_selection_summary.selected_count %}
+  <section class="mui-table-selection-summary" aria-live="polite">
+    <p class="mui-table-selection-summary__text">
+      {{ table_selection_summary.selected_count }} {{ table_selection_summary.label|default:"selected"|escape }}
+    </p>
+    {% if table_selection_summary.clear_url %}
+      <a class="mui-table-selection-summary__clear" href="{{ table_selection_summary.clear_url|escape }}">Clear selection</a>
+    {% endif %}
+  </section>
+{% endif %}

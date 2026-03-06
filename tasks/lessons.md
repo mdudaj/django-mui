@@ -131,3 +131,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: `tasks/todo.md` was not updated after execution/review steps completed, so review metadata no longer reflected actual code and validation progress.
 * Preventive rule: After each execution and review milestone, immediately update `tasks/todo.md` completion percentages and checklists in the same patch before final review.
 * Verification added: Updated Phase 13 task board now marks 22/22 complete and records completed Execute/Review checklist items including validation and screenshot evidence.
+
+* Date: 2026-03-06
+* Failure signature: Phase 14 task board snapshot used inconsistent totals/checklist state compared with backlog docs and contract tests.
+* Root cause: `tasks/todo.md` was updated for planning but not reconciled after implementation/review completion.
+* Preventive rule: After backlog docs/tests are updated, mirror the same completion totals and implemented-task status in `tasks/todo.md` before running final review tools.
+* Verification added: `tasks/todo.md` now reflects 24/26 completion, marks both Phase 14 contracts implemented, and records code review/codeql completion.
