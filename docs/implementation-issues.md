@@ -5,6 +5,9 @@
 - **Selected backlog items completed**: 24/26 (92%)
 - **Remaining selected backlog items**: 2/26 (8%)
 - **Remaining contracts to complete**: 2 contracts in the currently selected queue.
+- **Work left to finish free + pro parity scope**: 2 planned OSS parity contracts
+  (workflow SLA summary + table saved-view metadata); proprietary premium-only
+  1:1 cloning stays out of scope per `docs/feature-inventory.md`.
 
 ## Phase 15 Backlog (Open)
 
