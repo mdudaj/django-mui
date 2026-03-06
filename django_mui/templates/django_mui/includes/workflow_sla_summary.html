@@ -1,0 +1,19 @@
+{% if workflow_sla_summary %}
+  <section class="mui-workflow-sla-summary" aria-label="Workflow SLA summary">
+    <h3 class="mui-workflow-sla-summary__title">SLA summary</h3>
+    <ul class="mui-workflow-sla-summary__list">
+      <li class="mui-workflow-sla-summary__item">
+        <span class="mui-workflow-sla-summary__label">Overdue</span>
+        <strong>{{ workflow_sla_summary.overdue_count|default:0 }}</strong>
+      </li>
+      <li class="mui-workflow-sla-summary__item">
+        <span class="mui-workflow-sla-summary__label">At-risk</span>
+        <strong>{{ workflow_sla_summary.at_risk_count|default:0 }}</strong>
+      </li>
+      <li class="mui-workflow-sla-summary__item">
+        <span class="mui-workflow-sla-summary__label">On-time</span>
+        <strong>{{ workflow_sla_summary.on_time_count|default:0 }}</strong>
+      </li>
+    </ul>
+  </section>
+{% endif %}

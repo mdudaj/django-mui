@@ -1,5 +1,6 @@
 {% load django_mui_list %}
 {% with table_rows=page_obj.object_list|default:rows %}
+  {% include "django_mui/includes/table_saved_view_metadata.html" with table_saved_view_metadata=table_saved_view_metadata %}
   {% include "django_mui/includes/table_toolbar_actions.html" with table_toolbar_actions=table_toolbar_actions %}
   {% include "django_mui/includes/table_selection_summary.html" with table_selection_summary=table_selection_summary %}
   {% include "django_mui/includes/active_filter_summary.html" with active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url %}

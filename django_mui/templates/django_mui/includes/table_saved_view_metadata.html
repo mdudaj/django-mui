@@ -1,0 +1,10 @@
+{% if table_saved_view_metadata and table_saved_view_metadata.name %}
+  <section class="mui-table-saved-view-metadata" aria-label="Active saved view metadata">
+    <p class="mui-table-saved-view-metadata__name">
+      Saved view: <strong>{{ table_saved_view_metadata.name|escape }}</strong>
+    </p>
+    {% if table_saved_view_metadata.owner %}
+      <p class="mui-table-saved-view-metadata__owner">Owner: {{ table_saved_view_metadata.owner|escape }}</p>
+    {% endif %}
+  </section>
+{% endif %}

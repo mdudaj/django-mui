@@ -162,6 +162,10 @@ def example_integration_view(request):
         "active_filter_reset_url": reverse("django_mui_example_integration"),
         "table_toolbar_actions": table_toolbar_actions,
         "table_selection_summary": table_selection_summary,
+        "table_saved_view_metadata": {
+            "name": "Needs manager review",
+            "owner": "manager@example.com",
+        },
         "pagination_summary": pagination_summary,
         "form": ExampleOrderFilterForm(request.GET),
         "q_field_island": {
@@ -220,6 +224,11 @@ def example_integration_view(request):
                 "timestamp": datetime(2026, 1, 16, 8, 0, tzinfo=timezone.utc),
             },
         ],
+        "workflow_sla_summary": {
+            "overdue_count": 1,
+            "at_risk_count": 2,
+            "on_time_count": 5,
+        },
         "timeline_events": [
             {
                 "status": "success",

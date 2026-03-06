@@ -2,27 +2,25 @@
 
 ## Porting completion snapshot
 
-- **Selected backlog items completed**: 24/26 (92%)
-- **Remaining selected backlog items**: 2/26 (8%)
-- **Remaining contracts to complete**: 2 contracts in the currently selected queue.
-- **Work left to finish free + pro parity scope**: 2 planned OSS parity contracts
-  (workflow SLA summary + table saved-view metadata); proprietary premium-only
-  1:1 cloning stays out of scope per `docs/feature-inventory.md`.
+- **Selected backlog items completed**: 26/26 (100%)
+- **Remaining selected backlog items**: 0/26 (0%)
+- **Remaining contracts to complete**: 0 contracts in the currently selected queue.
+- **Work left to finish free + pro parity scope**: 0 planned OSS parity contracts
+  remain; proprietary premium-only 1:1 cloning stays out of scope per
+  `docs/feature-inventory.md`.
 
-## Phase 15 Backlog (Open)
+## Phase 15 Backlog (Completed)
 
 Phase 2 seed backlog items through Phase 14 backlog items are complete. Phase 15
-opens the next parity-oriented implementation queue.
+items are now implemented.
 
 Use the following issue drafts to create real implementation tickets in GitHub.
 
 ### Next tasks to execute in parallel
 
-- **Selected parallel tasks**:
-  - Add server-rendered workflow SLA breach summary contract
-  - Add server-rendered table saved-view metadata contract
-- **Reason**: These contracts continue parity work by exposing operational workflow
-  urgency and reusable list personalization metadata in SSR templates.
+- **Selected parallel tasks**: _None currently open in Phase 15 (all items below are implemented)._
+- **Reason**: Workflow SLA summary and table saved-view metadata contracts are
+  implemented.
 
 ### 1) Add server-rendered workflow SLA breach summary contract
 
