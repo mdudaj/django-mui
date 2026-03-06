@@ -332,3 +332,39 @@ td {
 .mui-workflow-sla-summary__label {
   margin-right: 0.25rem;
 }
+
+.mui-demo-dashboard {
+  display: grid;
+  gap: 1rem;
+}
+
+.mui-demo-dashboard__panel {
+  background: var(--django-mui-surface);
+  border: 1px solid var(--django-mui-accent);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.mui-demo-dashboard__branding-form,
+.mui-demo-dashboard__create-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.mui-demo-dashboard__stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mui-demo-dashboard__token-list {
+  margin: 0.75rem 0 0;
+  padding-left: 1rem;
+}
+
+.mui-demo-dashboard__actions {
+  display: grid;
+  gap: 0.5rem;
+}

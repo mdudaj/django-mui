@@ -31,8 +31,176 @@ class ExampleOrderFilterForm(forms.Form):
         return dict(cls.ORDERING_CHOICES).get(value)
 
 
+TODO_DASHBOARD_SESSION_KEY = "django_mui_demo_todos"
+TODO_BRANDING_DEFAULT = "default"
+TODO_BRANDING_PRESETS = {
+    "default": {
+        "label": "Default tokens",
+        "description": "Uses the package defaults from django_mui.design_tokens.",
+        "tokens": {},
+    },
+    "ocean": {
+        "label": "Ocean",
+        "description": "Blue accent with lighter surfaces.",
+        "tokens": {
+            "background": "#eef6ff",
+            "surface": "#ffffff",
+            "text-primary": "#0a2540",
+            "accent": "#0066cc",
+        },
+    },
+    "sunset": {
+        "label": "Sunset",
+        "description": "Warm accent with soft contrast for dashboards.",
+        "tokens": {
+            "background": "#fff8f1",
+            "surface": "#ffffff",
+            "text-primary": "#402218",
+            "accent": "#d9480f",
+        },
+    },
+}
+
+
+def _get_demo_todos(request):
+    stored_todos = request.session.get(TODO_DASHBOARD_SESSION_KEY, [])
+    todos = []
+    for item in stored_todos:
+        if not isinstance(item, dict):
+            continue
+        try:
+            todo_id = int(item.get("id"))
+        except (TypeError, ValueError):
+            continue
+        title = str(item.get("title", "")).strip()
+        if not title:
+            continue
+        todos.append({"id": todo_id, "title": title, "is_done": bool(item.get("is_done"))})
+    return todos
+
+
+def _save_demo_todos(request, todos):
+    request.session[TODO_DASHBOARD_SESSION_KEY] = todos
+    request.session.modified = True
+
+
+def _get_branding_variables(branding_key):
+    preset = TODO_BRANDING_PRESETS.get(branding_key, TODO_BRANDING_PRESETS[TODO_BRANDING_DEFAULT])
+    token_items = sorted(preset.get("tokens", {}).items())
+    return "; ".join(f"--django-mui-{token}: {value}" for token, value in token_items)
+
+
 def example_index_view(request):
     return render(request, "django_mui/examples/index.html")
+
+
+def example_todo_dashboard_view(request):
+    selected_branding = request.GET.get("brand", TODO_BRANDING_DEFAULT)
+    if selected_branding not in TODO_BRANDING_PRESETS:
+        selected_branding = TODO_BRANDING_DEFAULT
+    todos = _get_demo_todos(request)
+    feedback_message = ""
+    feedback_level = "info"
+    if request.method == "POST":
+        action = request.POST.get("action", "").strip()
+        todo_title = request.POST.get("title", "").strip()
+        todo_id_raw = request.POST.get("todo_id", "").strip()
+        todo_id = None
+        if todo_id_raw:
+            try:
+                todo_id = int(todo_id_raw)
+            except ValueError:
+                todo_id = None
+        todo_lookup = {todo["id"]: todo for todo in todos}
+        if action == "create":
+            if not todo_title:
+                feedback_level = "error"
+                feedback_message = "Todo title is required."
+            else:
+                next_id = max((todo["id"] for todo in todos), default=0) + 1
+                todos.append({"id": next_id, "title": todo_title, "is_done": False})
+                feedback_level = "success"
+                feedback_message = "Todo created."
+        elif action == "update":
+            if todo_id is None or todo_id not in todo_lookup:
+                feedback_level = "error"
+                feedback_message = "Selected todo no longer exists."
+            elif not todo_title:
+                feedback_level = "error"
+                feedback_message = "Updated title is required."
+            else:
+                todo_lookup[todo_id]["title"] = todo_title
+                feedback_level = "success"
+                feedback_message = "Todo updated."
+        elif action == "toggle":
+            if todo_id is None or todo_id not in todo_lookup:
+                feedback_level = "error"
+                feedback_message = "Selected todo no longer exists."
+            else:
+                todo_lookup[todo_id]["is_done"] = not todo_lookup[todo_id]["is_done"]
+                feedback_level = "success"
+                feedback_message = "Todo status updated."
+        elif action == "delete":
+            if todo_id is None or todo_id not in todo_lookup:
+                feedback_level = "error"
+                feedback_message = "Selected todo no longer exists."
+            else:
+                todos = [todo for todo in todos if todo["id"] != todo_id]
+                feedback_level = "success"
+                feedback_message = "Todo deleted."
+        else:
+            feedback_level = "error"
+            feedback_message = "Unsupported action."
+        _save_demo_todos(request, todos)
+    branding_options = [
+        {
+            "value": key,
+            "label": preset["label"],
+            "description": preset["description"],
+        }
+        for key, preset in TODO_BRANDING_PRESETS.items()
+    ]
+    completed_count = sum(1 for todo in todos if todo["is_done"])
+    open_count = len(todos) - completed_count
+    context = {
+        "tab_items": [
+            {
+                "label": "Examples home",
+                "url": reverse("django_mui_example_index"),
+                "is_active": request.path == reverse("django_mui_example_index"),
+            },
+            {
+                "label": "Integration",
+                "url": reverse("django_mui_example_integration"),
+                "is_active": request.path == reverse("django_mui_example_integration"),
+            },
+            {
+                "label": "Todo dashboard",
+                "url": reverse("django_mui_example_todo_dashboard"),
+                "is_active": request.path == reverse("django_mui_example_todo_dashboard"),
+            },
+            {
+                "label": "Design tokens",
+                "url": reverse("django_mui_design_token_parity"),
+                "is_active": request.path == reverse("django_mui_design_token_parity"),
+            },
+        ],
+        "breadcrumbs": [
+            {"label": "Examples", "url": reverse("django_mui_example_index")},
+            {"label": "Todo dashboard", "active": True},
+        ],
+        "todos": sorted(todos, key=lambda item: item["id"]),
+        "todo_feedback_message": feedback_message,
+        "todo_feedback_level": feedback_level,
+        "selected_branding": selected_branding,
+        "branding_options": branding_options,
+        "branding_variables_inline_style": _get_branding_variables(selected_branding),
+        "branding_preview_tokens": TODO_BRANDING_PRESETS[selected_branding].get("tokens", {}),
+        "todo_total_count": len(todos),
+        "todo_open_count": open_count,
+        "todo_completed_count": completed_count,
+    }
+    return render(request, "django_mui/examples/todo_dashboard.html", context)
 
 
 def example_integration_view(request):
@@ -130,6 +298,11 @@ def example_integration_view(request):
                 "label": "Integration",
                 "url": reverse("django_mui_example_integration"),
                 "is_active": request.path == reverse("django_mui_example_integration"),
+            },
+            {
+                "label": "Todo dashboard",
+                "url": reverse("django_mui_example_todo_dashboard"),
+                "is_active": request.path == reverse("django_mui_example_todo_dashboard"),
             },
             {
                 "label": "Design tokens",

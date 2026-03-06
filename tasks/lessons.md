@@ -149,3 +149,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: `tasks/todo.md` execution/review checkboxes and backlog snapshot totals were not reconciled immediately after finishing implementation and validation.
 * Preventive rule: Before final code review/codeql runs, sync `tasks/todo.md` completion metrics and checklist states with the current docs/tests/code status in the same patch.
 * Verification added: Current Phase 15 task board now records 26/26 completion and all Plan/Execute/Review checklist items including review/security checks.
+
+* Date: 2026-03-06
+* Failure signature: New demo requirement risked being implemented as isolated pieces without a full server-first verification loop.
+* Root cause: Demo feature requests span templates, routes, view state handling, and visual proof, making it easy to miss one contract when moving fast.
+* Preventive rule: For new showcase pages, always land URL + view + template + stylesheet + contract tests + screenshot evidence in one pass.
+* Verification added: Added todo dashboard route/view/template/tests, ran baseline validations, and captured screenshot evidence for the new page.
