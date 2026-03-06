@@ -251,6 +251,7 @@ class TemplateContractTests(unittest.TestCase):
         content = (BASE_DIR / "django_mui/urls.py").read_text(encoding="utf-8")
         self.assertIn("django_mui_example_index", content)
         self.assertIn("django_mui_example_integration", content)
+        self.assertIn("django_mui_example_todo_dashboard", content)
 
     def test_example_view_provides_table_rows_and_workflow_endpoint_context(self):
         content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
@@ -307,12 +308,50 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"next_steps": [', content)
         self.assertIn('"is_disabled": True', content)
         self.assertIn('"disabled_reason": "Rejection requires manager override."', content)
+        self.assertIn('"label": "Todo dashboard"', content)
 
     def test_readme_links_example_entry_points(self):
         content = (BASE_DIR / "README.md").read_text(encoding="utf-8")
         self.assertIn("## Example integration pages", content)
         self.assertIn("django_mui_example_index", content)
         self.assertIn("django_mui_example_integration", content)
+        self.assertIn("django_mui_example_todo_dashboard", content)
+
+    def test_example_index_template_links_todo_dashboard_demo(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/examples/index.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("django_mui_example_todo_dashboard", content)
+        self.assertIn("Todo dashboard demo", content)
+
+    def test_todo_dashboard_template_covers_crud_and_branding_variables(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/examples/todo_dashboard.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn('{% extends "django_mui/base.html" %}', content)
+        self.assertIn("branding_variables_inline_style", content)
+        self.assertIn('name="brand"', content)
+        self.assertIn('name="action" value="create"', content)
+        self.assertIn('name="action" value="toggle"', content)
+        self.assertIn('name="action" value="update"', content)
+        self.assertIn('name="action" value="delete"', content)
+        self.assertIn("mui-demo-dashboard__stats", content)
+        self.assertIn("mui-status-chip--success", content)
+        self.assertIn("mui-status-chip--warning", content)
+        self.assertIn("No todos yet. Add one to start your dashboard.", content)
+
+    def test_todo_dashboard_view_provides_session_crud_and_branding_context(self):
+        content = (BASE_DIR / "django_mui/views.py").read_text(encoding="utf-8")
+        self.assertIn('TODO_DASHBOARD_SESSION_KEY = "django_mui_demo_todos"', content)
+        self.assertIn("TODO_BRANDING_PRESETS = {", content)
+        self.assertIn('selected_branding = request.GET.get("brand", TODO_BRANDING_DEFAULT)', content)
+        self.assertIn('action = request.POST.get("action", "").strip()', content)
+        self.assertIn('elif action == "update":', content)
+        self.assertIn('elif action == "toggle":', content)
+        self.assertIn('elif action == "delete":', content)
+        self.assertIn('"branding_variables_inline_style": _get_branding_variables(selected_branding)', content)
+        self.assertIn('"branding_preview_tokens": TODO_BRANDING_PRESETS[selected_branding].get("tokens", {})', content)
+        self.assertIn('"todo_total_count": len(todos)', content)
 
     def test_timeline_partial_renders_events_with_status_and_timestamp(self):
         content = (
@@ -482,6 +521,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn(".mui-workflow-transition-history__list", content)
         self.assertIn(".mui-workflow-sla-summary", content)
         self.assertIn(".mui-workflow-sla-summary__list", content)
+        self.assertIn(".mui-demo-dashboard", content)
+        self.assertIn(".mui-demo-dashboard__panel", content)
+        self.assertIn(".mui-demo-dashboard__actions", content)
 
     def test_example_integration_template_includes_nav_section(self):
         content = (

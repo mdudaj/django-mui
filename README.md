@@ -125,6 +125,11 @@ Include `django_mui.urls` in your project URLconf to access server-first example
 
 - `django_mui_example_index` (`examples/`)
 - `django_mui_example_integration` (`examples/integration/`)
+- `django_mui_example_todo_dashboard` (`examples/todo-dashboard/`)
+
+The todo dashboard demo showcases server-rendered CRUD interactions and theme
+branding overrides using CSS variables backed by the existing design token
+contract.
 
 ## Form field adapter
 

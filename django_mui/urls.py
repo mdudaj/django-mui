@@ -4,6 +4,7 @@ from django_mui.views import (
     design_token_parity_view,
     example_index_view,
     example_integration_view,
+    example_todo_dashboard_view,
 )
 from django_mui.workflow import workflow_transition
 
@@ -13,6 +14,11 @@ urlpatterns = [
         "examples/integration/",
         example_integration_view,
         name="django_mui_example_integration",
+    ),
+    path(
+        "examples/todo-dashboard/",
+        example_todo_dashboard_view,
+        name="django_mui_example_todo_dashboard",
     ),
     path(
         "design-tokens/parity/",

@@ -38,18 +38,18 @@
 
 ## Phase 2 — Execute
 
-- [ ] Add demo dashboard URL and view logic for todo CRUD + branding variable selection.
-- [ ] Add/extend example templates with demo dashboard sections and controls.
-- [ ] Add minimal stylesheet support for dashboard/branding preview layout.
-- [ ] Update template contract tests for new demo dashboard wiring.
+- [x] Add demo dashboard URL and view logic for todo CRUD + branding variable selection.
+- [x] Add/extend example templates with demo dashboard sections and controls.
+- [x] Add minimal stylesheet support for dashboard/branding preview layout.
+- [x] Update template contract tests for new demo dashboard wiring.
 
 ## Phase 3 — Review
 
-- [ ] Run targeted tests for changed template contracts.
+- [x] Run targeted tests for changed template contracts.
 - [x] Run `ruff check .`.
 - [x] Run `ruff check . --select S`.
-- [ ] Run `python -m unittest discover -s tests -p "test_*.py"`.
-- [ ] Capture updated dashboard screenshot for traceability.
+- [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
+- [x] Capture updated dashboard screenshot for traceability (`https://github.com/user-attachments/assets/faaa52f6-df88-45d0-9a74-bd0c99324c65`).
 - [ ] Run code review and codeql checker; address actionable findings.
 
 ## Validation commands
