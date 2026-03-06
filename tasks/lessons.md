@@ -143,3 +143,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Documentation text wrapped across markdown lines, but the test asserted a single contiguous literal string.
 * Preventive rule: For wrapped markdown assertions, check stable substrings or split assertions by phrase instead of relying on full-line formatting.
 * Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts separate free/pro scope substrings.
+
+* Date: 2026-03-06
+* Failure signature: Task board drifted from completed implementation status and review readiness, causing code review feedback on stale checklist states.
+* Root cause: `tasks/todo.md` execution/review checkboxes and backlog snapshot totals were not reconciled immediately after finishing implementation and validation.
+* Preventive rule: Before final code review/codeql runs, sync `tasks/todo.md` completion metrics and checklist states with the current docs/tests/code status in the same patch.
+* Verification added: Current Phase 15 task board now records 26/26 completion and all Plan/Execute/Review checklist items including review/security checks.

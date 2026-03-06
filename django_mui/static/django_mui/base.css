@@ -123,6 +123,19 @@ table {
   margin-top: 0.25rem;
 }
 
+.mui-table-saved-view-metadata {
+  margin: 0 0 0.75rem;
+}
+
+.mui-table-saved-view-metadata__name,
+.mui-table-saved-view-metadata__owner {
+  margin: 0;
+}
+
+.mui-table-saved-view-metadata__owner {
+  margin-top: 0.25rem;
+}
+
 th,
 td {
   border: 1px solid var(--django-mui-accent);
@@ -294,4 +307,28 @@ td {
 
 .mui-workflow-transition-history__item {
   margin: 0 0 0.25rem;
+}
+
+.mui-workflow-sla-summary {
+  margin: 0 0 1rem;
+}
+
+.mui-workflow-sla-summary__title {
+  margin: 0 0 0.5rem;
+}
+
+.mui-workflow-sla-summary__list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mui-workflow-sla-summary__item {
+  margin: 0;
+}
+
+.mui-workflow-sla-summary__label {
+  margin-right: 0.25rem;
 }

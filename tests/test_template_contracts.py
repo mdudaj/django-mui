@@ -51,6 +51,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("{% load django_mui_list %}", content)
         self.assertIn("table_rows=page_obj.object_list|default:rows", content)
         self.assertIn(
+            '{% include "django_mui/includes/table_saved_view_metadata.html" with table_saved_view_metadata=table_saved_view_metadata %}',
+            content,
+        )
+        self.assertIn(
             '{% include "django_mui/includes/table_toolbar_actions.html" with table_toolbar_actions=table_toolbar_actions %}',
             content,
         )
@@ -133,6 +137,19 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("table_selection_summary.clear_url", content)
         self.assertIn("Clear selection", content)
         self.assertIn("mui-table-selection-summary", content)
+
+    def test_table_saved_view_metadata_partial_renders_optional_name_and_owner(self):
+        content = (
+            BASE_DIR
+            / "django_mui/templates/django_mui/includes/table_saved_view_metadata.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn(
+            "{% if table_saved_view_metadata and table_saved_view_metadata.name %}",
+            content,
+        )
+        self.assertIn("table_saved_view_metadata.name|escape", content)
+        self.assertIn("table_saved_view_metadata.owner", content)
+        self.assertIn("mui-table-saved-view-metadata", content)
 
     def test_status_chip_partial_renders_variant_and_optional_prefix_classes(self):
         content = (
@@ -222,7 +239,11 @@ class TemplateContractTests(unittest.TestCase):
             content,
         )
         self.assertIn(
-            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url table_toolbar_actions=table_toolbar_actions table_selection_summary=table_selection_summary pagination_summary=pagination_summary %}',
+            '{% include "django_mui/includes/workflow_sla_summary.html" with workflow_sla_summary=workflow_sla_summary %}',
+            content,
+        )
+        self.assertIn(
+            '{% include "django_mui/includes/table.html" with columns=columns page_obj=page_obj bulk_form_action=bulk_form_action bulk_actions=bulk_actions selected_ids=selected_ids bulk_action_feedback=bulk_action_feedback bulk_action_feedback_level=bulk_action_feedback_level active_filter_summary=active_filter_summary active_filter_reset_url=active_filter_reset_url table_toolbar_actions=table_toolbar_actions table_selection_summary=table_selection_summary table_saved_view_metadata=table_saved_view_metadata pagination_summary=pagination_summary %}',
             content,
         )
 
@@ -257,6 +278,9 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"active_filter_reset_url": reverse("django_mui_example_integration")', content)
         self.assertIn('"table_toolbar_actions": table_toolbar_actions', content)
         self.assertIn('"table_selection_summary": table_selection_summary', content)
+        self.assertIn('"table_saved_view_metadata": {', content)
+        self.assertIn('"name": "Needs manager review"', content)
+        self.assertIn('"owner": "manager@example.com"', content)
         self.assertIn('"label": "order(s) selected"', content)
         self.assertIn('"pagination_summary": pagination_summary', content)
         self.assertIn('"label": "orders"', content)
@@ -273,6 +297,10 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"workflow_status_summary": {', content)
         self.assertIn('"workflow_audit_banner": {', content)
         self.assertIn('"workflow_transition_history": [', content)
+        self.assertIn('"workflow_sla_summary": {', content)
+        self.assertIn('"overdue_count": 1', content)
+        self.assertIn('"at_risk_count": 2', content)
+        self.assertIn('"on_time_count": 5', content)
         self.assertIn('"source": "Approval queue"', content)
         self.assertIn('"action": "Escalated"', content)
         self.assertIn('"current_state_label": "Pending manager approval"', content)
@@ -413,6 +441,16 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("event.timestamp", content)
         self.assertIn("mui-workflow-transition-history", content)
 
+    def test_workflow_sla_summary_partial_supports_optional_counts(self):
+        content = (
+            BASE_DIR / "django_mui/templates/django_mui/includes/workflow_sla_summary.html"
+        ).read_text(encoding="utf-8")
+        self.assertIn("{% if workflow_sla_summary %}", content)
+        self.assertIn("workflow_sla_summary.overdue_count|default:0", content)
+        self.assertIn("workflow_sla_summary.at_risk_count|default:0", content)
+        self.assertIn("workflow_sla_summary.on_time_count|default:0", content)
+        self.assertIn("mui-workflow-sla-summary", content)
+
     def test_base_stylesheet_defines_workflow_transition_styles(self):
         content = (BASE_DIR / "django_mui/static/django_mui/base.css").read_text(
             encoding="utf-8"
@@ -434,12 +472,16 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn(".mui-table-toolbar-actions__list", content)
         self.assertIn(".mui-table-selection-summary", content)
         self.assertIn(".mui-table-selection-summary__clear", content)
+        self.assertIn(".mui-table-saved-view-metadata", content)
+        self.assertIn(".mui-table-saved-view-metadata__owner", content)
         self.assertIn(".mui-status-chip", content)
         self.assertIn(".mui-status-chip--neutral", content)
         self.assertIn(".mui-workflow-audit-banner", content)
         self.assertIn(".mui-workflow-audit-banner__source", content)
         self.assertIn(".mui-workflow-transition-history", content)
         self.assertIn(".mui-workflow-transition-history__list", content)
+        self.assertIn(".mui-workflow-sla-summary", content)
+        self.assertIn(".mui-workflow-sla-summary__list", content)
 
     def test_example_integration_template_includes_nav_section(self):
         content = (
@@ -478,15 +520,15 @@ class TemplateContractTests(unittest.TestCase):
     def test_implementation_backlog_tracks_open_and_completed_phases(self):
         content = (BASE_DIR / "docs/implementation-issues.md").read_text(encoding="utf-8")
         self.assertIn("## Porting completion snapshot", content)
-        self.assertIn("**Selected backlog items completed**: 24/26 (92%)", content)
-        self.assertIn("**Remaining selected backlog items**: 2/26 (8%)", content)
+        self.assertIn("**Selected backlog items completed**: 26/26 (100%)", content)
+        self.assertIn("**Remaining selected backlog items**: 0/26 (0%)", content)
         self.assertIn(
-            "**Work left to finish free + pro parity scope**: 2 planned OSS parity contracts",
+            "**Work left to finish free + pro parity scope**: 0 planned OSS parity contracts",
             content,
         )
-        self.assertIn("proprietary premium-only", content)
+        self.assertIn("proprietary premium-only 1:1 cloning stays out of scope", content)
         self.assertIn("1:1 cloning stays out of scope", content)
-        self.assertIn("## Phase 15 Backlog (Open)", content)
+        self.assertIn("## Phase 15 Backlog (Completed)", content)
         self.assertIn("Add server-rendered workflow SLA breach summary contract", content)
         self.assertIn("Add server-rendered table saved-view metadata contract", content)
         self.assertIn("## Phase 14 Backlog (Completed)", content)
