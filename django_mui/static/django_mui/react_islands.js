@@ -151,6 +151,51 @@
     island.appendChild(hint);
   });
 
+  window.DjangoMuiIslands.register("TodoDashboardStatsCard", function (island, props) {
+    const labels = props.labels || {};
+    const totalLabel = String(labels.total || "Total");
+    const openLabel = String(labels.open || "Open");
+    const completedLabel = String(labels.completed || "Done");
+    const fallback = island.parentElement
+      ? island.parentElement.querySelector("[data-django-mui-stats-fallback]")
+      : null;
+    const chips = [
+      {
+        label: `${totalLabel}: ${String(props.total_count || 0)}`,
+        variant: "neutral",
+      },
+      {
+        label: `${openLabel}: ${String(props.open_count || 0)}`,
+        variant: "warning",
+      },
+      {
+        label: `${completedLabel}: ${String(props.completed_count || 0)}`,
+        variant: "success",
+      },
+    ];
+    const card = document.createElement("section");
+    card.className = "mui-card";
+    const title = document.createElement("h3");
+    title.className = "mui-card__title";
+    title.textContent = props.title || "Todo overview";
+    const chipList = document.createElement("ul");
+    chipList.className = "mui-chip-set";
+    chips.forEach(function (chip) {
+      const item = document.createElement("li");
+      const chipElement = document.createElement("span");
+      chipElement.className = "mui-status-chip mui-status-chip--" + chip.variant;
+      chipElement.textContent = chip.label;
+      item.appendChild(chipElement);
+      chipList.appendChild(item);
+    });
+    card.appendChild(title);
+    card.appendChild(chipList);
+    island.appendChild(card);
+    if (fallback) {
+      fallback.hidden = true;
+    }
+  });
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", window.DjangoMuiIslands.mount);
   } else {

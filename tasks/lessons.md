@@ -155,3 +155,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: Demo feature requests span templates, routes, view state handling, and visual proof, making it easy to miss one contract when moving fast.
 * Preventive rule: For new showcase pages, always land URL + view + template + stylesheet + contract tests + screenshot evidence in one pass.
 * Verification added: Added todo dashboard route/view/template/tests, ran baseline validations, and captured screenshot evidence for the new page.
+
+* Date: 2026-03-06
+* Failure signature: Dashboard looked like plain HTML with no distinct componentized surface for stats summary.
+* Root cause: Todo metrics were rendered as plain paragraph tags only, without a dedicated reusable dashboard card/chip island contract.
+* Preventive rule: For dashboard showcase sections, provide at least one dedicated UI primitive (card/chips) and keep SSR fallback markup hidden only after island mount succeeds.
+* Verification added: Added `TodoDashboardStatsCard` island + fallback marker, expanded template contract checks, and captured updated dashboard screenshot proof.

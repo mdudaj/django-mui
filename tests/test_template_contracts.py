@@ -26,6 +26,8 @@ class TemplateContractTests(unittest.TestCase):
         )
         self.assertIn(".mui-alert", content)
         self.assertIn(".mui-alert-success", content)
+        self.assertIn(".mui-card", content)
+        self.assertIn(".mui-chip-set", content)
 
     def test_messages_partial_maps_expected_levels(self):
         content = (
@@ -206,6 +208,10 @@ class TemplateContractTests(unittest.TestCase):
         ).read_text(encoding="utf-8")
         self.assertIn('window.DjangoMuiIslands.register("FormFieldWidgetHint"', content)
         self.assertIn('hint.className = "mui-field__help-text"', content)
+        self.assertIn('window.DjangoMuiIslands.register("TodoDashboardStatsCard"', content)
+        self.assertIn("const labels = props.labels || {}", content)
+        self.assertIn('card.className = "mui-card"', content)
+        self.assertIn('data-django-mui-stats-fallback', content)
 
     def test_example_integration_template_covers_form_workflow_and_table_patterns(self):
         content = (
@@ -329,8 +335,11 @@ class TemplateContractTests(unittest.TestCase):
             BASE_DIR / "django_mui/templates/django_mui/examples/todo_dashboard.html"
         ).read_text(encoding="utf-8")
         self.assertIn('{% extends "django_mui/base.html" %}', content)
+        self.assertIn("{% load django_mui_islands %}", content)
         self.assertIn("branding_variables_inline_style", content)
         self.assertIn('name="brand"', content)
+        self.assertIn('{% render_react_island "TodoDashboardStatsCard" props=todo_dashboard_stats_island %}', content)
+        self.assertIn("data-django-mui-stats-fallback", content)
         self.assertIn('name="action" value="create"', content)
         self.assertIn('name="action" value="toggle"', content)
         self.assertIn('name="action" value="update"', content)
@@ -352,6 +361,8 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"branding_variables_inline_style": _get_branding_variables(selected_branding)', content)
         self.assertIn('"branding_preview_tokens": TODO_BRANDING_PRESETS[selected_branding].get("tokens", {})', content)
         self.assertIn('"todo_total_count": len(todos)', content)
+        self.assertIn('"todo_dashboard_stats_island": {', content)
+        self.assertIn('"labels": {', content)
 
     def test_timeline_partial_renders_events_with_status_and_timestamp(self):
         content = (
