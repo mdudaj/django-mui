@@ -204,6 +204,11 @@ def example_todo_dashboard_view(request):
             "total_count": len(todos),
             "open_count": open_count,
             "completed_count": completed_count,
+            "labels": {
+                "total": "Total",
+                "open": "Open",
+                "completed": "Done",
+            },
         },
     }
     return render(request, "django_mui/examples/todo_dashboard.html", context)

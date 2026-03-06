@@ -50,7 +50,7 @@
 - [x] Run `ruff check . --select S`.
 - [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
 - [x] Capture updated dashboard screenshot for traceability (`https://github.com/user-attachments/assets/e82e6620-ddde-491d-8707-2a39a18c7acd`).
-- [ ] Run code review and codeql checker; address actionable findings.
+- [x] Run code review and codeql checker; address actionable findings.
 
 ## Validation commands
 

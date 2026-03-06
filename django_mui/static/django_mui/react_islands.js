@@ -152,20 +152,24 @@
   });
 
   window.DjangoMuiIslands.register("TodoDashboardStatsCard", function (island, props) {
+    const labels = props.labels || {};
+    const totalLabel = String(labels.total || "Total");
+    const openLabel = String(labels.open || "Open");
+    const completedLabel = String(labels.completed || "Done");
     const fallback = island.parentElement
       ? island.parentElement.querySelector("[data-django-mui-stats-fallback]")
       : null;
     const chips = [
       {
-        label: "Total: " + String(props.total_count || 0),
+        label: `${totalLabel}: ${String(props.total_count || 0)}`,
         variant: "neutral",
       },
       {
-        label: "Open: " + String(props.open_count || 0),
+        label: `${openLabel}: ${String(props.open_count || 0)}`,
         variant: "warning",
       },
       {
-        label: "Done: " + String(props.completed_count || 0),
+        label: `${completedLabel}: ${String(props.completed_count || 0)}`,
         variant: "success",
       },
     ];

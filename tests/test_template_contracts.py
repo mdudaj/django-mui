@@ -209,6 +209,7 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('window.DjangoMuiIslands.register("FormFieldWidgetHint"', content)
         self.assertIn('hint.className = "mui-field__help-text"', content)
         self.assertIn('window.DjangoMuiIslands.register("TodoDashboardStatsCard"', content)
+        self.assertIn("const labels = props.labels || {}", content)
         self.assertIn('card.className = "mui-card"', content)
         self.assertIn('data-django-mui-stats-fallback', content)
 
@@ -361,6 +362,7 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn('"branding_preview_tokens": TODO_BRANDING_PRESETS[selected_branding].get("tokens", {})', content)
         self.assertIn('"todo_total_count": len(todos)', content)
         self.assertIn('"todo_dashboard_stats_island": {', content)
+        self.assertIn('"labels": {', content)
 
     def test_timeline_partial_renders_events_with_status_and_timestamp(self):
         content = (
