@@ -1,4 +1,5 @@
 {% extends "django_mui/base.html" %}
+{% load django_mui_islands %}
 
 {% block page_title %}Todo dashboard demo{% endblock %}
 
@@ -37,9 +38,12 @@
     <section class="mui-demo-dashboard__panel">
       <h2>Todo dashboard</h2>
       <div class="mui-demo-dashboard__stats">
-        <p>Total: <strong>{{ todo_total_count }}</strong></p>
-        <p>Open: <strong>{{ todo_open_count }}</strong></p>
-        <p>Done: <strong>{{ todo_completed_count }}</strong></p>
+        {% render_react_island "TodoDashboardStatsCard" props=todo_dashboard_stats_island %}
+        <div data-django-mui-stats-fallback>
+          <p>Total: <strong>{{ todo_total_count }}</strong></p>
+          <p>Open: <strong>{{ todo_open_count }}</strong></p>
+          <p>Done: <strong>{{ todo_completed_count }}</strong></p>
+        </div>
       </div>
 
       {% if todo_feedback_message %}

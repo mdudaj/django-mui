@@ -359,6 +359,28 @@ td {
   flex-wrap: wrap;
 }
 
+.mui-card {
+  background: var(--django-mui-surface);
+  border: 1px solid color-mix(in srgb, var(--django-mui-accent), #ffffff 60%);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 12%);
+  padding: 0.75rem 1rem;
+}
+
+.mui-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.mui-chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .mui-demo-dashboard__token-list {
   margin: 0.75rem 0 0;
   padding-left: 1rem;

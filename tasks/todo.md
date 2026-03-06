@@ -2,14 +2,14 @@
 
 ## Active work item
 
-* Objective: Add a demo todo dashboard page with server-rendered CRUD flows and branding-variable showcase.
-* Scope boundary: minimal SSR updates within existing example architecture; no unrelated refactors.
-* Dependencies: `django_mui/views.py`, `django_mui/urls.py`, example templates, `django_mui/static/django_mui/base.css`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
+* Objective: Render visible Material UI components in the demo dashboard so it no longer appears as plain HTML-only output.
+* Scope boundary: minimal, server-first updates that preserve existing templates/contracts while progressively enhancing with MUI islands.
+* Dependencies: `django_mui/templates/django_mui/base.html`, `django_mui/static/django_mui/react_islands.js`, `django_mui/views.py`, `django_mui/templates/django_mui/examples/todo_dashboard.html`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
 * Acceptance criteria:
-  - Demo dashboard route is reachable from examples and renders a todo-focused dashboard.
-  - Dashboard supports create/update/delete/toggle-complete CRUD actions for todos.
-  - Dashboard demonstrates branding customization through CSS variable overrides.
-  - Template contract tests cover the new demo entry points and core CRUD/branding wiring.
+  - Base template loads required React/MUI runtime assets for islands.
+  - Todo dashboard renders at least one real Material UI component via island mount.
+  - Existing todo CRUD server-rendered flows remain functional as fallback behavior.
+  - Template contract tests cover new MUI integration hooks.
 
 ## Backlog integration snapshot
 
@@ -32,16 +32,16 @@
 
 ## Phase 1 — Plan
 
-- [x] Confirm requested scope for demo todo dashboard + branding showcase.
+- [x] Confirm requested scope for dashboard MUI rendering enhancement.
 - [x] Run baseline validations before edits.
-- [x] Confirm minimal implementation files and insertion points for demo route/view/template/tests.
+- [x] Confirm minimal implementation files and insertion points for base assets + dashboard island wiring.
 
 ## Phase 2 — Execute
 
-- [x] Add demo dashboard URL and view logic for todo CRUD + branding variable selection.
-- [x] Add/extend example templates with demo dashboard sections and controls.
-- [x] Add minimal stylesheet support for dashboard/branding preview layout.
-- [x] Update template contract tests for new demo dashboard wiring.
+- [x] Add runtime island enhancement hooks without requiring external CDN dependencies.
+- [x] Add/extend island registration to render Material UI dashboard component(s) with fallback behavior.
+- [x] Wire todo dashboard context/template to mount new MUI component while preserving existing CRUD forms.
+- [x] Update template contract tests for MUI integration markers.
 
 ## Phase 3 — Review
 
@@ -49,8 +49,8 @@
 - [x] Run `ruff check .`.
 - [x] Run `ruff check . --select S`.
 - [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
-- [x] Capture updated dashboard screenshot for traceability (`https://github.com/user-attachments/assets/faaa52f6-df88-45d0-9a74-bd0c99324c65`).
-- [x] Run code review and codeql checker; address actionable findings.
+- [x] Capture updated dashboard screenshot for traceability (`https://github.com/user-attachments/assets/e82e6620-ddde-491d-8707-2a39a18c7acd`).
+- [ ] Run code review and codeql checker; address actionable findings.
 
 ## Validation commands
 
