@@ -137,3 +137,9 @@ Use this file to prevent repeated mistakes across sessions.
 * Root cause: `tasks/todo.md` was updated for planning but not reconciled after implementation/review completion.
 * Preventive rule: After backlog docs/tests are updated, mirror the same completion totals and implemented-task status in `tasks/todo.md` before running final review tools.
 * Verification added: `tasks/todo.md` now reflects 24/26 completion, marks both Phase 14 contracts implemented, and records code review/codeql completion.
+
+* Date: 2026-03-06
+* Failure signature: Backlog contract test failed after adding a long snapshot sentence because assertion expected one unwrapped line.
+* Root cause: Documentation text wrapped across markdown lines, but the test asserted a single contiguous literal string.
+* Preventive rule: For wrapped markdown assertions, check stable substrings or split assertions by phrase instead of relying on full-line formatting.
+* Verification added: `test_implementation_backlog_tracks_open_and_completed_phases` now asserts separate free/pro scope substrings.

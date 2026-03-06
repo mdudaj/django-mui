@@ -480,6 +480,12 @@ class TemplateContractTests(unittest.TestCase):
         self.assertIn("## Porting completion snapshot", content)
         self.assertIn("**Selected backlog items completed**: 24/26 (92%)", content)
         self.assertIn("**Remaining selected backlog items**: 2/26 (8%)", content)
+        self.assertIn(
+            "**Work left to finish free + pro parity scope**: 2 planned OSS parity contracts",
+            content,
+        )
+        self.assertIn("proprietary premium-only", content)
+        self.assertIn("1:1 cloning stays out of scope", content)
         self.assertIn("## Phase 15 Backlog (Open)", content)
         self.assertIn("Add server-rendered workflow SLA breach summary contract", content)
         self.assertIn("Add server-rendered table saved-view metadata contract", content)

@@ -2,13 +2,13 @@
 
 ## Active work item
 
-* Objective: Continue backlog by completing the Phase 14 workflow transition history and table selection summary contracts, then quantify remaining porting work.
-* Scope boundary: minimal server-rendered workflow/table contract updates (new transition-history/selection-summary partials, integration wiring, CSS, docs/tests).
-* Dependencies: `django_mui/templates/django_mui/includes/table.html`, `django_mui/templates/django_mui/includes/table_selection_summary.html`, `django_mui/templates/django_mui/includes/workflow_transition_history.html`, `django_mui/templates/django_mui/examples/integration.html`, `django_mui/static/django_mui/base.css`, `django_mui/views.py`, `docs/implementation-issues.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
+* Objective: Clarify how much work remains to finish free + pro feature porting scope.
+* Scope boundary: docs/tests only; keep implementation backlog and parity language aligned with existing project scope.
+* Dependencies: `docs/implementation-issues.md`, `docs/feature-inventory.md`, `tests/test_template_contracts.py`, `tasks/lessons.md`.
 * Acceptance criteria:
-  - Workflow transition history renders from Django context-provided metadata.
-  - Table selection summary renders deterministic selected-count + clear-selection affordance from Django context.
-  - Existing table/workflow usage without the new metadata remains backward compatible.
+  - Porting snapshot explicitly answers remaining free + pro scope work.
+  - Wording is consistent with feature inventory parity boundaries.
+  - Backlog contract test coverage asserts the new wording.
 
 ## Backlog integration snapshot
 
@@ -36,23 +36,21 @@
 
 ## Phase 1 — Plan
 
-- [x] Review open backlog phase and pick the next selected contracts.
-- [x] Confirm minimal files/tests to update for workflow/table contract additions.
+- [x] Review current backlog and parity docs to identify remaining free + pro scope work.
+- [x] Confirm minimal docs/tests to update for this clarification.
 
 ## Phase 2 — Execute
 
-- [x] Add reusable workflow-transition-history partial and integrate with workflow section.
-- [x] Add reusable table-selection-summary partial and wire into table integration.
-- [x] Update integration view/template context for transition history + selection summary metadata.
-- [x] Refresh backlog docs and focused contract tests for Phase 14 completion + next-phase remaining-work snapshot.
+- [x] Update implementation backlog snapshot with explicit free + pro remaining-work wording.
+- [x] Update focused template contract assertions for the new wording.
 
 ## Phase 3 — Review
 
-- [x] Run targeted tests for updated workflow/table template contract areas.
+- [x] Run targeted tests for updated backlog/template contract areas.
 - [x] Run `ruff check .`.
 - [x] Run `ruff check . --select S`.
 - [x] Run `python -m unittest discover -s tests -p "test_*.py"`.
-- [x] Capture updated integration screenshot for Phase 14 contract additions (`https://github.com/user-attachments/assets/d7db8419-d8c8-4202-afe6-1aa96fd7c3df`).
+- [x] Capture updated integration screenshot for traceability (N/A: docs/tests-only change, no UI behavior changed).
 - [x] Run code review and codeql checker; address actionable findings.
 
 ## Validation commands
